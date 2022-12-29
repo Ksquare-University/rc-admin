@@ -4,6 +4,7 @@ import './App.css';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { firebaseConfig } from './firebase/firebaseConfig';
 import { initializeApp } from 'firebase/app';
+import {Form} from './components/Form';
 
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -25,9 +26,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <button onClick={login} > Log in </button>
-      </header>
+      <div>
+          <Form/>
+      </div>
     </div>
   );
 }
