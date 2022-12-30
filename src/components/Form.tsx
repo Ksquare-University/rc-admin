@@ -34,8 +34,10 @@ export const Form: React.FC = () => {
       };
     
     return (
-        <div>
-            <img src={rappilogoBN} alt="log" className="logo" />
+        <div className="LoginContainer">
+            <div>
+                <img src={rappilogoBN} alt="log" className="logo" />
+            </div>
             <form action="">
             <span>Welcome!</span>
                 <div className="inputLabel">
