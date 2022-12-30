@@ -4,13 +4,13 @@
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-color: #FE473C;
+  background-color: #fe473c;
   text-align: center;
   flex-direction: column;
-  background-image: url('./assets/BackgroundFood.png');
+  background-image: url("./assets/BackgroundFood.png");
 }
 
-span{
+span {
   font-size: 140px;
   color: aliceblue;
   transition: all 0.5s;
@@ -19,13 +19,13 @@ span{
   margin-bottom: 60px;
 }
 
-span:hover{
+span:hover {
   font-size: 150px;
   color: #76110c;
   letter-spacing: 20px;
 }
 
-form{
+form {
   width: 1000px;
   height: 50vh;
   display: flex;
@@ -34,7 +34,7 @@ form{
   flex-direction: column;
 }
 
-input{
+input {
   width: 500px;
   height: 40px;
   border: none;
@@ -45,7 +45,7 @@ input{
   transition: all 0.6s;
 }
 
-input:focus{
+input:focus {
   background-color: #670702;
   color: #fff;
 }
@@ -67,8 +67,7 @@ button {
   border: solid #76110c;
 }
 
-
-button:hover{
+button:hover {
   background-color: #280200;
   border-color: #dd0b00;
   color: #fff;
@@ -76,11 +75,11 @@ button:hover{
   height: 60px;
 }
 
-img{
+img {
   width: 200px;
   transition: all 1s;
 }
 
-img:hover{
+img:hover {
   width: 300px;
 }
