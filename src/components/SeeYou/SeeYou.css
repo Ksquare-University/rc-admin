@@ -1,0 +1,35 @@
+.Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #fe473c;
+  text-align: center;
+  flex-direction: column;
+  background-image: url("../../assets/BackgroundFood.png");
+}
+
+h1 {
+  font-size: 150px;
+  color: aliceblue;
+  transition: all 0.5s;
+}
+
+h1:hover {
+  font-size: 150px;
+  color: #76110c;
+  letter-spacing: 20px;
+}
+
+button {
+  padding: 20px;
+  width: 180px;
+  font-weight: 700;
+  font-size: 12pt;
+  color: #000000;
+  border: none;
+  border-radius: 6px;
+  background-color: rgb(221, 221, 221);
+  cursor: pointer;
+}

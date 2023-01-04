@@ -1,10 +1,12 @@
 import React from "react";
 import logo from "./logo.svg";
-import "./App.css";
+//import "./App.css";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseConfig } from "./firebase/firebaseConfig";
 import { initializeApp } from "firebase/app";
-import { Form } from "./components/Form";
+import { Login } from "./components/Login/Login";
+import { SideNavBar } from "./components/SideNavBar";
+import { SeeYou } from "./components/SeeYou/SeeYou";
 
 const firebaseApp = initializeApp(firebaseConfig);
 
@@ -23,7 +25,12 @@ function App() {
     }
   };
 
-  return <Form />;
+  return(
+    <> 
+    <Login/>
+    <SeeYou/>
+    </>
+  );
 }
 
 export default App;
