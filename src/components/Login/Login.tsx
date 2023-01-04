@@ -2,7 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import rappilogoBN from "../assets/rappilogoBN.png";
+import rappilogoBN from "../../assets/rappilogoBN.png";
+import './Login.css'
 //import "bootstrap/dist/css/bootstrap.min.css";
 
 type UserSubmitForm = {
@@ -10,7 +11,7 @@ type UserSubmitForm = {
   password: string;
 };
 
-export const Form: React.FC = () => {
+export const Login: React.FC = () => {
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
