@@ -7,6 +7,7 @@ import { initializeApp } from "firebase/app";
 import { Login } from "./components/Login/Login";
 import { SideNavBar } from "./components/SideNavBar";
 import { SeeYou } from "./components/SeeYou/SeeYou";
+import { Stepform } from "./components/Restaurant/NewRestaurant";
 
 const firebaseApp = initializeApp(firebaseConfig);
 
@@ -27,8 +28,9 @@ function App() {
 
   return(
     <> 
-    <Login/>
-    <SeeYou/>
+      <Login/>
+      <SeeYou/>
+      <Stepform/>
     </>
   );
 }
