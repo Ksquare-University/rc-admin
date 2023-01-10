@@ -13,6 +13,7 @@
     margin-bottom: 10px;
     font-weight: bold;
     margin-top: 20px;
+    justify-content: space-between;
 }
 
 .restauranteState{
@@ -23,9 +24,11 @@
     padding: 20px;
     margin-bottom: 10px;
     font-weight: bold;
+    justify-content: space-between;
 }
 .disableButtons{
     display: flex;
     margin-left: 350px;
     margin-top: 180px;
+    margin-right: 20%;
 }

@@ -8,9 +8,11 @@ import * as Yup from "yup";
 
 export const ScheduleForm = () =>{
     const [day, setday] = useState("");
+    const [step, setstep] = useState(1);
     type daysSubmitForm = {
         openingDays?: string;
         closeDays?: string;
+        switch?: string;
     };
     const validationSchema = Yup.object().shape({
         openingDays: Yup.string(),
@@ -38,19 +40,19 @@ export const ScheduleForm = () =>{
         // });
       };
 
-    const working = (value:string)=>{
-        return 'btn '+((day) ?'active':'default');
+    const working = (value:number)=>{
+        return 'btn '+((value===step) ?'active':'default');
     }
     return(
         <form className='scheduleContainer' onSubmit={handleSubmit(onSubmit)}>
             <div className="navbar">
-                <a className={working("")} onClick={()=>{setday("Monday");}}>Monday</a>
-                <a className={working("")} onClick={()=>{setday("Tuesday");}}>Tuesday</a>
-                <a className={working("")} onClick={()=>{setday("Wednesday");}}>Wednesday</a>
-                <a className={working("")} onClick={()=>{setday("Thrusday");}}>Thrusday</a>
-                <a className={working("")} onClick={()=>{setday("Friday");}}>Friday</a>
-                <a className={working("")} onClick={()=>{setday("Saturday");}}>Saturday</a>
-                <a className={working("")} onClick={()=>{setday("Sunday");}}>Sunday</a>
+                <a className={working(1)} onClick={()=>{setday("Monday");setstep(1);}}>Monday</a>
+                <a className={working(2)} onClick={()=>{setday("Tuesday"); setstep(2);}}>Tuesday</a>
+                <a className={working(3)} onClick={()=>{setday("Wednesday"); setstep(3);}}>Wednesday</a>
+                <a className={working(4)} onClick={()=>{setday("Thrusday"); setstep(4);}}>Thrusday</a>
+                <a className={working(5)} onClick={()=>{setday("Friday"); setstep(5);}}>Friday</a>
+                <a className={working(6)} onClick={()=>{setday("Saturday"); setstep(6);}}>Saturday</a>
+                <a className={working(7)} onClick={()=>{setday("Sunday"); setstep(7);}}>Sunday</a>
             </div>
 
             <div className="restaurantSchedule">
@@ -73,7 +75,7 @@ export const ScheduleForm = () =>{
                         <option value="12:00 am">12:00 am</option>
                     </select>
                 </div>
-            
+          
                 <div className="buttons">
                     <button className="cancelButton"> Cancel </button>
                     <button className="doneButton" type="submit"> Done </button>
