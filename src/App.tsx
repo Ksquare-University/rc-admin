@@ -5,8 +5,9 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseConfig } from "./firebase/firebaseConfig";
 import { initializeApp } from "firebase/app";
 import { Login } from "./components/Login/Login";
-import { SideNavBar } from "./components/SideNavBar";
 import { SeeYou } from "./components/SeeYou/SeeYou";
+import { UserInfo } from "./components/UserInfo/UserInfo";
+import { UserInfoSideBar } from "./components/UserInfoSideBar/UserInfoSideBar";
 
 const firebaseApp = initializeApp(firebaseConfig);
 
@@ -27,8 +28,7 @@ function App() {
 
   return(
     <> 
-    <Login/>
-    <SeeYou/>
+    <UserInfoSideBar></UserInfoSideBar>
     </>
   );
 }

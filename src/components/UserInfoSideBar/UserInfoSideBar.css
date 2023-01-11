@@ -1,0 +1,97 @@
+.User-Info-Box{
+    display: flex;
+    width: 23%;
+    height: 100vh;
+    background-color: rgb(245, 245, 245);
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 5px 5px 10px #4747471d;
+
+}
+
+.User-info-box-child{
+    display: flex;
+    flex-direction: column;
+    border-color: antiquewhite;
+    padding-top: 20px;
+    align-items: center;
+    font-weight: 700;
+    font-size: 20pt;
+}
+
+.edit-information{
+    font-size: 15pt;
+    border-style: none;
+    background-color: rgb(245,245,245);
+    cursor: pointer;
+    font-weight: 700;
+    color: rgb(133, 133, 133);
+}
+
+.Values-inputs-box{
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    width: 90%;
+    padding-top: 25%;
+    align-items: center;
+}
+
+.Input-element{
+    padding: 13px;
+    width: 80%;
+    margin: 20px;
+    border: solid;
+    border-color: rgb(89, 89, 89);
+    border-radius: 5px;
+    height: 7%;
+    font-size: 100%;
+    font-weight: 700;
+}
+
+
+.user-img{
+    margin-top: 100px;
+    width: 45%;
+    border-radius: 50%;
+    box-shadow: 5px 5px 10px #47474711;
+}
+
+.Buttons-Edit-Box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    display: none;
+}
+
+.Button-done{
+    font-weight: 700;
+    border: none;
+    padding: 10px;
+    padding-left: 25px ;
+    padding-right: 25px ;
+    font-size: 15pt;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: green;
+    color: white;
+}
+
+.Button-cancel{
+    font-weight: 700;
+    border: none;
+    padding: 10px;
+    padding-left: 25px ;
+    padding-right: 25px ;
+    font-size: 15pt;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: rgb(128, 11, 0);
+    color: white;
+}
+
+.Rappi-Logo{
+    width: 100px;
+}
