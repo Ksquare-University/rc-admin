@@ -1,6 +1,6 @@
 .User-Info-Box{
     display: flex;
-    width: 23%;
+    width: 20%;
     height: 100vh;
     background-color: rgb(245, 245, 245);
     align-items: center;
@@ -27,6 +27,11 @@
     cursor: pointer;
     font-weight: 700;
     color: rgb(133, 133, 133);
+    transition: all 0.5s;
+}
+
+.edit-information:hover{
+    color: rgb(58, 58, 58);
 }
 
 .Values-inputs-box{
@@ -62,16 +67,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
     display: none;
 }
+
 
 .Button-done{
     font-weight: 700;
     border: none;
     padding: 10px;
-    padding-left: 25px ;
-    padding-right: 25px ;
+    width: 100%;
     font-size: 15pt;
     border-radius: 6px;
     cursor: pointer;
@@ -83,15 +88,23 @@
     font-weight: 700;
     border: none;
     padding: 10px;
-    padding-left: 25px ;
-    padding-right: 25px ;
+    width: 100%;
     font-size: 15pt;
     border-radius: 6px;
     cursor: pointer;
     background-color: rgb(128, 11, 0);
-    color: white;
+    color: white; 
 }
 
 .Rappi-Logo{
     width: 100px;
+}
+
+
+.Button-cancel:hover{
+    filter: brightness(80%);
+}
+
+.Button-done:hover{
+    filter:brightness(80%);
 }
