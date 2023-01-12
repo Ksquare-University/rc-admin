@@ -9,6 +9,8 @@ import { SeeYou } from "./components/SeeYou/SeeYou";
 import { UserInfo } from "./components/UserInfo/UserInfo";
 import { UserInfoSideBar } from "./components/UserInfoSideBar/UserInfoSideBar";
 import { UpNavBar } from "./components/UpNavBar/UpNavBar";
+import { ScheduleForm } from "./components/Restaurant/ScheduleForm";
+import { Stepform } from "./components/Restaurant/NewRestaurant";
 
 const firebaseApp = initializeApp(firebaseConfig);
 
@@ -27,9 +29,9 @@ function App() {
     }
   };
 
-  return (
-    <>
-      <UpNavBar />
+  return(
+    <> 
+      <Stepform/>
     </>
   );
 }
