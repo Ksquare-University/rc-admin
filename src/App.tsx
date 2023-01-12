@@ -7,8 +7,12 @@ import { initializeApp } from "firebase/app";
 import { Login } from "./components/Login/Login";
 import { SideNavBar } from "./components/SideNavBar";
 import { SeeYou } from "./components/SeeYou/SeeYou";
-import { ScheduleForm } from "./components/Restaurant/ScheduleForm";
-import { Stepform } from "./components/Restaurant/NewRestaurant";
+import { ScheduleForm } from "./components/Restaurant/newRestaurant/ScheduleForm";
+import { Stepform } from "./components/Restaurant/newRestaurant/NewRestaurant";
+
+import { Provider } from 'react-redux'
+import store from './store';
+import { NewRestaurantForm } from "./views/RestaurantForm"
 
 const firebaseApp = initializeApp(firebaseConfig);
 
@@ -32,6 +36,10 @@ function App() {
       {/* <Login/> */}
       {/* <SeeYou/> */}
       <Stepform/>
+      <Provider store={store}>
+        <NewRestaurantForm />
+        <hr/>
+      </Provider>
     </>
   );
 }

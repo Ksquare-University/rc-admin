@@ -1,5 +1,5 @@
 import './NewRestaurant.css'
-import React from 'react';
+import React, {useState} from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -13,6 +13,8 @@ type UserSubmitForm = {
   };
 
 export const InformationForm: React.FC = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+
     const validationSchema = Yup.object().shape({
       email: Yup.string().required("Email is required").email("Email is invalid"),
       password: Yup.string()
@@ -33,36 +35,17 @@ export const InformationForm: React.FC = () => {
     const onSubmit = (data: UserSubmitForm) => {
       console.log(JSON.stringify(data, null, 2));
     };
-  
-    return (
-      <div className="LoginContainer">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="inputLabel">
-            <input
-              type="text"
-              placeholder="Email"
-              {...register("email")}
-              className={`form-control ${errors.email ? "is-invalid" : ""}`}
-            />
-          </div>
-          <div className="inputLabel">
-            <input
-              type="password"
-              placeholder="Password"
-              {...register("password")}
-              className={`form-control ${errors.password ? "is-invalid" : ""}`}
-            />
-          </div>
-  
-          <div className="form-group">
 
-          </div>
-        </form>
-      </div>
-    )
+
     return(
         <div className='RestaurantInfo'>
-            <input
+          
+          <input
+            placeholder="Restaurant Name"
+            type="file"
+             />
+
+          <input
             placeholder="Restaurant Name"
             type="text"
              />

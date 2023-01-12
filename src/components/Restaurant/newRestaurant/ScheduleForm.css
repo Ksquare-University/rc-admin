@@ -7,7 +7,7 @@ body {
     background-color: #f8554d;
     text-align: center;
     flex-direction: column;
-    background-image: url("../../assets/BackgroundFood.png");
+    background-image: url("../../../assets/BackgroundFood.png");
   }
   
   span {
