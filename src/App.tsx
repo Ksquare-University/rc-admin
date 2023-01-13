@@ -8,7 +8,13 @@ import { Login } from "./components/Login/Login";
 import { SideNavBar } from "./components/SideNavBar";
 import { SeeYou } from "./components/SeeYou/SeeYou";
 import { Stepform } from "./components/Restaurant/NewRestaurant";
-
+import { BrowserRouter,Route, Routes } from "react-router-dom";
+import SideNavBar from "./components/SideNavBar/SideNavBar";
+import Clients from "./components/Pages/Clients";
+import Restaurants from "./components/Pages/Restaurants";
+import Views from "./components/Pages/Views";
+import Orders from "./components/Pages/Orders";
+import Sales from "./components/Pages/Sales";
 const firebaseApp = initializeApp(firebaseConfig);
 
 const auth = getAuth(firebaseApp);
@@ -25,14 +31,26 @@ function App() {
       console.error(error);
     }
   };
-
   return(
     <> 
-      <Login/>
-      <SeeYou/>
-      <Stepform/>
+      {/* <Login/> */}
+      {/* <SeeYou/> */}
+      {/* <Stepform/> */}
+      <BrowserRouter>
+        <SideNavBar>
+          <Routes>
+            <Route path = "/" element = { <Views/>}/>
+            <Route path = "/Orders" element = { <Orders/>}/>
+            <Route path = "/Restaurants" element = { <Restaurants/>}/>
+            <Route path = "/Sales" element = { <Sales/>}/>
+            <Route path = "/Clients" element = { <Clients/>}/>
+          </Routes>
+        </SideNavBar> 
+      </BrowserRouter>
     </>
   );
 }
+
+
 
 export default App;
