@@ -1,3 +1,7 @@
+*{
+    font-family: 'Rubik', sans-serif;
+}
+
 .User-Info-Box{
     display: flex;
     width: 20%;
