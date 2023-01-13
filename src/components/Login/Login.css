@@ -8,6 +8,8 @@
   text-align: center;
   flex-direction: column;
   background-image: url("../../assets/BackgroundFood.png");
+  background-position: center;
+  background-size: cover; 
 }
 
 span {
@@ -53,7 +55,7 @@ input:focus {
 button {
   font-weight: 700;
   border: none;
-  color: white;
+  color: rgb(29, 29, 29);
   padding: 20px;
   width: 180px;
   font-size: 15pt;
@@ -61,8 +63,13 @@ button {
   cursor: pointer;
   margin-top: 30px;
   box-shadow: 5px 5px 10px #30040239;
+  transition: all 0.6s;
 }
 
+button:hover{
+  background-color: #76110c;
+  color: #fff;
+}
 img {
   width: 200px;
   transition: all 1s;
