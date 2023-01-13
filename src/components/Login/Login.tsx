@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import rappilogoBN from "../../assets/rappilogoBN.png";
-import './Login.css'
+import "./Login.css";
 //import "bootstrap/dist/css/bootstrap.min.css";
 
 type UserSubmitForm = {
