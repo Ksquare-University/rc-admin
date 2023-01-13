@@ -9,7 +9,6 @@ import { SeeYou } from "./components/SeeYou/SeeYou";
 import { UserInfo } from "./components/UserInfo/UserInfo";
 import { UserInfoSideBar } from "./components/UserInfoSideBar/UserInfoSideBar";
 import { UpNavBar } from "./components/UpNavBar/UpNavBar";
-import "./App.css"
 
 const firebaseApp = initializeApp(firebaseConfig);
 
@@ -30,7 +29,7 @@ function App() {
 
   return (
     <>
-      <UserInfoSideBar/>
+      <UpNavBar />
     </>
   );
 }
