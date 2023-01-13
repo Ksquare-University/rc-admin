@@ -1,3 +1,7 @@
+*{
+  font-family: 'Rubik', sans-serif;
+}
+
 .Container {
   display: flex;
   justify-content: center;
