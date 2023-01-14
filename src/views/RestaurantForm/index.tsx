@@ -1,11 +1,11 @@
-import React from 'react';
+import './NewRestaurant.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { InformationForm } from "../../components/Restaurant/newRestaurant/InformationForm";
 import { ScheduleForm } from "../../components/Restaurant/newRestaurant/ScheduleForm";
 import { DisableForm } from "../../components/Restaurant/newRestaurant/DisableForm";
 
 import { StateI } from '../../store/slices';
-import  {formInformation, formSchedule, formDisable} from "../../store/slices/RestaurantForm";
+import { updateState } from "../../store/slices/RestaurantForm";
 import { counterState } from '../../store/slices/RestaurantForm/reducers';
 
 type Props = {
@@ -15,32 +15,26 @@ type Props = {
 export function NewRestaurantForm ({ title = 'NewRestaurantForm' }: Props){
 
     const dispatch = useDispatch();
-    const pageStage = useSelector<StateI>(state => state.newRestaurantCount) as counterState;
+    const pageStage = useSelector<StateI>(state => state.newRestaurantCount.FormStage) as counterState;
 
     const isActive = (value:number)=>{
         return 'btn '+((value===pageStage) ?'active':'default');
     }
 
-    const information = (n: number) => {
-        dispatch(formInformation(n));
-    }
-    const schedule = (n: number) => {
-        dispatch(formSchedule(n));
-    }
-    const disable = (n: number) => {
-        dispatch(formInformation(n));
+    const updateStates = (n: number) =>{
+        dispatch(updateState(n));
     }
     
     return(
         <div className="formRestaurant">
             <div className="menu">
-                <a className={isActive(0)} onClick={()=>{ information(0);}}>Information</a>
-                <a className={isActive(1)} onClick={()=>{ schedule(1);}}>Schedule</a>
-                <a className={isActive(2)} onClick={()=>{ disable(2);}}>Disable Restaurant</a>
+                <a className={isActive(1)} onClick={()=>{ updateStates(1);}}>Information</a>
+                <a className={isActive(2)} onClick={()=>{ updateStates(2);}}>Schedule</a>
+                <a className={isActive(3)} onClick={()=>{ updateStates(3);}}>Disable Restaurant</a>
             </div>
             <h1> Satate:{pageStage}</h1>
             <div className="container-form">
-                {pageStage===1 && <InformationForm/>}
+                {pageStage===1 && <InformationForm isChanged={pageStage}/>}
                 {pageStage===2 && <ScheduleForm/>}
                 {pageStage===3 && <DisableForm/>}
             </div>

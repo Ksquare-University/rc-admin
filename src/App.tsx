@@ -7,7 +7,6 @@ import { initializeApp } from "firebase/app";
 import { Login } from "./components/Login/Login";
 import { SeeYou } from "./components/SeeYou/SeeYou";
 import { ScheduleForm } from "./components/Restaurant/newRestaurant/ScheduleForm";
-import { Stepform } from "./components/Restaurant/newRestaurant/NewRestaurant";
 
 import { Provider } from 'react-redux'
 import store from './store';
@@ -36,7 +35,6 @@ function App() {
 
   return(
     <> 
-      <Stepform/>
       <Provider store={store}>
         <NewRestaurantForm />
         <hr/>
