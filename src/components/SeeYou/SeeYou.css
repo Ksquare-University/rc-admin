@@ -1,3 +1,7 @@
+*{
+  font-family: 'Rubik', sans-serif;
+}
+
 .Container {
   display: flex;
   justify-content: center;
@@ -8,10 +12,31 @@
   text-align: center;
   flex-direction: column;
   background-image: url("../../assets/BackgroundFood.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.Slide-imgs {
+  overflow: hidden;
+  position: relative;
+}
+
+img {
+  width: 18%;
+  object-fit: cover;
+}
+
+#img2 {
+  display: none;
+}
+
+.active {
+  display: block;
+  transition: all 1s;
 }
 
 h1 {
-  font-size: 150px;
+  font-size: 8vw;
   color: aliceblue;
   transition: all 0.5s;
 }
@@ -22,13 +47,17 @@ h1:hover {
 }
 
 button {
+  width: auto;
   padding: 20px;
-  width: 180px;
   font-weight: 700;
-  font-size: 12pt;
+  font-size: 1vw;
   color: #000000;
   border: none;
   border-radius: 6px;
-  background-color: rgb(221, 221, 221);
+  background-color: rgb(255, 255, 255);
   cursor: pointer;
+}
+
+button:hover {
+  color: #f5160a;
 }

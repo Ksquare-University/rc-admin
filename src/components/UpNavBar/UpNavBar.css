@@ -1,3 +1,7 @@
+*{
+  font-family: 'Rubik', sans-serif;
+}
+
 .NavBar-container {
   width: 98%;
   margin: 1%;
@@ -9,16 +13,24 @@
 
 .Menu-Box {
   width: 15%;
-  background-color: rgb(255, 60, 21);
+  background-color: #fe473c;
   height: 7vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("../../assets/BackgroundFood.png");
+  background-size: 1000px; 
 }
 
 h3 {
   color: white;
-  font-size: 2.8rem;
+  font-size: 2.5vw;
+  transition: all 0.8s;
+}
+
+h3:hover{
+  color: #76110c;
+  letter-spacing: 20px;
 }
 
 .Logo-container {
@@ -28,6 +40,13 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 1.0s;
+  background-image: url("../../assets/sideBackGround.png");
+  background-size: 100px; 
+}
+
+.Logo-container:hover{
+  outline:solid #fe473c;
 }
 
 .logo {
@@ -42,18 +61,20 @@ h3 {
 }
 
 button {
-  width: 100%;
   height: 7vh;
-  background-color: rgb(255, 60, 21);
+  width: 100%;
+  background-color: #fe473c;
   cursor: pointer;
   border-style: none;
+  background-image: url("../../assets/BackgroundFood.png");
+  background-size: 600px; 
 }
 
 button > i {
-  font-size: 2rem;
+  font-size: 1.8vw;
   color: white;
 }
 
 button:hover {
-  filter: brightness(85%);
+  background-color: #76110c;
 }

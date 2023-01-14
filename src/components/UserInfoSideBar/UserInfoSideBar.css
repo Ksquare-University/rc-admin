@@ -1,8 +1,14 @@
+*{
+    font-family: 'Rubik', sans-serif;
+}
+
 .User-Info-Box{
     display: flex;
     width: 20%;
     height: 100vh;
     background-color: rgb(245, 245, 245);
+    background-image: url("../../assets/sideBackGround.png");
+    background-repeat: repeat;
     align-items: center;
     flex-direction: column;
     justify-content: center;
@@ -21,9 +27,9 @@
 }
 
 .edit-information{
-    font-size: 15pt;
+    font-size: 1.2vw;
     border-style: none;
-    background-color: rgb(245,245,245);
+    background-color: rgba(245, 245, 245, 0);
     cursor: pointer;
     font-weight: 700;
     color: rgb(133, 133, 133);
@@ -48,11 +54,12 @@
     width: 80%;
     margin: 20px;
     border: solid;
-    border-color: rgb(89, 89, 89);
-    border-radius: 5px;
-    height: 7%;
-    font-size: 100%;
-    font-weight: 700;
+    border-color: rgba(89, 89, 89, 0.412);
+    background-color: rgb(246, 246, 246);
+    border-radius: 10px;
+    height: 20px;
+    font-size: 0.9vw;
+    font-weight: 400;
 }
 
 
@@ -60,7 +67,6 @@
     margin-top: 100px;
     width: 45%;
     border-radius: 50%;
-    box-shadow: 5px 5px 10px #47474711;
 }
 
 .Buttons-Edit-Box{
@@ -106,5 +112,5 @@
 }
 
 .Button-done:hover{
-    filter:brightness(80%);
+    filter:contrast(80%);
 }
