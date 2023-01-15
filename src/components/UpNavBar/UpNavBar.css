@@ -9,11 +9,17 @@
 
 .Menu-Box {
   width: 15%;
-  background-color: rgb(255, 60, 21);
+  background-color: #ff3c15;
   height: 7vh;
   display: flex;
   justify-content: center;
   align-items: center;
+
+}
+
+Menu {
+  color: '#ff3c15',
+
 }
 
 h3 {
@@ -56,4 +62,16 @@ button > i {
 
 button:hover {
   filter: brightness(85%);
+}
+
+
+.sideBar{
+  height: 800px;
+  width: 120px;
+  background-color: blue;
+
+}
+
+.css-zyizc9-MuiButtonBase-root-MuiButton-root{
+  font-weight: bolder;
 }

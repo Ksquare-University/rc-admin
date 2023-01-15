@@ -1,26 +1,25 @@
-*{
-    margin:0;
-    padding:0;
-    text-decoration: none;
+.main{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 20px;
 }
 .container{
     display:flex;
 }
-main{
-    width: 40%;
-    padding: 20px;
-}
+
 .sidebar{
     background: #000;
     color: #fff;
     height: 100vh;
-    width: 200px;
+    width: 1000px;
     transition: all 0.5s;
 }
 .top_section{
     display: flex;
     align-items:center;
     padding:20px 15px;
+    width: 400px;
 }
 .bars{
     display: flex;
@@ -35,12 +34,12 @@ main{
     transition: all 0.5s;
 }
 .link:hover{
-    background:lightskyblue;
+    background:rgba(238, 123, 117, 0.907);
     color: #000;
     transition: all 0.5s;
 }
 .active{
-    background: lightskyblue;
+    background: #fe473c;
     color: #000;
 }
 .icon, .link_text{

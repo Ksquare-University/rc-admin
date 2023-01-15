@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import "./SideNavBar.css"
 import {
+    FaBarcode,
+    FaBars,
     FaCommentAlt,
     FaRegChartBar,
     FaShoppingBag,
     FaTh, FaUserAlt,
-
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
@@ -14,6 +15,8 @@ type Props = {
   }
 
   function SideNavBar({ children }: Props) {
+    const [isOpen, setIsOpen] =useState (false);
+    const toggle = () => setIsOpen (!isOpen);
     const menuItem =[
         {
             path: "/",
@@ -42,7 +45,16 @@ type Props = {
         },
     ]
     return (
-        <div>
+
+        <div className="container">
+            <div style={{width:isOpen ? "300px" : "50px"}} className="sidebar">
+                <div className="top_section">
+                    <h1 className="logo">Logo</h1>
+                    <div className="bars">
+                        <FaBars onClick={toggle}/>
+                    </div>
+                </div> 
+            </div>
              {
                 menuItem.map((item,index)=>(
                     <NavLink to={item.path} key={index} className="link">
