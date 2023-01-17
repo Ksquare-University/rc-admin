@@ -30,14 +30,12 @@ const App: FC = () => {
     }
   };
   return (
-    <>
+
       <BrowserRouter>
         <Sidebar />
         {/* <Stepform></Stepform> */}
-        <Routes>
-        </Routes>
+        <Router></Router>
       </BrowserRouter>
-    </>
   );
 };
 

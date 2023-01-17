@@ -32,8 +32,8 @@ export const SidebarData: SidebarItem[] = [
         icon: < FaUtensils/>
     },
     {
-        title: 'Order',
-        path: '/order',
+        title: 'Orders',
+        path: '/orders',
         icon: <FaRegListAlt/>
     },
     {

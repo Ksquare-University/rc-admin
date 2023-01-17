@@ -17,29 +17,28 @@ import { UserInfoSideBar } from "../components/UserInfoSideBar/UserInfoSideBar";
 import { Configurations } from "../components/Pages/Configurations";
 import { Stepform } from "../components/Restaurant/NewRestaurant";
 function Router (){
-    <BrowserRouter>
-          <Routes>
-            <Route path = "/login" element = { <Login/>}/>
+  return(
+    <Routes>
+      <Route path = "/login" element = { <Login/>}/>
 
-                           {/* Admin pages */}
-            <Route path="/overview" element={<Overview/>}></Route>
-            <Route path="/overview/users" element={<Stepform/>}></Route>
-            <Route path="/overview/revenue" element={<Revenue/>}></Route>
-            <Route path="/order" element={<Order/>}></Route>
-            <Route path="/sales" element={<Sales/>}></Route>
-            <Route path="/PaymentMethod" element={<PaymentMethod/>}></Route>
-            <Route path="/configurations" element={<Configurations/>}></Route>
-            <Route path = "/disableForm" element = { <DisableForm/>}/>
-            <Route path = "/informationForm" element = { <InformationForm/>}/>
-            <Route path = "/scheduleForm" element = { <ScheduleForm/>}/>
-            
-            <Route path = "/seeYou" element = { <SeeYou/>}/>
-            <Route path = "/upNavBar" element = { <UpNavBar/>}/>
-            <Route path = "/userInfo" element = { <UserInfo/>}/>
-            <Route path = "/userInfoSideBar" element = { <UserInfoSideBar/>}/>
-            
-          </Routes>
-      </BrowserRouter>
+                    {/* Admin pages */}
+      <Route path="/overview" element={<Overview/>}></Route>
+      <Route path="/overview/users" element={<Login/>}></Route>
+      <Route path="/restaurants/new" element={<Stepform/>}></Route>
+      <Route path="/overview/revenue" element={<Revenue/>}></Route>
+      <Route path="/order" element={<Order/>}></Route>
+      <Route path="/sales" element={<Sales/>}></Route>
+      <Route path="/PaymentMethod" element={<PaymentMethod/>}></Route>
+      <Route path="/configurations" element={<Configurations/>}></Route>
+      <Route path = "/disableForm" element = { <DisableForm/>}/>
+      <Route path = "/informationForm" element = { <InformationForm/>}/>
+      <Route path = "/scheduleForm" element = { <ScheduleForm/>}/>
+      <Route path = "/seeYou" element = { <SeeYou/>}/>
+      <Route path = "/upNavBar" element = { <UpNavBar/>}/>
+      <Route path = "/userInfo" element = { <UserInfo/>}/>
+      <Route path = "/userInfoSideBar" element = { <UserInfoSideBar/>}/>
+    </Routes>
+  )
 }
 
 export default Router;
