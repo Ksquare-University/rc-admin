@@ -1,3 +1,17 @@
 *{
     font-family: 'Rubik', sans-serif;
 }
+
+.navbar{
+    margin-left: 1%;
+    background-color: gray;
+    display: block;
+    width: 14.8%;
+    height: 87vh;
+}
+
+.elements-box{
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+}
