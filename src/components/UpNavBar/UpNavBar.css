@@ -4,17 +4,16 @@
 
 .NavBar-container {
   width: 98%;
-  margin: 1%;
-  margin: 1%;
+  margin: 0.50% 0% 0% 1%;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .Menu-Box {
-  width: 15%;
+  width: 12%;
   background-color: #fe473c;
-  height: 7vh;
+  height: 4vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +23,7 @@
 
 h3 {
   color: white;
-  font-size: 2.5vw;
+  font-size: 1.75vw;
   transition: all 0.8s;
 }
 
@@ -34,9 +33,9 @@ h3:hover{
 }
 
 .Logo-container {
-  width: 75%;
+  width: 85%;
   outline: solid rgb(166, 166, 166);
-  height: 6.5vh;
+  height: 3.5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,18 +49,18 @@ h3:hover{
 }
 
 .logo {
-  width: 8%;
+  width: 4%;
 }
 
 .Icons-Containers {
-  width: 4%;
+  width: 2%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 button {
-  height: 7vh;
+  height: 4vh;
   width: 100%;
   background-color: #fe473c;
   cursor: pointer;
@@ -71,7 +70,7 @@ button {
 }
 
 button > i {
-  font-size: 1.8vw;
+  font-size: 1vw;
   color: white;
 }
 

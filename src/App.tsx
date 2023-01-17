@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "./logo.svg";
 import "./App.css";
 import { Login } from "./components/Login/Login";
 
@@ -9,6 +10,7 @@ import { NewRestaurantForm } from "./views/RestaurantForm"
 import { UserInfo } from "./components/UserInfo/UserInfo";
 import { UserInfoSideBar } from "./components/UserInfoSideBar/UserInfoSideBar";
 import { UpNavBar } from "./components/UpNavBar/UpNavBar";
+
 
 import ModalUnstyledDemo from "./components/Restaurant/newRestaurant/ModalForm";
 

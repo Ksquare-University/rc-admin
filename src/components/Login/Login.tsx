@@ -81,8 +81,8 @@ export const Login: React.FC = () => {
       <div>
         <img src={rappilogoBN} alt="log" className="logo" />
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <span>Welcome!</span>
+      <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
+        <span className="span-login">Welcome!</span>
         <div className="inputLabel">
           <input
           name="email"
@@ -90,7 +90,7 @@ export const Login: React.FC = () => {
             type="text"
             placeholder="Email"
             /* {...register("email")} */
-            className={`form-control ${errors.email ? "is-invalid" : ""}`}
+            className={`form-control`}
           />
         </div>
         <div className="inputLabel">
@@ -100,12 +100,12 @@ export const Login: React.FC = () => {
             type="password"
             placeholder="Password"
             /* {...register("password")} */
-            className={`form-control ${errors.password ? "is-invalid" : ""}`}
+            className={`form-control`}
           />
         </div>
 
         <div className="form-group">
-          <button onClick={() => login()}  type="submit" className="btn btn-primary">
+          <button onClick={() => login()}  type="submit" className="btn-btn-primary">
             Sing in
           </button>
         </div>

@@ -4,9 +4,10 @@ import ramen from "../../assets/slide/ramen.png";
 import burger from "../../assets/slide/burger.png";
 
 export const SeeYou = () => {
+  
+  
   const imgs = [italianFood, ramen, burger];
   let i = 1;
-
   const slideShow = () => {
     const img1: HTMLImageElement = document.querySelector(
       "#img1"
@@ -30,7 +31,6 @@ export const SeeYou = () => {
   };
 
   setInterval(slideShow, 5000);
-  console.log("ey");
 
   return (
     <div className="Container">
