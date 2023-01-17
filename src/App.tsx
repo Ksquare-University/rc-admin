@@ -22,7 +22,7 @@ function App() {
     <>
       <Provider store={store}>
         
-      <Login/>
+      <UserInfo/>
       </Provider>
     </>
   );
