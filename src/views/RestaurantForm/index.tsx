@@ -23,7 +23,7 @@ export function NewRestaurantForm ({ title = 'NewRestaurantForm' }: Props){
 
     const updateStates = (n: number) =>{
         dispatch(updateState(n));
-    }
+    
     
     return(
         <div className="formRestaurant">
@@ -40,4 +40,5 @@ export function NewRestaurantForm ({ title = 'NewRestaurantForm' }: Props){
             </div>
       </div>
     )
+}
 }
