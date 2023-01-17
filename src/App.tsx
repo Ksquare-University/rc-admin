@@ -1,28 +1,23 @@
-import React from "react";
+import React,{FC} from "react";
 import logo from "./logo.svg";
 import { } from 'react-router-dom'
-import Router from './routes'
-//import "./App.css";
+import Router from './Routes/index'
+import "./App.css";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseConfig } from "./firebase/firebaseConfig";
 import { initializeApp } from "firebase/app";
 import { Login } from "./components/Login/Login";
 import { SeeYou } from "./components/SeeYou/SeeYou";
 import { Stepform } from "./components/Restaurant/NewRestaurant";
-import { BrowserRouter,Route, Routes } from "react-router-dom";
-import SideNavBar from "./components/SideNavBar/SideNavBar";
-import Clients from "./components/Pages/Clients";
-import Restaurants from "./components/Pages/Restaurants";
-import Views from "./components/Pages/Views";
-import Orders from "./components/Pages/Orders";
-import Sales from "./components/Pages/Sales";
 import { UpNavBar } from "./components/UpNavBar/UpNavBar";
 import InformationTemplate from "./components/Templates/InformationTemplate";
+import Sidebar from "./components/Sidebar/Sidebar";
+import { BrowserRouter, Routes } from 'react-router-dom';
 const firebaseApp = initializeApp(firebaseConfig);
 
 const auth = getAuth(firebaseApp);
 
-function App() {
+const App: FC = () => {
   const email = "YumilwcTest2@gmail.com";
   const passwd = "yumil22";
 
@@ -34,26 +29,26 @@ function App() {
       console.error(error);
     }
   };
-  return(
-    <> 
-
-       <BrowserRouter> 
-        <SideNavBar>
-          <Routes>
-            <Route path = "/" element = { <Views/>}/>
-            <Route path = "/Orders" element = { <Orders/>}/>
-            <Route path = "/Restaurants" element = { <Restaurants/>}/>
-            <Route path = "/Sales" element = { <Sales/>}/>
-            <Route path = "/Clients" element = { <Clients/>}/>
-          </Routes> 
-        </SideNavBar> 
+  return (
+    <>
+      <BrowserRouter>
+        <Sidebar />
+        {/* <Stepform></Stepform> */}
+        <Routes>
+        </Routes>
       </BrowserRouter>
-      {/* <UpNavBar/>
-       */}
     </>
   );
-}
+};
 
-
+// const App: FC = () => {
+//   return (
+//       <BrowserRouter>
+//           <Sidebar />
+//           <Routes>
+//           </Routes>
+//       </BrowserRouter>
+//   );
+// };
 
 export default App;

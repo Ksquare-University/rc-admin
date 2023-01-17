@@ -1,11 +1,5 @@
-import React from "react";
+import { FC } from 'react';
 
-const Orders = () => {
-    return (
-        <div>
-             <h1> Orders Page</h1>
-        </div>
-    );
+export const Order: FC = () => {
+    return <div className="overview">Order</div>;
 };
-
-export default Orders;

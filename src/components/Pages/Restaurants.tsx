@@ -1,11 +1,4 @@
-import React from "react";
-
-const Restaurants = () => {
-    return (
-        <div>
-             <h1> Restaurants Page</h1>
-        </div>
-    );
+import { FC } from 'react';
+export const Restaurants: FC = () => {
+    return <div className="overview">Restaurants</div>;
 };
-
-export default Restaurants;

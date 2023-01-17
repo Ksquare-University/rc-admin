@@ -1,11 +1,6 @@
-import React from "react";
-
-const Clients = () => {
-    return (
-        <div>
-            <h1> Clients Page</h1>
-        </div>
-    );
+import { FC } from 'react';
+export const Users: FC = () => {
+    return <div className="overview">Users</div>;
 };
 
-export default Clients;
+export default Users;
