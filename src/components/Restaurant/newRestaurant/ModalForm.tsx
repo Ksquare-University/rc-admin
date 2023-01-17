@@ -62,14 +62,14 @@ export default function ModalUnstyledDemo({openState=false, parentCallback}:Prop
   return (
     <div>
 
-      <Modal
+{/*       <Modal
 
         open={open}
         onClose={handleClose}
         slots={{ backdrop: Backdrop }}
       >
           <NewRestaurantForm/>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }
