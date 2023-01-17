@@ -1,8 +1,8 @@
 import { newRestaurantCount } from './RestaurantForm';
-import { counterState, initialState } from './RestaurantForm/reducers'
+import { counterState, InitialState } from './RestaurantForm/reducers'
 
 export interface StateI {
-    newRestaurantCount: initialState,
+    newRestaurantCount: InitialState,
 }
 
 export default {
