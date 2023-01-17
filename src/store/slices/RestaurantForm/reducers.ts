@@ -1,37 +1,43 @@
   export type counterState = number;
 
-  export interface information {
+  export interface Information {
     name:string,
     description: string,
     phone_number: string,
     food_type: string,
     address:string, 
-    image: File
+    deliveryfee: number
   }
-  interface schedule {
-    name:string
+
+
+  interface Day {
+    day: number
+    oppeningTime: string,
+    closeTime: string
   }
-  interface disable {
-    name:string
+
+  export interface Week {
+    monday: Day,
+    Tuesday: Day,
+    Wednesday:Day,
+    Thrusday:Day,
+    Friday:Day,
+    Saturday:Day,
+    Sunday:Day
+  }
+  export interface Schedule {
+    stepDay: number,
+    week: Week
+  }
+  export interface Disable {
+    enable:boolean,
+    open: boolean
 }
-export interface initialState {
+export interface InitialState {
   FormStage: number, // default page stage to show on page load
-  FormInformation: information,
-  FormSchedule: schedule,
-  FormDisable: disable
+  FormInformation: Information,
+  FormSchedule: Schedule,
+  FormDisable: Disable
 }
-
-  const updateState =  (state: initialState, action: { payload: number }) => {
-    state.FormStage = action.payload
-  }
-
-  const formInformation = (state: initialState, action: { payload: information }) => {
-    state.FormInformation = action.payload
-  }
-
-  export default {
-    updateState,
-    formInformation
-  }
 
 

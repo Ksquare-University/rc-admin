@@ -1,12 +1,46 @@
 import React,{useState} from "react";
-import { InformationForm } from "./InformationForm";
+
 import './DisableForm.css'
 import { Switch } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-export const DisableForm = () =>{
+import { useDispatch, useSelector } from 'react-redux';
+import { StateI } from '../../../store/slices';
+import { formDisable } from '../../../store/slices/RestaurantForm/index'
+
+
+
+type Props = {
+    isChanged?: number
+  }
+
+
+export const DisableForm = ({isChanged=0}:Props) =>{
+
+    
+    //Redux
+    const dispatch = useDispatch();
+
+    // get Redux store values
+    const formEnable = useSelector<StateI>(state => state.newRestaurantCount.FormDisable.enable) as boolean;
+    const formOpen = useSelector<StateI>(state => state.newRestaurantCount.FormDisable.open) as boolean;
+
+
+    const [formData, setFormData] = useState({
+        enable: formEnable || false,
+        open: formOpen || false
+    })
+
+
+    React.useEffect(() => {
+        // update Redux Slice
+        dispatch(
+            formDisable(formData)
+        );
+  }, [formData, isChanged, dispatch])
+
     type disabledOptions = {
         isRestaurantEnable: boolean | string;
         isRestaurantOpen: boolean | string;
@@ -21,30 +55,31 @@ export const DisableForm = () =>{
       const onSubmit = (data: disabledOptions) => {
         const payload = {...data}
         console.log(JSON.stringify(payload , null, 2));
-        //Pseudo code to Send Post info into Back schedule service //
-        // axios.post('/restaurant-schedule', payload)
-        //   .then(function (response) {
-        //     console.log(response);
-        //   })
-        //   .catch(function (error) {
-        //     console.log(error);
-        // });
       };
+      const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        const { name, checked } = e.target
+        setFormData({
+            ...formData, 
+            [name]: checked
+        })
+      }
+
+
     return(
-        <form className="disableContainer"  onSubmit={handleSubmit(onSubmit)}>
+        <div className="disableContainer">
             <div className="restauranteAvility">
                 Enable/Disable
-                <Switch value="Enabled" id="switch" {...register("isRestaurantEnable")}></Switch>
+                <Switch value="Enable" name= 'enable'  checked={formEnable} onChange={(e)=>{handleChange(e)}}></Switch>
             </div>
             <div className="restauranteState">
                 Open/Close
-                <Switch value="Open" id="switch" {...register("isRestaurantOpen")}></Switch>
+                <Switch value="Open"  name= 'open' checked={formOpen} onChange={(e)=>{handleChange(e)}}></Switch>
             </div>
 
-            <div className="disableButtons">
+            <div className="buttons">
                 <button className="cancelButton"> Cancel </button>
                 <button className="doneButton"> Done </button>
             </div>
-        </form>
+        </div>
     );
 }

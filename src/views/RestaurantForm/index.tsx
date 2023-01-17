@@ -32,10 +32,9 @@ export function NewRestaurantForm ({ title = 'NewRestaurantForm' }: Props){
                 <a className={isActive(2)} onClick={()=>{ updateStates(2);}}>Schedule</a>
                 <a className={isActive(3)} onClick={()=>{ updateStates(3);}}>Disable Restaurant</a>
             </div>
-            <h1> Satate:{pageStage}</h1>
             <div className="container-form">
                 {pageStage===1 && <InformationForm isChanged={pageStage}/>}
-                {pageStage===2 && <ScheduleForm/>}
+                {pageStage===2 && <ScheduleForm isChanged={pageStage} />}
                 {pageStage===3 && <DisableForm/>}
             </div>
       </div>

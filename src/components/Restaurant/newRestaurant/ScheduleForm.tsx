@@ -1,14 +1,46 @@
 import React,{useState} from "react";
-import { InformationForm } from "./InformationForm";
-import { DisableForm } from "./DisableForm";
 import './ScheduleForm.css'
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import ResponsiveTimePickers from './TimePicker'
 
-export const ScheduleForm = () =>{
-    const [day, setday] = useState("");
-    const [step, setstep] = useState(1);
+import { useDispatch, useSelector } from 'react-redux';
+import { StateI } from '../../../store/slices';
+import { formSchedule } from '../../../store/slices/RestaurantForm/index'
+import { Week } from '../../../store/slices/RestaurantForm/reducers'
+import { FormTime } from './FormTime'
+
+type Props = {
+    isChanged?: number
+  }
+
+export const ScheduleForm = ({isChanged = 0 }:Props) =>{
+
+    //Redux
+    const dispatch = useDispatch();
+
+    // get Redux store values
+    const formstep = useSelector<StateI>(state => state.newRestaurantCount.FormSchedule.stepDay) as number;
+    const formWeek = useSelector<StateI>(state => state.newRestaurantCount.FormSchedule.week) as Week;
+   
+    
+
+    // form values initial state
+    const [formData, setFormData] = useState({
+        stepDay: formstep || 1,
+        week: formWeek || {
+            monday: { day: 1, oppeningTime: "07:00", closeTime: "22:00" },
+            Tuesday: { day: 2, oppeningTime: "07:00", closeTime: "22:00" },
+            Wednesday: { day: 3, oppeningTime: "07:00", closeTime: "22:00" },
+            Thrusday: { day: 4, oppeningTime: "07:00", closeTime: "22:00" },
+            Friday: { day: 5, oppeningTime: "07:00", closeTime: "22:00" },
+            Saturday: { day: 6, oppeningTime: "07:00", closeTime: "22:00" },
+            Sunday: { day: 7, oppeningTime: "07:00", closeTime: "22:00" },
+        },
+
+    })
+
     type daysSubmitForm = {
         openingDays?: string;
         closeDays?: string;
@@ -25,62 +57,78 @@ export const ScheduleForm = () =>{
         formState: { errors },
       } = useForm<daysSubmitForm>({
         resolver: yupResolver(validationSchema),
-      });
-    
-      const onSubmit = (data: daysSubmitForm) => {
-        const payload = {day, ...data}
-        console.log(JSON.stringify(payload , null, 2));
-        //Pseudo code to Send Post info into Back schedule service //
-        // axios.post('/restaurant-schedule', payload)
-        //   .then(function (response) {
-        //     console.log(response);
-        //   })
-        //   .catch(function (error) {
-        //     console.log(error);
-        // });
-      };
+      });   
 
     const working = (value:number)=>{
-        return 'btn '+((value===step) ?'active':'default');
+        return 'btn '+((value===formstep) ?'active':'default');
     }
+
+    React.useEffect(() => {
+            // update Redux Slice
+            dispatch(
+              formSchedule(formData)
+            );
+      }, [formData, isChanged, dispatch])
+
+    const onClickHandler = (n:number)=>{
+        setFormData({
+            ...formData, 
+            ["stepDay"]: n
+        });
+ 
+    }
+
+    const updateClTime = (time: string) =>{
+        setFormData({
+            ...formData, 
+            ["week"]: {
+                monday: { day: 1, closeTime: formstep===1?time:formData.week.monday.closeTime, oppeningTime: "22:00" },
+                Tuesday: { day: 2, closeTime: formstep===2?time:formData.week.Tuesday.closeTime, oppeningTime: "22:00" },
+                Wednesday: { day: 3, closeTime: formstep===3?time:formData.week.Wednesday.closeTime, oppeningTime: "22:00" },
+                Thrusday: { day: 4, closeTime: formstep===4?time:formData.week.Thrusday.closeTime, oppeningTime: "22:00" },
+                Friday: { day: 5, closeTime: formstep===5?time:formData.week.Friday.closeTime, oppeningTime: "22:00" },
+                Saturday: { day: 6, closeTime: formstep===6?time:formData.week.Saturday.closeTime, oppeningTime: "22:00" },
+                Sunday: { day: 7, closeTime: formstep===7?time:formData.week.Sunday.closeTime, oppeningTime: "22:00" },
+            }
+        });
+    }
+
+    const updateOpTime = (time: string) =>{
+        setFormData({
+            ...formData, 
+            ["week"]: {
+                monday: { day: 1, oppeningTime: formstep===1?time:formData.week.monday.oppeningTime, closeTime: "22:00" },
+                Tuesday: { day: 2, oppeningTime: formstep===2?time:formData.week.Tuesday.oppeningTime, closeTime: "22:00" },
+                Wednesday: { day: 3, oppeningTime: formstep===3?time:formData.week.Wednesday.oppeningTime, closeTime: "22:00" },
+                Thrusday: { day: 4, oppeningTime: formstep===4?time:formData.week.Thrusday.oppeningTime, closeTime: "22:00" },
+                Friday: { day: 5, oppeningTime: formstep===5?time:formData.week.Friday.oppeningTime, closeTime: "22:00" },
+                Saturday: { day: 6, oppeningTime: formstep===6?time:formData.week.Saturday.oppeningTime, closeTime: "22:00" },
+                Sunday: { day: 7, oppeningTime: formstep===7?time:formData.week.Sunday.oppeningTime, closeTime: "22:00" },
+            }
+        });
+    }
+    
     return(
-        <form className='scheduleContainer' onSubmit={handleSubmit(onSubmit)}>
+        <>
             <div className="navbar">
-                <a className={working(1)} onClick={()=>{setday("Monday");setstep(1);}}>Monday</a>
-                <a className={working(2)} onClick={()=>{setday("Tuesday"); setstep(2);}}>Tuesday</a>
-                <a className={working(3)} onClick={()=>{setday("Wednesday"); setstep(3);}}>Wednesday</a>
-                <a className={working(4)} onClick={()=>{setday("Thrusday"); setstep(4);}}>Thrusday</a>
-                <a className={working(5)} onClick={()=>{setday("Friday"); setstep(5);}}>Friday</a>
-                <a className={working(6)} onClick={()=>{setday("Saturday"); setstep(6);}}>Saturday</a>
-                <a className={working(7)} onClick={()=>{setday("Sunday"); setstep(7);}}>Sunday</a>
+                <a className={working(1)} onClick={()=>{onClickHandler(1);}}>Monday</a>
+                <a className={working(2)} onClick={()=>{onClickHandler(2);}}>Tuesday</a>
+                <a className={working(3)} onClick={()=>{onClickHandler(3);}}>Wednesday</a>
+                <a className={working(4)} onClick={()=>{onClickHandler(4);}}>Thrusday</a>
+                <a className={working(5)} onClick={()=>{onClickHandler(5);}}>Friday</a>
+                <a className={working(6)} onClick={()=>{onClickHandler(6);}}>Saturday</a>
+                <a className={working(7)} onClick={()=>{onClickHandler(7);}}>Sunday</a>
             </div>
 
-            <div className="restaurantSchedule">
-                <div className="openDays">
-                    Opening days
-                    <select className="OpenInfo" id="oDays" {...register("openingDays")}>
-                        <option value=""></option>
-                        <option value="9:30 am">9:30 am</option>
-                        <option value="10:30 am">10:30 am</option>
-                        <option value="11:30 am">9:30 am</option>
-                    </select>
-                </div>
 
-                <div className = "closeDays">
-                    Close Days
-                    <select className="CloseInfo" id="cDays" {...register("closeDays")}>
-                        <option value=""></option>
-                        <option value="7:00 pm">7:00 pm</option>
-                        <option value="10:00 pm">10:00 pm</option>
-                        <option value="12:00 am">12:00 am</option>
-                    </select>
-                </div>
-          
-                <div className="buttons">
-                    <button className="cancelButton"> Cancel </button>
-                    <button className="doneButton" type="submit"> Done </button>
-                </div>
-            </div>
-        </form>
+            {formstep===1 && <FormTime timeOp={formWeek.monday.oppeningTime} timeCl={formWeek.monday.closeTime} parentCallbackOppening={updateOpTime} parentCallbackClose={updateClTime} />}
+            {formstep===2 && <FormTime timeOp={formWeek.Tuesday.oppeningTime} timeCl={formWeek.Tuesday.closeTime} parentCallbackOppening={updateOpTime} parentCallbackClose={updateClTime} />}
+            {formstep===3 && <FormTime timeOp={formWeek.Wednesday.oppeningTime} timeCl={formWeek.Wednesday.closeTime} parentCallbackOppening={updateOpTime} parentCallbackClose={updateClTime} />}
+            {formstep===4 && <FormTime timeOp={formWeek.Thrusday.oppeningTime} timeCl={formWeek.Thrusday.closeTime} parentCallbackOppening={updateOpTime} parentCallbackClose={updateClTime} />}
+            {formstep===5 && <FormTime timeOp={formWeek.Friday.oppeningTime} timeCl={formWeek.Friday.closeTime} parentCallbackOppening={updateOpTime} parentCallbackClose={updateClTime} />}
+            {formstep===6 && <FormTime timeOp={formWeek.Saturday.oppeningTime} timeCl={formWeek.Saturday.closeTime} parentCallbackOppening={updateOpTime} parentCallbackClose={updateClTime} />}
+            {formstep===7 && <FormTime timeOp={formWeek.Sunday.oppeningTime} timeCl={formWeek.Sunday.closeTime} parentCallbackOppening={updateOpTime} parentCallbackClose={updateClTime} />}
+
+            </>
     );
 }
