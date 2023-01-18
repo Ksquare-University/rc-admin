@@ -77,3 +77,15 @@ button > i {
 button:hover {
   background-color: #76110c;
 }
+
+
+.sideBar{
+  height: 800px;
+  width: 120px;
+  background-color: blue;
+
+}
+
+.css-zyizc9-MuiButtonBase-root-MuiButton-root{
+  font-weight: bolder;
+}
