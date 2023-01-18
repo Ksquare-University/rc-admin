@@ -4,7 +4,7 @@ import rappilogo from "../../assets/rappilogo.svg";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StateI } from "../../store/slices";
-import { updateUserState, printUserState } from "../../store/slices/User";
+import { updateUserState } from "../../store/slices/User";
 import { json } from "body-parser";
 
 export const UserInfoSideBar = () => {

@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserInfoSideBar } from "../UserInfoSideBar/UserInfoSideBar";
 import { current } from "immer";
 import { StateI } from "../../store/slices";
+import { UserInfo } from "../UserInfo/UserInfo";
 //import "bootstrap/dist/css/bootstrap.min.css";
 
 type UserSubmitForm = {
@@ -43,7 +44,6 @@ export function Login ({parentLogin}:Props) {
   const email = "YumilwcTest2@gmail.com";
   const passwd = "yumil22";   
 
-  const [change, setChange] = useState("");
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, passwd);
@@ -67,9 +67,6 @@ export function Login ({parentLogin}:Props) {
     }
   };
 
-  useEffect(() => {
-    console.log(change, "dentro del USEEFECT");
-  }, [change]);
 
   const {
     register,
@@ -144,7 +141,6 @@ export function Login ({parentLogin}:Props) {
           </div>
         </form>
       </div>
-      {currentEmail && <UserInfoSideBar />}
     </>
   );
 };
