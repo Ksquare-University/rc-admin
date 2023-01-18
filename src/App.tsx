@@ -11,6 +11,7 @@ import { UserInfoSideBar } from "./components/UserInfoSideBar/UserInfoSideBar";
 import { UpNavBar } from "./components/UpNavBar/UpNavBar";
 
 import ModalUnstyledDemo from "./components/Restaurant/newRestaurant/ModalForm";
+import { ViewRestaurantForm } from "./views/ViewRestaurant";
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
@@ -21,8 +22,8 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        
-      <UserInfo/>
+        <Login/>
+        <ViewRestaurantForm/>
       </Provider>
     </>
   );

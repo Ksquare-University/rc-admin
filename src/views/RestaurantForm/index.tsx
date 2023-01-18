@@ -24,7 +24,7 @@ export function NewRestaurantForm ({ title = 'NewRestaurantForm' }: Props){
     const updateStates = (n: number) =>{
         dispatch(updateState(n));
     
-    
+    }
     return(
         <div className="formRestaurant">
             <div className="menu">
@@ -37,7 +37,6 @@ export function NewRestaurantForm ({ title = 'NewRestaurantForm' }: Props){
                 {pageStage===2 && <ScheduleForm isChanged={pageStage} />}
                 {pageStage===3 && <DisableForm/>}
             </div>
-      </div>
+        </div>
     )
-}
 }
