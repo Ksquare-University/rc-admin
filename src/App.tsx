@@ -11,11 +11,12 @@ import { initializeApp } from "firebase/app";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { BrowserRouter, Routes } from 'react-router-dom';
 import { Login } from './components/Login/Login';
-const firebaseApp = initializeApp(firebaseConfig);
+import { NewRestaurantForm} from './components/Restaurant/newRestaurant/NewRestaurant'
+import InformationTemplate from './components/Templates/InformationTemplate/index';
 
-import ModalUnstyledDemo from "./components/Restaurant/newRestaurant/ModalForm";
-import { ViewRestaurantForm } from "./views/ViewRestaurant";
 
+
+const firebaseApp = initializeApp(firebaseConfig); 
 
 const App: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -27,21 +28,21 @@ const App: FC = () => {
 
   // Set true if you want to see navBar and others routers componets
   // Set false if you want to go to login by default
-  const [isLogin, setLogin] = React.useState(false); 
+  const [isLogin, setLogin] = React.useState(true);
+
+  const parentLogin = (log:boolean) =>{
+    setLogin(log);
+  }
 
   return (
     <>
-      {/* <Provider store={store}>
-        <Login/>
-        <ViewRestaurantForm/>
-      </Provider> */}
       <BrowserRouter>
-        <Provider store={store}>
-          {/* Blocking routers if a user is not loggin */}
-          {isLogin ? <> <Sidebar /> <Router></Router></>: <Login></Login>}
-        </Provider>
-      </BrowserRouter>
 
+          {/* Blocking routers if a user is not loggin */}
+          {isLogin ?  <InformationTemplate children={<Router></Router>}/> : <Login parentLogin = {parentLogin}></Login>}
+          {/* <NewRestaurantForm/> */}
+
+      </BrowserRouter>
     </>
   );
 };

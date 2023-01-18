@@ -22,7 +22,11 @@ type UserSubmitForm = {
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 
-export const Login: React.FC = () => {
+type Props ={
+  parentLogin:(arg:boolean) =>void,
+}
+
+export function Login ({parentLogin}:Props) {
   const currentEmail = useSelector<StateI>(
     (state) => state.currentUserState.email
   ) as string;
@@ -37,7 +41,7 @@ export const Login: React.FC = () => {
   });
 
   const email = "YumilwcTest2@gmail.com";
-  const passwd = "yumil22";
+  const passwd = "yumil22";   
 
   const [change, setChange] = useState("");
   const login = async () => {
@@ -49,17 +53,17 @@ export const Login: React.FC = () => {
         dispatch(
           updateUserState({
             displayName: "Yumil Flores",
-            email: user.user.email || "",
+            email: user.user.email || "DONT",
             phone: "809-751-5482",
           })
         );
 
-        setChange(user.user.email || "null");
-        console.log("current", currentEmail);
-        console.log("user", user.user.email);
+        parentLogin(true);
       }
     } catch (error) {
       console.error(error);
+      parentLogin(false); 
+
     }
   };
 
@@ -103,7 +107,7 @@ export const Login: React.FC = () => {
           <img src={rappilogoBN} alt="log" className="logo" />
         </div>
         <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
-          <span className="span-login">Welcome!</span>
+          <span className="span-login">Welcome! {currentEmail}</span>
           <div className="inputLabel">
             <input
               name="email"

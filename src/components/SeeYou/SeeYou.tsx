@@ -35,8 +35,8 @@ export const SeeYou = () => {
   return (
     <div className="Container">
       <div className="Slide-imgs">
-        <img src={italianFood} alt="" id="img1" />
-        <img src={italianFood} alt="" id="img2" />
+        <img src={italianFood} alt="" id="img1" className="image" />
+        <img src={italianFood} alt="" id="img2" className="image" />
       </div>
       <h1> See You Soon!</h1>
       <button> Login Again! </button>

@@ -18,7 +18,7 @@ const rootSlice = createSlice({
       phone_number: "",
       food_type: "",
       address: "",
-      deliveryfee: 0,
+      delivery_fee: 0,
     },
     FormSchedule: {
       stepDay: 1,
