@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import { styled, Box, Theme } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import { boolean } from 'yargs';
-import {NewRestaurantForm} from '../../../views/RestaurantForm/index'
 
 const BackdropUnstyled = React.forwardRef<
   HTMLDivElement,
