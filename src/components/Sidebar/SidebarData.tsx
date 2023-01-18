@@ -28,7 +28,7 @@ export const SidebarData: SidebarItem[] = [
     },
     {
         title: 'Restaurants',
-        path: '/restaurants',
+        path: '/restaurants/new',
         icon: < FaUtensils/>
     },
     {

@@ -7,20 +7,19 @@ import { Sales } from "../components/Pages/Sales";
 import { Overview } from "../components/Pages/Overview";
 import { PaymentMethod } from "../components/Pages/Payment";
 import { Login } from "../components/Login/Login";
-import { DisableForm } from "../components/Restaurant/DisableForm";
-import { InformationForm } from "../components/Restaurant/InformationForm";
-import { ScheduleForm } from "../components/Restaurant/ScheduleForm";
+import { DisableForm } from "../components/Restaurant/newRestaurant/DisableForm";
+import { InformationForm } from "../components/Restaurant/newRestaurant/InformationForm";
+import { ScheduleForm } from "../components/Restaurant/newRestaurant/ScheduleForm";
 import { SeeYou } from "../components/SeeYou/SeeYou";
 import { UpNavBar } from "../components/UpNavBar/UpNavBar";
 import { UserInfo } from "../components/UserInfo/UserInfo";
 import { UserInfoSideBar } from "../components/UserInfoSideBar/UserInfoSideBar";
 import { Configurations } from "../components/Pages/Configurations";
-import { Stepform } from "../components/Restaurant/NewRestaurant";
+import { Stepform } from "../components/Restaurant/newRestaurant/NewRestaurant";
 function Router (){
   return(
     <Routes>
       <Route path = "/login" element = { <Login/>}/>
-
                     {/* Admin pages */}
       <Route path="/overview" element={<Overview/>}></Route>
       <Route path="/overview/users" element={<Login/>}></Route>
