@@ -6,19 +6,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { StateI } from '../../../store/slices';
-import { formDisable } from '../../../store/slices/RestaurantForm/index'
-
-
+import { StateI } from '../../../../store/slices';
+import { formDisable } from '../../../../store/slices/RestaurantForm/index'
 
 type Props = {
     isChanged?: number
   }
 
-
-export const DisableForm = ({isChanged=0}:Props) =>{
-
-    
+export const ViewDisable = ({isChanged=0}:Props) =>{
     //Redux
     const dispatch = useDispatch();
 
