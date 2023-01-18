@@ -29,13 +29,7 @@ const App: FC = () => {
 
   return (
     <>
-      <BrowserRouter>
-        <Provider store={store}>
-          {/* Blocking routers if a user is not loggin */}
-          {isLogin ? <> <Sidebar /> <Router></Router></>: <Login></Login>}
-        </Provider>
-      </BrowserRouter>
-
+      <Login/>
     </>
   );
 };

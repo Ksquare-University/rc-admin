@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserInfoSideBar } from "../UserInfoSideBar/UserInfoSideBar";
 import { current } from "immer";
 import { StateI } from "../../store/slices";
+import { UserInfo } from "../UserInfo/UserInfo";
 //import "bootstrap/dist/css/bootstrap.min.css";
 
 type UserSubmitForm = {
@@ -23,6 +24,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 
 export const Login: React.FC = () => {
+  
   const currentEmail = useSelector<StateI>(
     (state) => state.currentUserState.email
   ) as string;
@@ -39,7 +41,6 @@ export const Login: React.FC = () => {
   const email = "YumilwcTest2@gmail.com";
   const passwd = "yumil22";
 
-  const [change, setChange] = useState("");
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, passwd);
@@ -54,7 +55,6 @@ export const Login: React.FC = () => {
           })
         );
 
-        setChange(user.user.email || "null");
         console.log("current", currentEmail);
         console.log("user", user.user.email);
       }
@@ -63,9 +63,6 @@ export const Login: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(change, "dentro del USEEFECT");
-  }, [change]);
 
   const {
     register,
@@ -140,7 +137,6 @@ export const Login: React.FC = () => {
           </div>
         </form>
       </div>
-      {currentEmail && <UserInfoSideBar />}
     </>
   );
 };
