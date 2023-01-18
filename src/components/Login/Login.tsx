@@ -12,20 +12,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserInfoSideBar } from "../UserInfoSideBar/UserInfoSideBar";
 import { current } from "immer";
 import { StateI } from "../../store/slices";
+import axios from "axios"
 //import "bootstrap/dist/css/bootstrap.min.css";
 
 type UserSubmitForm = {
   email: string;
   password: string;
 };
+interface LoginProp {
+  callback?: Function;
+}
 
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 
-export const Login: React.FC = () => {
+export const Login: React.FC<LoginProp> = (props: LoginProp ) => {
   const currentEmail = useSelector<StateI>(
     (state) => state.currentUserState.email
   ) as string;
+  const {callback } = props;
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    }
+  };
+
+
+
+  
 
   const dispatch = useDispatch();
   const validationSchema = Yup.object().shape({
@@ -78,6 +93,14 @@ export const Login: React.FC = () => {
 
   const onSubmit = (data: UserSubmitForm) => {
     console.log(JSON.stringify(data, null, 2));
+      axios.post('http://localhost:3010/users/admin/signin', data, config)
+        .then(function (response) {
+          if(callback) callback(true);
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+      });
   };
 
   // form values initial state
@@ -106,32 +129,34 @@ export const Login: React.FC = () => {
           <span className="span-login">Welcome!</span>
           <div className="inputLabel">
             <input
-              name="email"
-              onChange={(e) => {
-                handleChange(e);
-              }}
+              {...register("email",{
+                onChange: (e) => {
+                  handleChange(e);
+                }
+              })}
               type="text"
               placeholder="Email"
-              /* {...register("email")} */
               className={`form-control`}
             />
           </div>
           <div className="inputLabel">
             <input
-              name="password"
-              onChange={(e) => {
-                handleChange(e);
-              }}
+              // name="password"
+
               type="password"
               placeholder="Password"
-              /* {...register("password")} */
+              {...register("password",{
+                onChange: (e) => {
+                  handleChange(e);
+                }
+              })}
               className={`form-control`}
             />
           </div>
 
           <div className="form-group">
             <button
-              onClick={() => login()}
+              // onClick={() => login()}
               type="submit"
               className="btn-btn-primary"
             >

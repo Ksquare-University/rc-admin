@@ -32,7 +32,7 @@ const App: FC = () => {
       <BrowserRouter>
         <Provider store={store}>
           {/* Blocking routers if a user is not loggin */}
-          {isLogin ? <> <Sidebar /> <Router></Router></>: <Login></Login>}
+          {isLogin ? <> <Sidebar /> <Router></Router></>: <Login callback={setLogin}></Login>}
         </Provider>
       </BrowserRouter>
 
