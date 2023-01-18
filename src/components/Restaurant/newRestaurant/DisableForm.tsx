@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-
 import './DisableForm.css'
 import { Switch } from "@mui/material";
 import { useForm } from "react-hook-form";
@@ -68,11 +67,11 @@ export const DisableForm = ({isChanged=0}:Props) =>{
     return(
         <div className="disableContainer">
             <div className="restauranteAvility">
-                Enable/Disable
+                <span>Enable/Disable </span>
                 <Switch value="Enable" name= 'enable'  checked={formEnable} onChange={(e)=>{handleChange(e)}}></Switch>
             </div>
             <div className="restauranteState">
-                Open/Close
+                <span>Open/Close</span>
                 <Switch value="Open"  name= 'open' checked={formOpen} onChange={(e)=>{handleChange(e)}}></Switch>
             </div>
 

@@ -1,7 +1,3 @@
-*{
-    font-family: 'Rubik', sans-serif;
-}
-
 .User-Info-Box{
     display: flex;
     width: 20%;
@@ -13,7 +9,7 @@
     flex-direction: column;
     justify-content: center;
     box-shadow: 5px 5px 10px #4747471d;
-
+    font-family: 'Rubik', sans-serif;
 }
 
 .User-info-box-child{

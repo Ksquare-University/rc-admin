@@ -1,6 +1,4 @@
-*{
-  font-family: 'Rubik', sans-serif;
-}
+
 
 .NavBar-container {
   width: 98%;
@@ -8,6 +6,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  font-family: 'Rubik', sans-serif;
+
 }
 
 .Menu-Box {
@@ -21,13 +21,13 @@
   background-size: 1000px; 
 }
 
-h3 {
+.NavBar-container h3 {
   color: white;
   font-size: 1.75vw;
   transition: all 0.8s;
 }
 
-h3:hover{
+.NavBar-container h3:hover{
   color: #76110c;
   letter-spacing: 20px;
 }
@@ -40,6 +40,7 @@ h3:hover{
   justify-content: center;
   align-items: center;
   transition: all 1.0s;
+  background-color: white;
   background-image: url("../../assets/sideBackGround.png");
   background-size: 100px; 
 }
@@ -59,7 +60,7 @@ h3:hover{
   align-items: center;
 }
 
-button {
+.icon-button{
   height: 4vh;
   width: 100%;
   background-color: #fe473c;
@@ -69,12 +70,12 @@ button {
   background-size: 600px; 
 }
 
-button > i {
+.icon {
   font-size: 1vw;
   color: white;
 }
 
-button:hover {
+.NavBar-container button:hover {
   background-color: #76110c;
 }
 

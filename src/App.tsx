@@ -8,11 +8,11 @@ import "./App.css";
 import { firebaseConfig } from "./firebase/firebaseConfig";
 import { initializeApp } from "firebase/app";
 import Sidebar from "./components/Sidebar/Sidebar";
-import { BrowserRouter, Routes } from "react-router-dom";
-import { Login } from "./components/Login/Login";
-
-
+import { BrowserRouter, Routes } from 'react-router-dom';
+import { Login } from './components/Login/Login';
 const firebaseApp = initializeApp(firebaseConfig);
+
+
 
 const App: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -26,17 +26,11 @@ const App: FC = () => {
 
   // Set true if you want to see navBar and others routers componets
   // Set false if you want to go to login by default
-
-  const [isLogin, setLogin] = React.useState(true);
-
-  const parentLogin = (log: boolean) => {};
+  const [isLogin, setLogin] = React.useState(false); 
 
   return (
     <>
-      <BrowserRouter>
-          {/* Blocking routers if a user is not loggin */}
-          {isLogin ? <> <Sidebar /> <Router></Router></>: <Login></Login>}
-      </BrowserRouter>
+      <Login/>
     </>
   );
 }

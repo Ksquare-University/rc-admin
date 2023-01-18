@@ -8,9 +8,9 @@ type Props = {
 
 function InformationTemplate({ children }: Props) {
   return (
-    <div>
+    <div id="template">
 
-      <UpNavBar></UpNavBar>
+      <UpNavBar/>
 
       {children}
 

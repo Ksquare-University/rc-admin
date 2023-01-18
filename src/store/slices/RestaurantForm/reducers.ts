@@ -6,7 +6,7 @@
     phone_number: string,
     food_type: string,
     address:string, 
-    deliveryfee: number
+    delivery_fee: number
   }
 
 

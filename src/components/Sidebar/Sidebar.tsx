@@ -8,10 +8,10 @@ import Submenu from './Submenu';
 
 const Nav = styled.div`
     display: flex;
-    justify-content: flex-star;
+    justify-content: center;
     align-items: center;
-    height: 4rem;
-    width:100px;
+    height: 4.5vh;
+    width: 80px;
     background-color: rgb(255, 60, 21);
 `;
 
@@ -27,11 +27,10 @@ const SidebarNav = styled.div<{ sidebar: boolean }>`
 
 const NavIcon = styled(Link)`
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     height: 5rem;
-    font-size: 2rem;
-    margin-left: 2rem;
+    font-size: 1.5rem;
 `;
 
 const SidebarWrap = styled.div`
