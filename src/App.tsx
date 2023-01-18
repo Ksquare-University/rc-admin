@@ -20,10 +20,7 @@ function App() {
 
   return (
     <>
-      <Provider store={store}>
-        
-      <UserInfo/>
-      </Provider>
+      <Login/>
     </>
   );
 }

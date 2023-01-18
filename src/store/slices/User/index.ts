@@ -14,15 +14,13 @@ const rootSlice = createSlice({
   reducers: {
     updateUserState(state, action: PayloadAction<User>) {
       state = action.payload;
-      console.log('estado', state);
-    },
-    printUserState(state, action: PayloadAction<User>) {
-      console.log('estado sin change', state);
-    },
+      return state;
+    }
   },
 });
 
+
 // Actions
-export const { updateUserState, printUserState} =
+export const { updateUserState} =
   rootSlice.actions;
 export const currentUserState = rootSlice.reducer;
