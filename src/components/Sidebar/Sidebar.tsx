@@ -6,6 +6,7 @@ import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
 import Submenu from './Submenu';
 
+
 const Nav = styled.div`
     display: flex;
     justify-content: flex-star;
@@ -29,7 +30,7 @@ const NavIcon = styled(Link)`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 5rem;
+    height: 4rem;
     font-size: 2rem;
     margin-left: 2rem;
 `;
