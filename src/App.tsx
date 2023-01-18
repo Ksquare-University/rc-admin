@@ -29,7 +29,17 @@ const App: FC = () => {
 
   return (
     <>
+<<<<<<< HEAD
       <Login/>
+=======
+      <BrowserRouter>
+        <Provider store={store}>
+          {/* Blocking routers if a user is not loggin */}
+          {isLogin ? <> <Sidebar /> <Router></Router></>: <Login callback={setLogin}></Login>}
+        </Provider>
+      </BrowserRouter>
+
+>>>>>>> login-logic-withRoutes
     </>
   );
 };
