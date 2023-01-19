@@ -12,8 +12,6 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import { BrowserRouter, Routes } from 'react-router-dom';
 import { Login } from './components/Login/Login';
 import SupAdmSidebar from './components/SuperAdmSidebar/SupAdmSidebar';
-const firebaseApp = initializeApp(firebaseConfig);
-import { NewRestaurantForm} from './components/Restaurant/newRestaurant/NewRestaurant'
 import InformationTemplate from './components/Templates/InformationTemplate/index';
 
 
@@ -41,8 +39,7 @@ const App: FC = () => {
       <BrowserRouter>
 
           {/* Blocking routers if a user is not loggin */}
-          {isLogin ? <> <Sidebar/> <Router></Router></>: <Login callback={setLogin}></Login>}
-          {/* {isLogin ?  <InformationTemplate children={<Router></Router>}/> : <Login parentLogin = {parentLogin}></Login>} */}
+          {isLogin ?  <InformationTemplate children={<Router></Router>}/> : <Login parentLogin = {parentLogin}></Login>}
           {/* <NewRestaurantForm/> */}
 
       </BrowserRouter>
