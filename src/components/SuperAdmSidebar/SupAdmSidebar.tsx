@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { IconContext } from 'react-icons';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import { SidebarData } from './SupAdmData';
-import Submenu from './SupAdmMenu';
+import { SupAdmSidebarData } from './SupAdmData';
+import SupAdmSubmenu from './SupAdmMenu';
 
 
 const Nav = styled.div`
@@ -38,7 +38,7 @@ const NavIcon = styled(Link)`
 const SidebarWrap = styled.div`
 `;
 
-const Sidebar: FC = () => {
+const SupAdmSidebar: FC = () => {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 
@@ -54,8 +54,8 @@ const Sidebar: FC = () => {
                     <NavIcon to="#" onClick={showSidebar}>
                         <AiOutlineClose />
                     </NavIcon>
-                    {SidebarData.map((item, index) => {
-                        return <Submenu item={item} key={index} />;
+                    {SupAdmSidebarData.map((item, index) => {
+                        return <SupAdmSubmenu item={item} key={index} />;
                     })}
                 </SidebarWrap>
             </SidebarNav>
@@ -63,4 +63,4 @@ const Sidebar: FC = () => {
     );
 };
 
-export default Sidebar;
+export default SupAdmSidebar;

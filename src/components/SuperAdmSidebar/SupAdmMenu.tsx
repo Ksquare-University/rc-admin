@@ -41,7 +41,7 @@ const DropdownLink = styled(Link)`
     }
 `;
 
-const Submenu: FC<SidebarLinkProps> = ({ item }) => {
+const SupAdmSubmenu: FC<SidebarLinkProps> = ({ item }) => {
     const [subnav, setSubnav] = useState(false);
     const showSubnav = () => setSubnav(!subnav);
 
@@ -67,4 +67,4 @@ const Submenu: FC<SidebarLinkProps> = ({ item }) => {
     );
 };
 
-export default Submenu;
+export default SupAdmSubmenu;

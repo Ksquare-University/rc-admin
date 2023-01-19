@@ -2,6 +2,7 @@
 import { } from 'react-router-dom'
 import React, { useState, FC } from "react";
 import { Provider } from "react-redux";
+import SupAdmRouter from "./Routes/SupAdmRoutes"
 import Router from './Routes/index'
 import store from "./store";
 import { UserInfo } from "./components/UserInfo/UserInfo";
@@ -11,6 +12,7 @@ import { initializeApp } from "firebase/app";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { BrowserRouter, Routes } from 'react-router-dom';
 import { Login } from './components/Login/Login';
+import SupAdmSidebar from './components/SuperAdmSidebar/SupAdmSidebar';
 const firebaseApp = initializeApp(firebaseConfig);
 
 

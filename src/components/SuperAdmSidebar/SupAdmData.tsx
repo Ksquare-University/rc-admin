@@ -1,54 +1,48 @@
 import {
     AiFillCaretDown,
     AiFillCaretUp,
-    AiOutlineMoneyCollect,
 } from 'react-icons/ai';
-import { FaCog,FaRegCreditCard,FaRegListAlt,FaUtensils,FaHome, FaUserCircle,FaHistory} from 'react-icons/fa';
+import { FaCog,FaRegListAlt,FaUserCircle,FaUtensils,FaHome,FaHistory} from 'react-icons/fa';
 import { SidebarItem } from '../../models/SidebarItems';
 
-export const SidebarData: SidebarItem[] = [
+export const SupAdmSidebarData: SidebarItem[] = [
     {
         title: 'Overview',
         path: '/overview',
         icon: <FaHome />,
-        iconClosed: <AiFillCaretDown />,
-        iconOpened: <AiFillCaretUp />,
-        subnav: [
-            {
-                title: 'Users',
-                path: '/overview/users',
-                icon: <FaUserCircle />
-            },
-            {
-                title: 'Revenue',
-                path: '/overview/revenue',
-                icon: <AiOutlineMoneyCollect />
-            }
-        ]
+    },
+    {
+        title: 'Clients',
+        path: '/clients',
+        icon: < FaUtensils/>
     },
     {
         title: 'Restaurants',
         path: '/restaurants/new',
-        icon: < FaUtensils/>
+        icon: < FaUtensils/>,
+        iconClosed: <AiFillCaretDown />,
+        iconOpened: <AiFillCaretUp />,
+        subnav: [
+            {
+                title: 'Owners',
+                path: '/overview/owners',
+                icon: < FaUserCircle/>
+            },
+        ]
     },
     {
-        title: 'Orders',
-        path: '/orders',
+        title: 'View',
+        path: '/view',
         icon: <FaRegListAlt/>
     },
     {
-        title: 'Sales',
-        path: '/sales',
+        title: 'Update',
+        path: '/update',
         icon: <FaHistory/>
     },
     {
-        title: 'Payment Method',
-        path: '/Payment',
-        icon: <FaRegCreditCard />
-    },
-    {
-        title: 'Configurations',
-        path: '/configurations',
+        title: 'AddRoles',
+        path: '/addroles',
         icon: <FaCog />
     },
 ];
