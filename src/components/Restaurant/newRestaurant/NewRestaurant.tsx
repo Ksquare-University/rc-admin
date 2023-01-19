@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { InformationForm } from "./InformationForm";
 import { ScheduleForm } from "./ScheduleForm";
 import { DisableForm } from "./DisableForm";
-
 import { StateI } from "../../../store/slices";
 import { updateState } from "../../../store/slices/RestaurantForm";
 import { counterState } from "../../../store/slices/RestaurantForm/reducers";

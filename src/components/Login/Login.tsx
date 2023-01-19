@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -13,43 +13,33 @@ import { UserInfoSideBar } from "../UserInfoSideBar/UserInfoSideBar";
 import { current } from "immer";
 import { StateI } from "../../store/slices";
 import { UserInfo } from "../UserInfo/UserInfo";
-import { Alert, CircularProgress } from "@mui/material";
-
 import axios from "axios"
+import { Alert, CircularProgress } from "@mui/material";
 //import "bootstrap/dist/css/bootstrap.min.css";
 
 type UserSubmitForm = {
   email: string;
   password: string;
 };
-interface LoginProp {
-  callback?: Function;
-}
 
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
+type Props ={
+  parentLogin?: Function,
+}
 
-
-type Props = {
-  parentLogin: (arg: boolean) => void;
-};
-
-
-export function Login ({parentLogin}:Props) {
+export function Login (props: Props) {
   const currentEmail = useSelector<StateI>(
     (state) => state.currentUserState.email
   ) as string;
-  const {callback } = props;
+
+  const { parentLogin } = props;
   const config = {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
     }
   };
-
-
-
-  
 
   const dispatch = useDispatch();
   const validationSchema = Yup.object().shape({
@@ -60,21 +50,10 @@ export function Login ({parentLogin}:Props) {
       .max(40, "Password must not exceed 40 characters"),
   });
 
-
-    // form values initial state
-
-  const [formData, setFormData] = useState({
-      email: "argenis@admin.com",
-      password: "test123",
-    });
-  
-
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      
       console.log(user);
-
       if (user) {
         dispatch(
           updateUserState({
@@ -84,16 +63,20 @@ export function Login ({parentLogin}:Props) {
           })
         );
 
-        console.log('login succes')
-      /*   parentLogin(true); */
-        
+        if(parentLogin)
+        parentLogin(true);
+
       }
+
     } catch (error) {
-      console.log('login failed')
       console.error(error);
-      /* parentLogin(false); */
+      if(parentLogin)
+      parentLogin(false);
     }
   };
+
+
+
 
   const {
     register,
@@ -104,17 +87,29 @@ export function Login ({parentLogin}:Props) {
     resolver: yupResolver(validationSchema),
   });
 
+
+
   const onSubmit = (data: UserSubmitForm) => {
     console.log(JSON.stringify(data, null, 2));
       axios.post('http://localhost:3010/users/admin/signin', data, config)
         .then(function (response) {
-          if(callback) callback(true);
+          if(parentLogin) parentLogin(true);
           console.log(response);
         })
         .catch(function (error) {
           console.log(error);
       });
   };
+
+
+
+  // form values initial state
+  const [formData, setFormData] = useState({
+    email: "argenis@admin.com",
+    password: "test123",
+  });
+
+
 
   // form values onchange
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,7 +119,6 @@ export function Login ({parentLogin}:Props) {
       [name]: value,
     });
   };
-
 
 
   return (
@@ -179,48 +173,7 @@ export function Login ({parentLogin}:Props) {
               </button>
             </div>
           </form>
-          
         )}
-        
-        <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
-          <span className="span-login">Welcome! {currentEmail}</span>
-          <div className="inputLabel">
-            <input
-              {...register("email",{
-                onChange: (e) => {
-                  handleChange(e);
-                }
-              })}
-              type="text"
-              placeholder="Email"
-              className={`form-control`}
-            />
-          </div>
-          <div className="inputLabel">
-            <input
-              // name="password"
-
-              type="password"
-              placeholder="Password"
-              {...register("password",{
-                onChange: (e) => {
-                  handleChange(e);
-                }
-              })}
-              className={`form-control`}
-            />
-          </div>
-
-          <div className="form-group">
-            <button
-              // onClick={() => login()}
-              type="submit"
-              className="btn-btn-primary"
-            >
-              Sing in
-            </button>
-          </div>
-        </form>
       </div>
     </>
   );
