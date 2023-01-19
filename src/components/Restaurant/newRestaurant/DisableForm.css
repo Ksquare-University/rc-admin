@@ -1,52 +1,74 @@
-.disableContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
+.disableContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.restauranteAvility{
-    background-color: #d5d6d6b5;
-    width: 90%;
-    height: 25px;
-    display: flex;
-    padding: 20px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    margin-top: 20px;
-    justify-content: space-between;
-    border-radius: 15px;
-
+.restauranteAvility {
+  background-color: #d5d6d6b5;
+  width: 90%;
+  height: 25px;
+  display: flex;
+  padding: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  margin-top: 20px;
+  justify-content: space-between;
+  border-radius: 15px;
 }
 
-.restauranteState{
-    background-color: #d5d6d6b5;
-    width: 90%;
-    height: 25px;
-    display: flex;
-    padding: 20px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    justify-content: space-between;
-    border-radius: 15px;
+.restauranteState {
+  background-color: #d5d6d6b5;
+  width: 90%;
+  height: 25px;
+  display: flex;
+  padding: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  justify-content: space-between;
+  border-radius: 15px;
 }
 
-    .buttons{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        justify-content: end;
-        margin-bottom: 20px;
-    }
+.buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: end;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
 
-  .cancelButton{
-    margin-right: 10px;
-    color: rgb(150, 150, 225);
-    border-radius: rgb(177, 177, 220);
-    margin-top: 40px;
-  }
-  .doneButton{
-    color: #e88a62;
-    
-  }
+.cancelButton {
+  margin-right: 10px;
+  margin-top: 40px;
+  font-weight: 700;
+  border: none;
+  padding: 10px;
+  font-size: 15pt;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: rgb(128, 11, 0);
+  color: white; 
+}
+.doneButton {
+  margin-right: 35px;
+  margin-top: 40px;
+  font-weight: 700;
+  border: none;
+  padding: 10px;
+  font-size: 15pt;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+}
+
+
+.cancelButton:hover{
+  filter: brightness(80%);
+}
+
+.doneButton:hover{
+  filter:contrast(80%);
+}

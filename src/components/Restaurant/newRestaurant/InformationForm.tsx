@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from 'react-redux';
 import { StateI } from '../../../store/slices';
 import { formInformation } from '../../../store/slices/RestaurantForm/index'
+import { Information } from '../../../store/slices/RestaurantForm/reducers';
 
 
 
@@ -28,14 +29,14 @@ export function InformationForm({isChanged = 0 }:Props) {
   const formstagePhone = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.phone_number) as string;
   const formstageFoodType = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.food_type) as string;
   const formstageAddress = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.address) as string;
-  const formdeliveryfee = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.deliveryfee) as number;
+  const formdeliveryfee = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.delivery_fee) as number;
 
 
   // form values initial state
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Information>({
     name: formstageName || "",
     description: formstageDescription || "",
-    phone: formstagePhone || "",  
+    phone_number: formstagePhone || "",  
     food_type: formstageFoodType || "",
     address: formstageAddress || "",
     delivery_fee: formdeliveryfee || 0,
@@ -52,19 +53,12 @@ export function InformationForm({isChanged = 0 }:Props) {
   }
 
   useEffect(() => {
-    if (isChanged) { // check if any form errors
+    
         // update Redux Slice
         dispatch(
-          formInformation({ // update formSignup
-            name: formData.name,
-            description: formData.description,
-            phone_number: formData.phone,  
-            food_type: formData.food_type,
-            address: formData.address,
-            deliveryfee: formData.delivery_fee
-          })
+          formInformation(formData)
         );
-    }
+    
 
   }, [formData, isChanged, dispatch])
 
@@ -108,9 +102,9 @@ export function InformationForm({isChanged = 0 }:Props) {
               <input
               placeholder="Cell:"
               type="text"
-              id="phone"
-              name="phone" 
-              value={formData.phone}
+              id="phone_number"
+              name="phone_number" 
+              value={formData.phone_number}
               onChange={handleChange}
              />
 

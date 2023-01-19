@@ -15,15 +15,19 @@ import { UpNavBar } from "../components/UpNavBar/UpNavBar";
 import { UserInfo } from "../components/UserInfo/UserInfo";
 import { UserInfoSideBar } from "../components/UserInfoSideBar/UserInfoSideBar";
 import { Configurations } from "../components/Pages/Configurations";
-import { Stepform } from "../components/Restaurant/newRestaurant/NewRestaurant";
+import { NewRestaurantForm } from "../components/Restaurant/newRestaurant/NewRestaurant";
+import { ViewRestaurant } from "../components/Restaurant/viewRestaurant/viewRestaurant";
+
+
 function Router (){
   return(
     <Routes>
-      <Route path = "/login" element = { <Login/>}/>
+      {/* <Route path = "/login" element = { <Login/>}/> */}
                     {/* Admin pages */}
       <Route path="/overview" element={<Overview/>}></Route>
-      <Route path="/overview/users" element={<Login/>}></Route>
-      <Route path="/restaurants/new" element={<Stepform/>}></Route>
+      {/* <Route path="/overview/users" element={<Login/>}></Route> */}
+      <Route path="/restaurants/new" element={<NewRestaurantForm/>}></Route>
+      <Route path="/restaurants" element={<ViewRestaurant/>}></Route>
       <Route path="/overview/revenue" element={<Revenue/>}></Route>
       <Route path="/order" element={<Order/>}></Route>
       <Route path="/sales" element={<Sales/>}></Route>

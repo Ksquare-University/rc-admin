@@ -1,4 +1,3 @@
-
 import { } from 'react-router-dom'
 import React, { useState, FC } from "react";
 import { Provider } from "react-redux";
@@ -14,8 +13,12 @@ import { BrowserRouter, Routes } from 'react-router-dom';
 import { Login } from './components/Login/Login';
 import SupAdmSidebar from './components/SuperAdmSidebar/SupAdmSidebar';
 const firebaseApp = initializeApp(firebaseConfig);
+import { NewRestaurantForm} from './components/Restaurant/newRestaurant/NewRestaurant'
+import InformationTemplate from './components/Templates/InformationTemplate/index';
 
 
+
+const firebaseApp = initializeApp(firebaseConfig); 
 
 const App: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -27,15 +30,23 @@ const App: FC = () => {
 
   // Set true if you want to see navBar and others routers componets
   // Set false if you want to go to login by default
-  const [isLogin, setLogin] = React.useState(false); 
+  const [isLogin, setLogin] = React.useState(true);
+
+  const parentLogin = (log:boolean) =>{
+    setLogin(log);
+  }
 
   return (
+    <>
       <BrowserRouter>
-        <Provider store={store}>
+
           {/* Blocking routers if a user is not loggin */}
           {isLogin ? <> <Sidebar/> <Router></Router></>: <Login callback={setLogin}></Login>}
-        </Provider>
+          {/* {isLogin ?  <InformationTemplate children={<Router></Router>}/> : <Login parentLogin = {parentLogin}></Login>} */}
+          {/* <NewRestaurantForm/> */}
+
       </BrowserRouter>
+    </>
   );
 };
 export default App;

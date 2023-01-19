@@ -27,7 +27,15 @@ interface LoginProp {
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 
+<<<<<<< HEAD
 export const Login: React.FC<LoginProp> = (props: LoginProp ) => {
+=======
+type Props ={
+  parentLogin:(arg:boolean) =>void,
+}
+
+export function Login ({parentLogin}:Props) {
+>>>>>>> Initialization
   const currentEmail = useSelector<StateI>(
     (state) => state.currentUserState.email
   ) as string;
@@ -53,7 +61,7 @@ export const Login: React.FC<LoginProp> = (props: LoginProp ) => {
   });
 
   const email = "YumilwcTest2@gmail.com";
-  const passwd = "yumil22";
+  const passwd = "yumil22";   
 
   const login = async () => {
     try {
@@ -64,16 +72,17 @@ export const Login: React.FC<LoginProp> = (props: LoginProp ) => {
         dispatch(
           updateUserState({
             displayName: "Yumil Flores",
-            email: user.user.email || "",
+            email: user.user.email || "DONT",
             phone: "809-751-5482",
           })
         );
 
-        console.log("current", currentEmail);
-        console.log("user", user.user.email);
+        parentLogin(true);
       }
     } catch (error) {
       console.error(error);
+      parentLogin(false); 
+
     }
   };
 
@@ -122,7 +131,7 @@ export const Login: React.FC<LoginProp> = (props: LoginProp ) => {
           <img src={rappilogoBN} alt="log" className="logo" />
         </div>
         <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
-          <span className="span-login">Welcome!</span>
+          <span className="span-login">Welcome! {currentEmail}</span>
           <div className="inputLabel">
             <input
               {...register("email",{

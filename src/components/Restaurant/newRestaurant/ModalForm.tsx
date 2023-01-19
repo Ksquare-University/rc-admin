@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { styled, Box, Theme } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import { boolean } from 'yargs';
+import { NewRestaurantForm } from './NewRestaurant';
 
 const BackdropUnstyled = React.forwardRef<
   HTMLDivElement,
@@ -61,14 +62,14 @@ export default function ModalUnstyledDemo({openState=false, parentCallback}:Prop
   return (
     <div>
 
-{/*       <Modal
+      <Modal
 
         open={open}
         onClose={handleClose}
         slots={{ backdrop: Backdrop }}
       >
           <NewRestaurantForm/>
-      </Modal> */}
+      </Modal>
     </div>
   );
 }

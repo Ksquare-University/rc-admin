@@ -9,17 +9,18 @@ import Submenu from './Submenu';
 
 const Nav = styled.div`
     display: flex;
-    justify-content: flex-star;
+    justify-content: center;
     align-items: center;
-    height: 4rem;
-    width:100px;
-    background-color: rgb(255, 60, 21);
+    height: 6vh;
+    width: 80px;
+    background-color: #ff4219;
+    box-shadow: 5px 5px 10px #30040239;
 `;
 
 const SidebarNav = styled.div<{ sidebar: boolean }>`
     width: 260px;
     height: 100vh;
-    background-color: rgb(255, 60, 21);
+    background-color: #ff4219;
     position: fixed;
     top: 0;
     left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
@@ -28,11 +29,16 @@ const SidebarNav = styled.div<{ sidebar: boolean }>`
 
 const NavIcon = styled(Link)`
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+<<<<<<< HEAD
     height: 4rem;
     font-size: 2rem;
     margin-left: 2rem;
+=======
+    height: 5rem;
+    font-size: 1.5rem;
+>>>>>>> Initialization
 `;
 
 const SidebarWrap = styled.div`

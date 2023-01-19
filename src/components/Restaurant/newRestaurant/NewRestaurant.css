@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .formRestaurant{
     display: flex;
     flex-direction: column;
@@ -5,45 +6,87 @@
     background-color: #fc7820;
     height: 620px;
     width: 900px;
+=======
+/* body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+        flex-direction: column;
+        background-image: url("../../../assets/BackgroundFood.png");
+    } */
+.formRestaurant {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: #fdfdfd;
+  height: 100%;
+  width: 70%;
+>>>>>>> Initialization
 }
-.menu{
-    display: flex;
-    flex-direction: row;
-    justify-content:flex-start;
-    background-color: #f19e67;
 
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: #ff4219;
+  border-radius: 5px;
 }
 
-.menu a{
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    color: white;
+.menu a {
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  color: white;
+  cursor: pointer;
 }
 
 .menu a:hover {
-    background-color: #ddd;
-    color: black;
-  }
+  background-color: #8e1c00;
+  color: #ffffff;
+  font-weight: 700;
+}
 
 .menu a.active {
-    background: linear-gradient(#fc7820a1, #1b0d0300);
-    color: white;
-    box-shadow: #ff4d00 2px 0px 0px 2px;
+  background: linear-gradient(#fc7820a1, #1b0d0300);
+  color: white;
+  box-shadow: #ff4d00 2px 0px 0px 2px;
 }
 
-.container-form{
-    background-color: rgb(0, 0, 0, 0.5);
-    border-radius: 15px;
-    margin: 40px;
+.container-form {
+  background-color: rgba(208, 208, 208, 0.5);
+  border-radius: 15px;
+  height: 100vh;
+  margin: 20px 30px;
 }
 
-h1{
-    font-size: large;
+.formRestaurant input {
+  width: 80%;
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 3px 3px 3px #00000014;
+  transition: all 0.6s;
 }
 
-h1:hover{
-    font-size: 40px;
+.formRestaurant input:focus {
+  background-color: #670702;
+  color: #fff;
 }
 
+.span-container {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.span-new-restaurant {
+  font-size: 2.5rem;
+  font-weight: 500;
+  padding: 50px;
+}
