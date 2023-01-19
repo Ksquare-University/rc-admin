@@ -1,5 +1,5 @@
 .container-father-user {
-  padding-right: 3%;
+  padding-right: 73.5%;
   padding-top: 30px;
 }
 
@@ -8,11 +8,10 @@
   padding: 10px;
   margin: 10px;
   width: 100%;
-  align-items: center;
   font-family: "Rubik", sans-serif;
   background-color: rgba(255, 255, 255, 0.892);
-  box-shadow: 3px 3px 3px #00000014;
-  border-radius: 2px;
+  box-shadow: 2px 2px 2px #00000014;
+  border-radius: 4px;
 }
 
 .User-info-box-child2 {
@@ -22,6 +21,7 @@
   padding-left: 10px;
   justify-content: center;
   font-weight: 700;
+  align-items: flex-start;
 }
 
 .role-span {

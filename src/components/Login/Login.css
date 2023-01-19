@@ -1,4 +1,4 @@
-/* *{
+*{
   font-family: 'Rubik', sans-serif;
 }
 
@@ -18,10 +18,18 @@
 }
 
 .span-login {
-  font-size: 140px;
+  font-size: 10rem;
   color: aliceblue;
   transition: all 0.5s;
   font-weight: 800;
+  letter-spacing: 8px;
+}
+
+.span-login2 {
+  font-size: 2rem;
+  color: aliceblue;
+  transition: all 0.5s;
+  font-weight: 400;
   letter-spacing: 8px;
   margin-bottom: 60px;
 }
@@ -76,11 +84,15 @@
   color: #fff;
 }
 
-.logo {
-  width: 200px;
+.logo-login {
+  width: 20%;
   transition: all 1s;
 }
 
-.logo:hover {
-  width: 300px;
-} */
+.logo-login:hover {
+  width: 30%;
+}
+
+.alert-succes{
+  margin-bottom: 50px;
+}

@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StateI } from "../../store/slices";
 import { updateUserState } from "../../store/slices/User";
+import { updateUserSideBarState } from "../../store/slices/UserInfoSideBar";
+
 import { json } from "body-parser";
 
 export const UserInfoSideBar = () => {
@@ -12,6 +14,9 @@ export const UserInfoSideBar = () => {
   
   
   
+  const sideBarState = useSelector<StateI>(
+    (state) => state.currentUserSideBarState.value
+  ) as boolean;
 
   const currentName = useSelector<StateI>(
     (state) => state.currentUserState.displayName
@@ -111,6 +116,8 @@ export const UserInfoSideBar = () => {
 
   return (
     <div className="User-Info-Box">
+      <button className="close-bar-button"
+      onClick={()=>dispatch(updateUserSideBarState({value:false}))}>x</button>
       <img src={avatar} alt="" className="user-img" />
       <div className="User-info-box-child">
         <button

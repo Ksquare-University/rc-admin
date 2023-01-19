@@ -3,6 +3,7 @@ import { UpNavBar } from "../../UpNavBar/UpNavBar";
 import "./style.css";
 import { UserInfo } from "../../UserInfo/UserInfo";
 
+
 type Props = {
   children: React.ReactNode;
 };
