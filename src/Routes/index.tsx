@@ -1,5 +1,5 @@
 
-import { BrowserRouter,Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import{Users} from "../components/Pages/Users"
 import { Revenue } from "../components/Pages/Revenue";
 import { Order} from "../components/Pages/Orders";

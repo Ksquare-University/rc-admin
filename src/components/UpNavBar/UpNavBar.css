@@ -1,52 +1,20 @@
-
-
 .NavBar-container {
-  width: 98%;
-  margin: 0.50% 0% 0% 1%;
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0px;
   font-family: 'Rubik', sans-serif;
-
-}
-
-.Menu-Box {
-  width: 12%;
-  background-color: #fe473c;
-  height: 4vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url("../../assets/BackgroundFood.png");
-  background-size: 1000px; 
-}
-
-.NavBar-container h3 {
-  color: white;
-  font-size: 1.75vw;
-  transition: all 0.8s;
-}
-
-.NavBar-container h3:hover{
-  color: #76110c;
-  letter-spacing: 20px;
 }
 
 .Logo-container {
-  width: 85%;
-  outline: solid rgb(166, 166, 166);
-  height: 3.5vh;
+  width: 90%;
+  height: 6vh;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 1.0s;
-  background-color: white;
-  background-image: url("../../assets/sideBackGround.png");
-  background-size: 100px; 
-}
-
-.Logo-container:hover{
-  outline:solid #fe473c;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 3px 3px 3px #00000014;
 }
 
 .logo {
@@ -54,19 +22,21 @@
 }
 
 .Icons-Containers {
-  width: 2%;
+  width: 6.5%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fe473c;
+  box-shadow: 3px 3px 3px #00000014;
+  height: 6vh;
 }
 
 .icon-button{
-  height: 4vh;
+  height: 6vh;
   width: 100%;
-  background-color: #fe473c;
+  background-color: #cb2f0b;
   cursor: pointer;
   border-style: none;
-  background-image: url("../../assets/BackgroundFood.png");
   background-size: 600px; 
 }
 

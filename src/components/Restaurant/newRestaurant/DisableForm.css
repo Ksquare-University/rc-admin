@@ -52,10 +52,34 @@
 
 .cancelButton {
   margin-right: 10px;
-  color: rgb(150, 150, 225);
+  margin-top: 40px;
+  font-weight: 700;
+  border: none;
+  padding: 10px;
+  font-size: 15pt;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: rgb(128, 11, 0);
+  color: white; 
 }
 .doneButton {
-  color: white;
-  background-color: #ff4d00;
+  margin-right: 35px;
+  margin-top: 40px;
+  font-weight: 700;
+  border: none;
   padding: 10px;
+  font-size: 15pt;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+}
+
+
+.cancelButton:hover{
+  filter: brightness(80%);
+}
+
+.doneButton:hover{
+  filter:contrast(80%);
 }
