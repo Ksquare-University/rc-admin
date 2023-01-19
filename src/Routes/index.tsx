@@ -25,7 +25,9 @@ function Router (){
       {/* <Route path = "/login" element = { <Login/>}/> */}
                     {/* Admin pages */}
       <Route path="/overview" element={<Overview/>}></Route>
-      {/* <Route path="/overview/users" element={<Login/>}></Route> */}
+      <Route path="/overview/users" element={<Login parentLogin={function (arg: boolean): void {
+        throw new Error("Function not implemented.");
+      } }/>}></Route>
       <Route path="/restaurants/new" element={<NewRestaurantForm/>}></Route>
       <Route path="/restaurants" element={<ViewRestaurant/>}></Route>
       <Route path="/overview/revenue" element={<Revenue/>}></Route>

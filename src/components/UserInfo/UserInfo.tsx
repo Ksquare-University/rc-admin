@@ -17,8 +17,8 @@ export const UserInfo = () => {
       <div className="User-Info-Box2">
         <img src={avatar} alt="" className="user-img2" />
         <div className="User-info-box-child2">
-          <span> Argenis Gonzalez</span>
-          <span className="role-span"> xxxx♠@gmail.com </span>
+          <span> {currentName} </span>
+          <span className="role-span"> {currentEmail} </span>
         </div>
       </div>
     </div>

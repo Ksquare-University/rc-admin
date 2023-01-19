@@ -13,6 +13,8 @@ import { UserInfoSideBar } from "../UserInfoSideBar/UserInfoSideBar";
 import { current } from "immer";
 import { StateI } from "../../store/slices";
 import { UserInfo } from "../UserInfo/UserInfo";
+import { Alert, CircularProgress } from "@mui/material";
+
 //import "bootstrap/dist/css/bootstrap.min.css";
 
 type UserSubmitForm = {
@@ -23,11 +25,11 @@ type UserSubmitForm = {
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 
-type Props ={
-  parentLogin:(arg:boolean) =>void,
-}
+type Props = {
+  parentLogin: (arg: boolean) => void;
+};
 
-export function Login ({parentLogin}:Props) {
+export function Login({ parentLogin }: Props) {
   const currentEmail = useSelector<StateI>(
     (state) => state.currentUserState.email
   ) as string;
@@ -41,13 +43,19 @@ export function Login ({parentLogin}:Props) {
       .max(40, "Password must not exceed 40 characters"),
   });
 
-  const email = "YumilwcTest2@gmail.com";
-  const passwd = "yumil22";   
+
+    // form values initial state
+
+  const [formData, setFormData] = useState({
+      email: "argenis@admin.com",
+      password: "test123",
+    });
+  
 
   const login = async () => {
     try {
-      const user = await signInWithEmailAndPassword(auth, email, passwd);
-      console.log(user);
+      const user = await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      
 
       if (user) {
         dispatch(
@@ -58,15 +66,16 @@ export function Login ({parentLogin}:Props) {
           })
         );
 
-        parentLogin(true);
+        console.log('login succes')
+      /*   parentLogin(true); */
+        
       }
     } catch (error) {
+      console.log('login failed')
       console.error(error);
-      parentLogin(false); 
-
+      /* parentLogin(false); */
     }
   };
-
 
   const {
     register,
@@ -81,13 +90,6 @@ export function Login ({parentLogin}:Props) {
     console.log(JSON.stringify(data, null, 2));
   };
 
-  // form values initial state
-
-  const [formData, setFormData] = useState({
-    email: "YumilwcTest2@gmail.com",
-    password: "yumil22",
-  });
-
   // form values onchange
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -97,50 +99,64 @@ export function Login ({parentLogin}:Props) {
     });
   };
 
+
+
   return (
     <>
       <div className="LoginContainer">
         <div>
-          <img src={rappilogoBN} alt="log" className="logo" />
+          <img src={rappilogoBN} alt="log" className="logo-login" />
         </div>
-        <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
-          <span className="span-login">Welcome! {currentEmail}</span>
-          <div className="inputLabel">
-            <input
-              name="email"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              type="text"
-              placeholder="Email"
-              /* {...register("email")} */
-              className={`form-control`}
-            />
-          </div>
-          <div className="inputLabel">
-            <input
-              name="password"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              type="password"
-              placeholder="Password"
-              /* {...register("password")} */
-              className={`form-control`}
-            />
-          </div>
+        <span className="span-login">Welcome!</span>
+        {currentEmail && 
+        <>
+                <span className="span-login2">{currentEmail}</span>
+                <Alert className="alert-succes" severity="success">Succes Login!</Alert>
+                <CircularProgress className="circular-progress" color="error" />
+        </>
+        }
+       
+        {!currentEmail && (
+          <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
+            <div className="inputLabel">
+              <input
+                name="email"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                type="text"
+                placeholder="Email"
+                /* {...register("email")} */
+                className={`form-control`}
+              />
+            </div>
+            <div className="inputLabel">
+              <input
+                name="password"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                type="password"
+                placeholder="Password"
+                /* {...register("password")} */
+                className={`form-control`}
+              />
+            </div>
 
-          <div className="form-group">
-            <button
-              onClick={() => login()}
-              type="submit"
-              className="btn-btn-primary"
-            >
-              Sing in
-            </button>
-          </div>
-        </form>
+            <div className="form-group">
+              <button
+                onClick={() => login()}
+                type="submit"
+                className="btn-btn-primary"
+              >
+                Sing in
+              </button>
+            </div>
+          </form>
+          
+        )}
+        
       </div>
     </>
   );
-};
+}

@@ -1,6 +1,6 @@
 .User-Info-Box{
     display: flex;
-    width: 20%;
+    width: 18%;
     height: 100vh;
     background-color: rgb(245, 245, 245);
     background-image: url("../../assets/sideBackGround.png");
@@ -10,6 +10,24 @@
     justify-content: center;
     box-shadow: 5px 5px 10px #4747471d;
     font-family: 'Rubik', sans-serif;
+    position: absolute;
+    right: 0;
+    top: 0;
+    box-shadow: -4px -2px 2px #00000014;
+}
+
+.close-bar-button{
+    font-size: 2rem;
+    font-weight: 800;
+    align-self: flex-start;
+    margin-left: 20px;
+    border-style: none;
+    color: rgb(128, 11, 0);
+    cursor: pointer;
+}
+
+.close-bar-button:hover{
+    color: white;
 }
 
 .User-info-box-child{
@@ -23,7 +41,7 @@
 }
 
 .edit-information{
-    font-size: 1.2vw;
+    font-size: 1vw;
     border-style: none;
     background-color: rgba(245, 245, 245, 0);
     cursor: pointer;
@@ -54,7 +72,7 @@
     background-color: rgb(246, 246, 246);
     border-radius: 10px;
     height: 20px;
-    font-size: 0.9vw;
+    font-size: 0.75vw;
     font-weight: 400;
 }
 
