@@ -29,9 +29,7 @@ export const UpNavBar = () => {
         <button className="icon icon-button">
           <i className="fa-solid fa-user"></i>
         </button>
-      </div>
 
-      <div className="Icons-Containers">
         <button className="icon icon-button">
           <i className="fa-solid fa-right-from-bracket"></i>
         </button>
