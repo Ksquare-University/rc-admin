@@ -18,10 +18,8 @@ export const ViewSchedule = ({isChanged = 0 }:Props) =>{
     const dispatch = useDispatch();
 
     // get Redux store values
-    const formstep = useSelector<StateI>(state => state.newRestaurantCount.FormSchedule.stepDay) as number;
-    const formWeek = useSelector<StateI>(state => state.newRestaurantCount.FormSchedule.week) as Week;
-   
-    
+    const formstep = useSelector<StateI>(state => state.restaurantView.ViewSchedule.stepDay) as number;
+    const formWeek = useSelector<StateI>(state => state.restaurantView.ViewSchedule.week) as Week; 
 
     // form values initial state
     const [formData, setFormData] = useState({
@@ -114,7 +112,6 @@ export const ViewSchedule = ({isChanged = 0 }:Props) =>{
                 <a className={working(6)} onClick={()=>{onClickHandler(6);}}>Saturday</a>
                 <a className={working(7)} onClick={()=>{onClickHandler(7);}}>Sunday</a>
             </div>
-
 
             {formstep===1 && <FormTime timeOp={formWeek.monday.oppeningTime} timeCl={formWeek.monday.closeTime} parentCallbackOppening={updateOpTime} parentCallbackClose={updateClTime} />}
             {formstep===2 && <FormTime timeOp={formWeek.Tuesday.oppeningTime} timeCl={formWeek.Tuesday.closeTime} parentCallbackOppening={updateOpTime} parentCallbackClose={updateClTime} />}

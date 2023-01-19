@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-import './ScheduleForm.css'
 import ResponsiveTimePickers from '../../newRestaurant/TimePicker'
 
 type Props = {
@@ -11,7 +10,6 @@ type Props = {
 }
 
 export const FormTime = ({timeOp="00:00", timeCl="23:00", parentCallbackOppening, parentCallbackClose}:Props)=>{
-
 
     return(
         <>

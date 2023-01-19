@@ -20,9 +20,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 const App: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const handleCallback = (childData: boolean) => {
-    setOpen(childData);
-  };
+
   const email = "YumilwcTest2@gmail.com";
   const passwd = "yumil22";
 
