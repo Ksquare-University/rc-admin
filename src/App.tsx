@@ -1,6 +1,7 @@
 import { } from 'react-router-dom'
 import React, { useState, FC } from "react";
 import { Provider } from "react-redux";
+import SupAdmRouter from "./Routes/SupAdmRoutes"
 import Router from './Routes/index'
 import store from "./store";
 import { UserInfo } from "./components/UserInfo/UserInfo";
@@ -10,7 +11,7 @@ import { initializeApp } from "firebase/app";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { BrowserRouter, Routes } from 'react-router-dom';
 import { Login } from './components/Login/Login';
-import { NewRestaurantForm} from './components/Restaurant/newRestaurant/NewRestaurant'
+import SupAdmSidebar from './components/SuperAdmSidebar/SupAdmSidebar';
 import InformationTemplate from './components/Templates/InformationTemplate/index';
 
 
@@ -19,9 +20,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 const App: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const handleCallback = (childData: boolean) => {
-    setOpen(childData);
-  };
+
   const email = "YumilwcTest2@gmail.com";
   const passwd = "yumil22";
 

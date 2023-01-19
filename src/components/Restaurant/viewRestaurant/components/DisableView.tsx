@@ -1,31 +1,24 @@
 import React,{useState} from "react";
-import './DisableForm.css'
 import { Switch } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { StateI } from '../../../store/slices';
-import { formDisable } from '../../../store/slices/RestaurantForm/index'
-
-
+import { StateI } from '../../../../store/slices';
+import { formDisable } from '../../../../store/slices/RestaurantForm/index'
 
 type Props = {
     isChanged?: number
   }
 
-
-export const DisableForm = ({isChanged=0}:Props) =>{
-
-    
+export const ViewDisable = ({isChanged=0}:Props) =>{
     //Redux
     const dispatch = useDispatch();
 
     // get Redux store values
-    const formEnable = useSelector<StateI>(state => state.newRestaurantCount.FormDisable.enable) as boolean;
-    const formOpen = useSelector<StateI>(state => state.newRestaurantCount.FormDisable.open) as boolean;
-
+    const formEnable = useSelector<StateI>(state => state.restaurantView.ViewDisable.enable) as boolean;
+    const formOpen = useSelector<StateI>(state => state.restaurantView.ViewDisable.open) as boolean;
 
     const [formData, setFormData] = useState({
         enable: formEnable || false,
