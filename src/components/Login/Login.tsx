@@ -46,6 +46,7 @@ export function Login ({parentLogin}:Props) {
 
   const login = async () => {
     try {
+      
       const user = await signInWithEmailAndPassword(auth, email, passwd);
       console.log(user);
 
