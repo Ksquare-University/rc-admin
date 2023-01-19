@@ -10,15 +10,16 @@ const Nav = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 4.5vh;
+    height: 6vh;
     width: 80px;
-    background-color: rgb(255, 60, 21);
+    background-color: #ff4219;
+    box-shadow: 5px 5px 10px #30040239;
 `;
 
 const SidebarNav = styled.div<{ sidebar: boolean }>`
     width: 260px;
     height: 100vh;
-    background-color: rgb(255, 60, 21);
+    background-color: #ff4219;
     position: fixed;
     top: 0;
     left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};

@@ -1,14 +1,21 @@
-.User-Info-Box {
+.container-father-user {
+  padding-right: 3%;
+  padding-top: 30px;
+}
+
+.User-Info-Box2 {
   display: flex;
   padding: 10px;
   margin: 10px;
-  width: 15%;
+  width: 100%;
   align-items: center;
-  font-family: 'Rubik', sans-serif;
-
+  font-family: "Rubik", sans-serif;
+  background-color: rgba(255, 255, 255, 0.892);
+  box-shadow: 3px 3px 3px #00000014;
+  border-radius: 2px;
 }
 
-.User-info-box-child {
+.User-info-box-child2 {
   display: flex;
   flex-direction: column;
   border-color: antiquewhite;
@@ -23,7 +30,7 @@
   font-style: italic;
 }
 
-.user-img {
+.user-img2 {
   width: 65px;
   height: 65px;
   border-radius: 50%;
