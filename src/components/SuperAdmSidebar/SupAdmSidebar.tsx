@@ -52,7 +52,7 @@ const SupAdmSidebar: FC = () => {
             <SidebarNav sidebar={sidebar}>
                 <SidebarWrap>
                     <NavIcon to="#" onClick={showSidebar}>
-                        <AiOutlineClose />
+                        <AiOutlineClose className="CloseIcon" />
                     </NavIcon>
                     {SupAdmSidebarData.map((item, index) => {
                         return <SupAdmSubmenu item={item} key={index} />;

@@ -5,6 +5,7 @@ import { IconContext } from 'react-icons';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
 import Submenu from './Submenu';
+import "./Sidebar.css"
 
 
 const Nav = styled.div`
@@ -29,9 +30,9 @@ const NavIcon = styled(Link)`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 4rem;
+    height: 3rem;
     font-size: 1.5rem;
-    margin-left: 2rem;
+    margin-left: 2.2rem;
 `;
 
 const SidebarWrap = styled.div`
@@ -51,7 +52,7 @@ const Sidebar: FC = () => {
             <SidebarNav sidebar={sidebar}>
                 <SidebarWrap>
                     <NavIcon to="#" onClick={showSidebar}>
-                        <AiOutlineClose />
+                        <AiOutlineClose className="CloseIcon" />
                     </NavIcon>
                     {SidebarData.map((item, index) => {
                         return <Submenu item={item} key={index} />;
