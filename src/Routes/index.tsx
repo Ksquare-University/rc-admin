@@ -22,9 +22,8 @@ function Router (){
       <Route path = "/login" element = { <Login/>}/>
                     {/* Admin pages */}
       <Route path="/overview" element={<Overview/>}></Route>
-      <Route path="/overview/users" element={<Login/>}></Route>
+      <Route path="/clients" element={<Users/>}></Route>
       <Route path="/restaurants/new" element={<Stepform/>}></Route>
-      <Route path="/overview/revenue" element={<Revenue/>}></Route>
       <Route path="/order" element={<Order/>}></Route>
       <Route path="/sales" element={<Sales/>}></Route>
       <Route path="/PaymentMethod" element={<PaymentMethod/>}></Route>

@@ -11,20 +11,11 @@ export const SidebarData: SidebarItem[] = [
         title: 'Overview',
         path: '/overview',
         icon: <FaHome />,
-        iconClosed: <AiFillCaretDown />,
-        iconOpened: <AiFillCaretUp />,
-        subnav: [
-            {
-                title: 'Users',
-                path: '/overview/users',
-                icon: <FaUserCircle />
-            },
-            {
-                title: 'Revenue',
-                path: '/overview/revenue',
-                icon: <AiOutlineMoneyCollect />
-            }
-        ]
+    },
+    {
+        title: 'Clients',
+        path: '/clients',
+        icon: < FaUserCircle/>
     },
     {
         title: 'Restaurants',
@@ -40,11 +31,6 @@ export const SidebarData: SidebarItem[] = [
         title: 'Sales',
         path: '/sales',
         icon: <FaHistory/>
-    },
-    {
-        title: 'Payment Method',
-        path: '/Payment',
-        icon: <FaRegCreditCard />
     },
     {
         title: 'Configurations',
