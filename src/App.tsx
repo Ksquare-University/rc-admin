@@ -15,7 +15,6 @@ import SupAdmSidebar from './components/SuperAdmSidebar/SupAdmSidebar';
 import InformationTemplate from './components/Templates/InformationTemplate/index';
 
 
-
 const firebaseApp = initializeApp(firebaseConfig); 
 
 const App: FC = () => {

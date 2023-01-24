@@ -2,7 +2,7 @@ import {
     AiFillCaretDown,
     AiFillCaretUp,
 } from 'react-icons/ai';
-import { FaCog,FaRegListAlt,FaUserCircle,FaUtensils,FaHome,FaHistory} from 'react-icons/fa';
+import { FaCog,FaUserCircle,FaUtensils,FaHome,FaHistory} from 'react-icons/fa';
 import { SidebarItem } from '../../models/SidebarItems';
 
 export const SupAdmSidebarData: SidebarItem[] = [
@@ -29,16 +29,6 @@ export const SupAdmSidebarData: SidebarItem[] = [
                 icon: < FaUserCircle/>
             },
         ]
-    },
-    {
-        title: 'View',
-        path: '/view',
-        icon: <FaRegListAlt/>
-    },
-    {
-        title: 'Update',
-        path: '/update',
-        icon: <FaHistory/>
     },
     {
         title: 'AddRoles',
