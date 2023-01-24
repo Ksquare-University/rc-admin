@@ -1,23 +1,34 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-type PokemonFetchOptions = {
-    name: string;
+type RestaurantFetchOptions = {
+    id: number;
     sortBy?: string;
     limit?: number;
     offset?: number;
 }
 
-export const fetchPokemonByName = createAsyncThunk('pokemon/fetchByName', async (pokeName: PokemonFetchOptions, thunkAPI) => {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName.name}`)
+export const fetchRestaurantsbyOwnerid = createAsyncThunk('pokemon/fetchByName', async (restaurant: RestaurantFetchOptions, thunkAPI) => {
+    const res = await fetch(`http://localhost:3001/restaurant/all/${restaurant.id}`)
     const data = await res.json();
-
-    return data;
+    return data["restaurants"];
 })
 
-
+interface RestaurantOption {
+    id: number;
+    name: string;
+    description: string;
+    city_id: number;
+    category: string;
+    delivery_fee: number;
+    phone_number: number;
+    owner_id: number;
+    is_deleted: boolean;
+    createdAt: string;
+    updatedAt: string;
+  }
 export interface CounterState {
     value: number;
-    pokemons: any[]
+    pokemons: RestaurantOption[]
     loading: 'idle' | 'pending' | 'success' | 'failure'
 }
 
@@ -36,24 +47,18 @@ const initialCounterState: CounterState = {
 const counterSlice = createSlice({
     name: 'counter',
     initialState: initialCounterState,
-    reducers: {
-        increment: (state) => {
-            state.value += 1;
-        },
-        decrement: (state) => {
-            state.value -= 1
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchPokemonByName.pending, (state) => {
+        builder.addCase(fetchRestaurantsbyOwnerid.pending, (state) => {
             state.loading = 'pending'
         })
-        builder.addCase(fetchPokemonByName.fulfilled, (state, action) => {
-            state.pokemons.push(action.payload);
+        builder.addCase(fetchRestaurantsbyOwnerid.fulfilled, (state, action) => {
+            state.pokemons = action.payload;
             state.loading = 'success';
         })
+        
     },
 })
 
-export const { increment, decrement } = counterSlice.actions
+export const { } = counterSlice.actions
 export const counter = counterSlice.reducer;

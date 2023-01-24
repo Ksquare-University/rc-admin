@@ -22,25 +22,27 @@ export default function ResponsiveTimePickers({time = "00:00", parentCallback}:P
       <Stack spacing={2}>
         <MobileTimePicker
           value={value}
-          disabled = {true}
           onChange={(newValue) => {
             setValue(newValue);
-            let hour= newValue?.hour().toString();
-            let minute= newValue?.minute().toString();
+            
+          }}
+          renderInput={(params) => <TextField {...params} />}
+          onAccept={()=>{
+            let hour= value?.hour().toString();
+            let minute= value?.minute().toString();
 
-            if(newValue){
-              if(newValue?.hour()<10){
-                hour = newValue?.hour()!=0 ? "0"+newValue?.hour():"00";
+            if(value){
+              if(value?.hour()<10){
+                hour = value?.hour()!=0 ? "0"+value?.hour():"00";
               }
             }
-            if(newValue){
-              if(newValue?.minute()<10){
-                minute = newValue?.minute()!=0 ? "0"+newValue?.minute():"00";
+            if(value){
+              if(value?.minute()<10){
+                minute = value?.minute()!=0 ? "0"+value?.minute():"00";
               }
             }
             parentCallback(hour+':'+minute);
           }}
-          renderInput={(params) => <TextField {...params} />}
         />
       </Stack>
     </LocalizationProvider>

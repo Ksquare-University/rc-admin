@@ -1,18 +1,21 @@
 import './viewRestaurant.css'
 import { StateI } from '../../../store/slices';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateState } from "../../../store/slices/RestaurantView";
+import { fetchScheduleByRestaurantId, updateState } from "../../../store/slices/RestaurantView";
 import { ViewInformation } from "./components/InformationView";
 import { ViewSchedule } from "./components/ScheduleView";
 import { ViewDisable } from "./components/DisableView";
 import Select from 'react-select';
-import { useEffect, useState } from 'react';
-import { fetchPokemonByName } from '../../../store/slices/Restaurants/index';
+import { useContext, useEffect, useState } from 'react';
+import { fetchRestaurantsbyOwnerid } from '../../../store/slices/Restaurants/index';
+import { fetchRestaurantById } from '../../../store/slices/RestaurantView/index';
 import store, { useAppDispatch } from '../../../store';
+
 
 type Props={
     title?: string
 }
+
 
 export function ViewRestaurant({title="viewRestaurant"}:Props){
 
@@ -21,7 +24,13 @@ export function ViewRestaurant({title="viewRestaurant"}:Props){
 
     
     const loading = useSelector<StateI>(state => state.counter.loading);
-    const pokemons = useSelector<StateI>(state => state.counter.pokemons);
+    const restaurants = useSelector<StateI>(state => state.counter.pokemons) as any[];
+    const [selected, setSelected] = useState<number>();
+    const [updated, setUpdated] = useState<boolean>(false);
+
+    const StatusUpdated = () => {
+        setUpdated(!updated);
+    }
 
     const isActive = (value:number)=>{
         return 'btn '+((value===pageStage) ?'active':'default');
@@ -30,57 +39,56 @@ export function ViewRestaurant({title="viewRestaurant"}:Props){
     const updateStates = (n: number) =>{
         dispatch(updateState(n));
     }
-    interface Restaurant{
-        label:string;
-        value:number;
-    }
 
-    interface ColourOption {
-        readonly value: string;
-        readonly label: string;
-        readonly color: string;
-        readonly isFixed?: boolean;
-        readonly isDisabled?: boolean;
+    interface RestaurantOption {
+        id: number;
+        name: string;
+        description: string;
+        city_id: number;
+        category: string;
+        delivery_fee: number;
+        phone_number: number;
+        owner_id: number;
+        is_deleted: boolean;
+        createdAt: string;
+        updatedAt: string;
       }
-      
-    const [data, setData] = useState<ColourOption[]>(
+
+    const [data] = useState<RestaurantOption[]>(
+        
         [
-            { value: 'ocean', label: 'Oceannnnnnnn', color: '#00B8D9'},
-            { value: 'blue', label: 'Blue', color: '#0052CC'},
-            { value: 'purple', label: 'Purple', color: '#5243AA' },
-            { value: 'red', label: 'Red', color: '#FF5630' },
-            { value: 'orange', label: 'Orange', color: '#FF8B00' },
-            { value: 'yellow', label: 'Yellow', color: '#FFC400' },
-            { value: 'green', label: 'Green', color: '#36B37E' },
-            { value: 'forest', label: 'Forest', color: '#00875A' },
-            { value: 'slate', label: 'Slate', color: '#253858' },
-            { value: 'silver', label: 'Silver', color: '#666666' }
+            {
+                "id": 1,
+                "name": "Restaurants",
+                "description": "Hamburgers, tacos and more",
+                "city_id": 1,
+                "category": "Fast food",
+                "delivery_fee": 0,
+                "phone_number": 9898202,
+                "owner_id": 1,
+                "is_deleted": false,
+                "createdAt": "2023-01-20T21:12:29.498Z",
+                "updatedAt": "2023-01-20T21:12:29.498Z"
+            }
         ]
     );
 
-    const [state, setState] = useState();
+    useEffect(() => {     
+        dispatch(fetchRestaurantsbyOwnerid({id: 1}));
+    },[dispatch, updated])
 
-
-
-    useEffect(() => {
-        const fetchColors = async()=>{
-            const response = await fetch(
-                `https://gist.githubusercontent.com/YumilRuedaFlores-Ksquare/1392d19bb568ea159a14dd91ee37da62/raw/0379f2c123f6a2bdd2c5d631a0b1774ab512e990/colors.json`
-                )  ;
-            console.log(response);
-
-            const actualData = await response.json();
-            setData(actualData);
-            
+    useEffect(()=>{ 
+        if(selected){
+            dispatch(fetchRestaurantById({id: selected}));
+            dispatch(fetchScheduleByRestaurantId({id: selected}));
         }
-        fetchColors();
-        
-        
-        dispatch(fetchPokemonByName({name: 'pikachu'}));
-        
-    },[dispatch])
+    }, [selected])
     
-    console.log('pokemon', pokemons, loading);
+    const handleChange = (e:any) => {
+        setSelected(e.value);
+        updateStates(1);
+      };
+
     return (
     <>
         <div className="viewRestaurant">
@@ -91,19 +99,27 @@ export function ViewRestaurant({title="viewRestaurant"}:Props){
                 <Select
                     className="basic-single"
                     classNamePrefix="select"
-                    defaultValue={data[0]}
+                    defaultValue={{value:data[0].name, label:data[0].name}}
                     isDisabled={false}
-                    isLoading={true}
+                    isLoading={loading=='pending'?true:false}
                     //isClearable={true}
                     isRtl={true}
                     //isSearchable={true}
                     //isOptionSelected={true}
-                    //onInputChange={(e)=>{console.log(e.value)}}
-                    options={data}
+                    onChange={(e)=>{handleChange(e)}}
+                    options={restaurants.map(
+                        function(item){
+                            return{
+                              "value": item.id,
+                              "label": item.name
+                            }
+                          }
+                    )}
                 />
+                <button className='addNew' onClick={()=>{}}> + </button>
             </div>
             <div className="container-view">
-                {pageStage===1 && <ViewInformation isChanged={pageStage}/>}
+                {pageStage===1 && <ViewInformation parentCallback={StatusUpdated}/>}
                 {pageStage===2 && <ViewSchedule isChanged={pageStage}/>}
                 {pageStage===3 && <ViewDisable/>}
             </div>

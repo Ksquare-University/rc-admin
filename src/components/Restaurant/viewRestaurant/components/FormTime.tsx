@@ -1,12 +1,11 @@
 import React,{useState} from "react";
-import ResponsiveTimePickers from '../../newRestaurant/TimePicker'
+import ResponsiveTimePickers from './TimePicker'
 
 type Props = {
     timeOp?: string,
     timeCl?: string,
     parentCallbackOppening:(arg:string) =>void,
     parentCallbackClose:(arg:string) =>void
-
 }
 
 export const FormTime = ({timeOp="00:00", timeCl="23:00", parentCallbackOppening, parentCallbackClose}:Props)=>{
@@ -23,7 +22,6 @@ export const FormTime = ({timeOp="00:00", timeCl="23:00", parentCallbackOppening
                     <span>  Close Days </span>
                     <ResponsiveTimePickers time={timeCl} parentCallback={parentCallbackClose}/>                    
                 </div>
-        
             </div>
         </>
     );

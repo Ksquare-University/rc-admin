@@ -3,8 +3,8 @@
   export interface Information {
     name:string,
     description: string,
-    phone_number: string,
-    food_type: string,
+    phone_number: number,
+    category: string,
     address:string, 
     delivery_fee: number
   }

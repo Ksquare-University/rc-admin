@@ -57,9 +57,10 @@ export function Login (props: Props) {
       if (user) {
         dispatch(
           updateUserState({
-            displayName: "Yumil Flores",
-            email: user.user.email || "DONT",
+            displayName: user.user.displayName || 'Error',
+            email: user.user.email || "Error",
             phone: "809-751-5482",
+            accessToken: (await user.user.getIdToken()).toString()|| '',
           })
         );
 

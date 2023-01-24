@@ -4,27 +4,38 @@ import { StateI } from '../../../../store/slices';
 import resto from '../../../../assets/default-restaurant.png';
 import './InformationContainer.css'
 import { Information } from '../../../../store/slices/RestaurantView/reducers';
-import { updateState, viewInformation } from '../../../../store/slices/RestaurantView';
+import { updateState, viewInformation, updateRestaurant } from '../../../../store/slices/RestaurantView';
+import { fetchRestaurantsbyOwnerid } from '../../../../store/slices/Restaurants/index';
+import store, { useAppDispatch } from '../../../../store';
 
-export function InformationContainer() {
+type Props = {
+  parentCallback:() =>void
+}
+
+export function InformationContainer({parentCallback}:Props) {
 
     //Redux
   const dispatch = useDispatch();
+  const dispatchPromise = useAppDispatch();
 
   // get Redux store values
   const formstageName = useSelector<StateI>(state => state.restaurantView.ViewInformation.name) as string;
   const formstageDescription = useSelector<StateI>(state => state.restaurantView.ViewInformation.description) as string;
-  const formstagePhone = useSelector<StateI>(state => state.restaurantView.ViewInformation.phone_number) as string;
-  const formstageFoodType = useSelector<StateI>(state => state.restaurantView.ViewInformation.food_type) as string;
+  const formstagePhone = useSelector<StateI>(state => state.restaurantView.ViewInformation.phone_number) as number;
+  const formstageFoodType = useSelector<StateI>(state => state.restaurantView.ViewInformation.category) as string;
   const formstageAddress = useSelector<StateI>(state => state.restaurantView.ViewInformation.address) as string;
   const formdeliveryfee = useSelector<StateI>(state => state.restaurantView.ViewInformation.delivery_fee) as number;
+
+
+  const loading = useSelector<StateI>(state => state.restaurantView.loading) as string;
+
 
    // form values initial state
    const [formData, setFormData] = useState<Information>({
     name: formstageName || "",
     description: formstageDescription || "",
-    phone_number: formstagePhone || "",  
-    food_type: formstageFoodType || "",
+    phone_number: formstagePhone || 0,  
+    category: formstageFoodType || "",
     address: formstageAddress || "",
     delivery_fee: formdeliveryfee || 0,
   })
@@ -33,8 +44,8 @@ export function InformationContainer() {
   const [oldUserData, setOldUserData] = useState({
     name: formstageName || "",
     description: formstageDescription || "",
-    phone_number: formstagePhone || "",  
-    food_type: formstageFoodType || "",
+    phone_number: formstagePhone || 0,  
+    category: formstageFoodType || "",
     address: formstageAddress || "",
     delivery_fee: formdeliveryfee || 0,
   });
@@ -87,13 +98,19 @@ export function InformationContainer() {
     ) as HTMLElement;
     buttonsBox.style.display = "none";
 
-    setFormData(formData);
+    //setFormData(formData);
+    dispatchPromise(updateRestaurant({...formData, id:1, city_id:1}));
+    //dispatch(updateState(0));
+    parentCallback();
+
   };
 
   useEffect(() => {
         // update Redux Slice
         dispatch(viewInformation(formData));
-  }, [formData, dispatch])
+        dispatchPromise(fetchRestaurantsbyOwnerid({id: 1}));
+        
+  }, [formData, dispatch, dispatchPromise])
 
   const handleOnClickEdit = () => {
     const inputStatus = document.querySelectorAll(
@@ -124,7 +141,7 @@ export function InformationContainer() {
                         name="name"
                         disabled={true}
                         className='inputs'
-                        value={formData.name}
+                        value={formstageName}
                         onChange={handleChange}
                     />
 
@@ -135,7 +152,7 @@ export function InformationContainer() {
                         id="food_type"
                         name="food_type" 
                         className='inputs'
-                        value={formData.food_type}
+                        value={formstageFoodType}
                         onChange={handleChange}
                     />
 
@@ -146,7 +163,7 @@ export function InformationContainer() {
                         id="phone_number"
                         name="phone_number" 
                         className='inputs'
-                        value={formData.phone_number}
+                        value={formstagePhone}
                         onChange={handleChange}
                     />
 
@@ -157,7 +174,7 @@ export function InformationContainer() {
                         id="delivery_fee"
                         name="delivery_fee" 
                         className='inputs'
-                        value={formData.delivery_fee}
+                        value={formdeliveryfee}
                         onChange={handleChange}
                     />
 
@@ -168,7 +185,7 @@ export function InformationContainer() {
                         id="address"
                         name="address" 
                         className='inputs'
-                        value={formData.address}
+                        value={formstageAddress}
                         onChange={handleChange}
                     />
 
@@ -179,7 +196,7 @@ export function InformationContainer() {
                         id="description"
                         name="description" 
                         className='inputs'
-                        value={formData.description}
+                        value={formstageDescription}
                         onChange={handleChange}
                     />
 

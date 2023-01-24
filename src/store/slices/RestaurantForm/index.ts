@@ -15,8 +15,8 @@ const rootSlice = createSlice({
     FormInformation: {
       name: "",
       description: "",
-      phone_number: "",
-      food_type: "",
+      phone_number: 0,
+      category: "",
       address: "",
       delivery_fee: 0,
     },

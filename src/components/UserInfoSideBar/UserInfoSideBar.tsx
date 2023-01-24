@@ -35,12 +35,14 @@ export const UserInfoSideBar = () => {
     displayName: currentName || "",
     email: currentEmail || "",
     phone: currentPhone || "",
+    accessToken: "",
   });
 
   const [oldUserData, setOldUserData] = useState({
     displayName: "",
     email: "",
     phone: "",
+    accessToken: "",
   });
 
   // form values onchange

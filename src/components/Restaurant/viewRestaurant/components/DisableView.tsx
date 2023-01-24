@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from 'react-redux';
 import { StateI } from '../../../../store/slices';
 import { formDisable } from '../../../../store/slices/RestaurantForm/index'
+import { viewDisable } from "../../../../store/slices/RestaurantView";
 
 type Props = {
     isChanged?: number
@@ -29,7 +30,7 @@ export const ViewDisable = ({isChanged=0}:Props) =>{
     React.useEffect(() => {
         // update Redux Slice
         dispatch(
-            formDisable(formData)
+            viewDisable(formData)
         );
   }, [formData, isChanged, dispatch])
 
@@ -44,10 +45,6 @@ export const ViewDisable = ({isChanged=0}:Props) =>{
         formState: { errors },
       } = useForm<disabledOptions>();
     
-      const onSubmit = (data: disabledOptions) => {
-        const payload = {...data}
-        console.log(JSON.stringify(payload , null, 2));
-      };
       const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         const { name, checked } = e.target
         setFormData({
@@ -55,7 +52,6 @@ export const ViewDisable = ({isChanged=0}:Props) =>{
             [name]: checked
         })
       }
-
 
     return(
         <div className="disableContainer">
@@ -68,10 +64,6 @@ export const ViewDisable = ({isChanged=0}:Props) =>{
                 <Switch value="Open"  name= 'open' checked={formOpen} onChange={(e)=>{handleChange(e)}}></Switch>
             </div>
 
-            <div className="buttons">
-                <button className="cancelButton buttonDis"> Cancel </button>
-                <button className="doneButton buttonDis"> Done </button>
-            </div>
         </div>
     );
 }

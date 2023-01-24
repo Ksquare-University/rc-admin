@@ -10,6 +10,7 @@ const rootSlice = createSlice({
     displayName: '',
     email: '',
     phone: '',
+    accessToken:'',
     },
   reducers: {
     updateUserState(state, action: PayloadAction<User>) {

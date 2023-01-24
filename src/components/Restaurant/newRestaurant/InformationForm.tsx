@@ -26,8 +26,8 @@ export function InformationForm({isChanged = 0 }:Props) {
   // get Redux store values
   const formstageName = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.name) as string;
   const formstageDescription = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.description) as string;
-  const formstagePhone = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.phone_number) as string;
-  const formstageFoodType = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.food_type) as string;
+  const formstagePhone = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.phone_number) as number;
+  const formstageFoodType = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.category) as string;
   const formstageAddress = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.address) as string;
   const formdeliveryfee = useSelector<StateI>(state => state.newRestaurantCount.FormInformation.delivery_fee) as number;
 
@@ -36,8 +36,8 @@ export function InformationForm({isChanged = 0 }:Props) {
   const [formData, setFormData] = useState<Information>({
     name: formstageName || "",
     description: formstageDescription || "",
-    phone_number: formstagePhone || "",  
-    food_type: formstageFoodType || "",
+    phone_number: formstagePhone || 0,  
+    category: formstageFoodType || "",
     address: formstageAddress || "",
     delivery_fee: formdeliveryfee || 0,
   })
@@ -95,7 +95,7 @@ export function InformationForm({isChanged = 0 }:Props) {
               type="text"
               id="food_type"
               name="food_type" 
-              value={formData.food_type}
+              value={formData.category}
               onChange={handleChange}
              />
 

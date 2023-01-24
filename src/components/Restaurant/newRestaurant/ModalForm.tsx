@@ -5,7 +5,25 @@ import ModalUnstyled from '@mui/base/ModalUnstyled';
 import { boolean } from 'yargs';
 import { NewRestaurantForm } from './NewRestaurant';
 
-const BackdropUnstyled = React.forwardRef<
+
+
+
+type Props = {
+        openState?: boolean,
+        parentCallback:(arg:boolean) =>void
+  }
+export default function ModalUnstyledDemo({openState=false, parentCallback}:Props) {
+  const [open, setOpen] = React.useState(openState);
+  const handleClose = () => {
+    setOpen(false)
+    parentCallback(false);
+};
+  React.useEffect(()=>{
+    if(openState!=open){
+        setOpen(!open);
+    }
+  }, [openState])
+  const BackdropUnstyled = React.forwardRef<
   HTMLDivElement,
   { open?: boolean; className: string }
 >((props, ref) => {
@@ -42,28 +60,10 @@ const Backdrop = styled(BackdropUnstyled)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-
-type Props = {
-        openState?: boolean,
-        parentCallback:(arg:boolean) =>void
-  }
-export default function ModalUnstyledDemo({openState=false, parentCallback}:Props) {
-  const [open, setOpen] = React.useState(openState);
-  const handleClose = () => {
-    setOpen(false)
-    parentCallback(false);
-};
-  React.useEffect(()=>{
-    if(openState!=open){
-        setOpen(!open);
-    }
-  }, [openState])
-
   return (
     <div>
-
+      <button onClick={()=>{setOpen(true)}}>A</button>
       <Modal
-
         open={open}
         onClose={handleClose}
         slots={{ backdrop: Backdrop }}
