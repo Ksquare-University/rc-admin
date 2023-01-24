@@ -1,45 +1,34 @@
-import React, { useEffect, useState,FC } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import rappilogoBN from "../../assets/rappilogoBN.png";
 import "./Login.css";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { firebaseConfig } from "../../firebase/firebaseConfig";
-import { initializeApp } from "firebase/app";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { updateUserState } from "../../store/slices/User";
 import { useDispatch, useSelector } from "react-redux";
-import { UserInfoSideBar } from "../UserInfoSideBar/UserInfoSideBar";
-import { current } from "immer";
 import { StateI } from "../../store/slices";
-import { UserInfo } from "../UserInfo/UserInfo";
-import axios from "axios"
+import {setAuthorizationHeader, auth, } from "../../client"
 import { Alert, CircularProgress } from "@mui/material";
-//import "bootstrap/dist/css/bootstrap.min.css";
 
 type UserSubmitForm = {
   email: string;
   password: string;
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
 type Props ={
   parentLogin?: Function,
 }
 
 export function Login (props: Props) {
+  const currentName = useSelector<StateI>(
+    (state) => state.currentUserState.displayName
+  ) as string;
   const currentEmail = useSelector<StateI>(
     (state) => state.currentUserState.email
   ) as string;
 
   const { parentLogin } = props;
-  const config = {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-    }
-  };
 
   const dispatch = useDispatch();
   const validationSchema = Yup.object().shape({
@@ -53,7 +42,8 @@ export function Login (props: Props) {
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      console.log(user);
+      const token = await user.user.getIdToken();
+      console.log(token);
       if (user) {
         dispatch(
           updateUserState({
@@ -63,10 +53,11 @@ export function Login (props: Props) {
             accessToken: (await user.user.getIdToken()).toString()|| '',
           })
         );
-
-        if(parentLogin)
-        parentLogin(true);
-
+        setAuthorizationHeader(token);
+        localStorage.setItem('token', token)
+        if(parentLogin) {
+          parentLogin(true);
+        }
       }
 
     } catch (error) {
@@ -75,9 +66,6 @@ export function Login (props: Props) {
       parentLogin(false);
     }
   };
-
-
-
 
   const {
     register,
@@ -89,28 +77,24 @@ export function Login (props: Props) {
   });
 
 
-
+  //** Unsupported until a refactor dont delete!! */
   const onSubmit = (data: UserSubmitForm) => {
-    console.log(JSON.stringify(data, null, 2));
-      axios.post('http://localhost:3010/users/admin/signin', data, config)
-        .then(function (response) {
-          if(parentLogin) parentLogin(true);
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-      });
+    // console.log(JSON.stringify(data, null, 2));
+    //   axios.post('http://localhost:3010/users/admin/signin', data, config)
+    //     .then(function (response) {
+    //       if(parentLogin) parentLogin(true);
+    //       console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //   });
   };
-
-
 
   // form values initial state
   const [formData, setFormData] = useState({
     email: "argenis@admin.com",
     password: "test123",
   });
-
-
 
   // form values onchange
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,7 +104,6 @@ export function Login (props: Props) {
       [name]: value,
     });
   };
-
 
   return (
     <>
