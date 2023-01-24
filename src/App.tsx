@@ -13,6 +13,7 @@ import { updateUserState } from './store/slices/User';
 import { User } from 'firebase/auth';
 
 
+
 const App: FC = () => {
   const dispatch = useDispatch();
   //Read if a token props is stored
