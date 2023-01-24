@@ -50,7 +50,7 @@ export function Login (props: Props) {
             displayName: user.user.displayName || 'Error',
             email: user.user.email || "Error",
             phone: "809-751-5482",
-            accessToken: (await user.user.getIdToken()).toString()|| '',
+            // accessToken: (await user.user.getIdToken()).toString()|| '',
           })
         );
         setAuthorizationHeader(token);
