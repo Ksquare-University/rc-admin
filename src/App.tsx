@@ -1,45 +1,57 @@
 import { } from 'react-router-dom'
-import React, { useState, FC } from "react";
-import { Provider } from "react-redux";
-import SupAdmRouter from "./Routes/SupAdmRoutes"
+import React, { FC } from "react";
 import Router from './Routes/index'
-import store from "./store";
-import { UserInfo } from "./components/UserInfo/UserInfo";
 import "./App.css";
 import { firebaseConfig } from "./firebase/firebaseConfig";
 import { initializeApp } from "firebase/app";
-import Sidebar from "./components/Sidebar/Sidebar";
-import { BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Login } from './components/Login/Login';
-import SupAdmSidebar from './components/SuperAdmSidebar/SupAdmSidebar';
 import InformationTemplate from './components/Templates/InformationTemplate/index';
+import { client, setAuthorizationHeader } from './client';
+import { useDispatch } from "react-redux";
+import { updateUserState } from './store/slices/User';
+import { User } from 'firebase/auth';
 
-
-
-const firebaseApp = initializeApp(firebaseConfig); 
 
 const App: FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
-
-  const email = "YumilwcTest2@gmail.com";
-  const passwd = "yumil22";
-
+  const dispatch = useDispatch();
+  //Read if a token props is stored
+  const token = localStorage.getItem("token");
   // Set true if you want to see navBar and others routers componets
   // Set false if you want to go to login by default
-  const [isLogin, setLogin] = React.useState(true);
+  const [isLogin, setLogin] = React.useState(false);
 
+  // Check if the page store token otherwhise token is null
+  if (token){
+    const token = localStorage.getItem("token") || "";
+    // const data = admin.verifyIdToken(token)
+    // console.log("hi; ", data);
+    client.post("users/admin/signin", {token}).then((data: Partial<User> | any) =>{
+      console.log("a user: ", data);
+      dispatch(
+        updateUserState({
+          displayName: data.name|| "Yumil Flores",
+          email: data.email || "DONT",
+          phone: "809-751-5482",
+        })
+      );
+      setAuthorizationHeader(token);
+      setLogin(true);
+    })
+  }
+  
   const parentLogin = (log:boolean) =>{
     setLogin(log);
   }
-
+  
   return (
     <>
       <BrowserRouter>
-
           {/* Blocking routers if a user is not loggin */}
-          {isLogin ?  <InformationTemplate children={<Router></Router>}/> : <Login parentLogin = {parentLogin}></Login>}
+          {token && !isLogin ?
+            <> 
+            </> : isLogin ? <InformationTemplate children={<Router></Router>}/> : <Login parentLogin = {parentLogin}></Login>}
           {/* <NewRestaurantForm/> */}
-
       </BrowserRouter>
     </>
   );

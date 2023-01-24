@@ -45,7 +45,12 @@ export const UpNavBar = () => {
           <i className="fa-solid fa-user"></i>
         </button>
 
-        <button className="icon icon-button">
+        <button className="icon icon-button" onClick={() => {
+            localStorage.removeItem("token");
+            window.location.reload();
+            (window as Window).location = "http://localhost:3000/";
+          }}
+        >
           <i className="fa-solid fa-right-from-bracket"></i>
         </button>
       </div>
