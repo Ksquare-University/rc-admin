@@ -22,24 +22,33 @@ const App: FC = () => {
   // Set false if you want to go to login by default
   const [isLogin, setLogin] = React.useState(true);
 
+  // React.useEffect(() => {
   // Check if the page store token otherwhise token is null
-  if (token){
-    const token = localStorage.getItem("token") || "";
-    // const data = admin.verifyIdToken(token)
-    // console.log("hi; ", data);
-    client.post("users/admin/signin", {token}).then((data: Partial<User> | any) =>{
-      console.log("a user: ", data);
-      // dispatch(
-      //   updateUserState({
-      //     displayName: data.name|| "Yumil Flores",
-      //     email: data.email || "DONT",
-      //     phone: "809-751-5482",
-      //   })
-      // );
-      setAuthorizationHeader(token);
-      setLogin(true);
-    })
-  }
+    if (token){
+      // const data = admin.verifyIdToken(token)
+      // console.log("hi; ", data);
+      client.post("users/admin/signin", {token}).then((data: Partial<User> | any) =>{
+        console.log("a user: ", data);
+        dispatch(
+          updateUserState({
+            displayName: data.name|| "Yumil Flores",
+            email: data.email || "DONT",
+            phone: "809-751-5482"
+          })
+        );
+        setAuthorizationHeader(token);
+        if (data.role !== "admin") {
+          console.log("No Admin Credentials");
+          return setLogin(false);
+        }
+        setLogin(true);
+      }).catch((error) => {
+        console.log(error);
+        setLogin(false);
+      })
+    }
+  // }, [])
+
   
   const parentLogin = (log:boolean) =>{
     setLogin(log);
