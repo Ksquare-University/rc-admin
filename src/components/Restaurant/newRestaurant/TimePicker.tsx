@@ -22,7 +22,6 @@ export default function ResponsiveTimePickers({time = "00:00", parentCallback}:P
       <Stack spacing={2}>
         <MobileTimePicker
           value={value}
-          disabled = {true}
           onChange={(newValue) => {
             setValue(newValue);
             let hour= newValue?.hour().toString();

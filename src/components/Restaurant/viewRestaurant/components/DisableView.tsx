@@ -7,7 +7,8 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from 'react-redux';
 import { StateI } from '../../../../store/slices';
 import { formDisable } from '../../../../store/slices/RestaurantForm/index'
-import { viewDisable } from "../../../../store/slices/RestaurantView";
+import { updateDisable, viewDisable } from "../../../../store/slices/RestaurantView";
+import { useAppDispatch } from "../../../../store";
 
 type Props = {
     isChanged?: number
@@ -16,10 +17,12 @@ type Props = {
 export const ViewDisable = ({isChanged=0}:Props) =>{
     //Redux
     const dispatch = useDispatch();
+    const dispatchPromise = useAppDispatch();
+
 
     // get Redux store values
     const formEnable = useSelector<StateI>(state => state.restaurantView.ViewDisable.enable) as boolean;
-    const formOpen = useSelector<StateI>(state => state.restaurantView.ViewDisable.open) as boolean;
+    const formOpen = useSelector<StateI>(state => state.restaurantView.ViewDisable.enable) as boolean;
 
     const [formData, setFormData] = useState({
         enable: formEnable || false,
@@ -51,6 +54,8 @@ export const ViewDisable = ({isChanged=0}:Props) =>{
             ...formData, 
             [name]: checked
         })
+        dispatchPromise(updateDisable({id:1, status: formData.enable}))
+
       }
 
     return(

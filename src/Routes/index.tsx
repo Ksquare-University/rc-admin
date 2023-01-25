@@ -30,7 +30,6 @@ function Router (){
       <Route path="/restaurants" element={<ViewRestaurant/>}></Route>
       <Route path="/order" element={<Order/>}></Route>
       <Route path="/sales" element={<Sales/>}></Route>
-      <Route path = "/disableForm" element = { <DisableForm/>}/>
       <Route path = "/informationForm" element = { <InformationForm/>}/>
       <Route path = "/scheduleForm" element = { <ScheduleForm/>}/>
       <Route path = "/seeYou" element = { <SeeYou/>}/>

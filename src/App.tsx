@@ -20,7 +20,7 @@ const App: FC = () => {
   const token = localStorage.getItem("token");
   // Set true if you want to see navBar and others routers componets
   // Set false if you want to go to login by default
-  const [isLogin, setLogin] = React.useState(false);
+  const [isLogin, setLogin] = React.useState(true);
 
   // Check if the page store token otherwhise token is null
   if (token){
@@ -29,13 +29,13 @@ const App: FC = () => {
     // console.log("hi; ", data);
     client.post("users/admin/signin", {token}).then((data: Partial<User> | any) =>{
       console.log("a user: ", data);
-      dispatch(
-        updateUserState({
-          displayName: data.name|| "Yumil Flores",
-          email: data.email || "DONT",
-          phone: "809-751-5482",
-        })
-      );
+      // dispatch(
+      //   updateUserState({
+      //     displayName: data.name|| "Yumil Flores",
+      //     email: data.email || "DONT",
+      //     phone: "809-751-5482",
+      //   })
+      // );
       setAuthorizationHeader(token);
       setLogin(true);
     })

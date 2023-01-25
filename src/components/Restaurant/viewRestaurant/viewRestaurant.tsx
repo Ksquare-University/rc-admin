@@ -82,7 +82,7 @@ export function ViewRestaurant({title="viewRestaurant"}:Props){
             dispatch(fetchRestaurantById({id: selected}));
             dispatch(fetchScheduleByRestaurantId({id: selected}));
         }
-    }, [selected])
+    }, [selected, dispatch])
     
     const handleChange = (e:any) => {
         setSelected(e.value);

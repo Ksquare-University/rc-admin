@@ -4,8 +4,10 @@ import { InformationForm } from "./InformationForm";
 import { ScheduleForm } from "./ScheduleForm";
 import { DisableForm } from "./DisableForm";
 import { StateI } from "../../../store/slices";
-import { updateState } from "../../../store/slices/RestaurantForm";
-import { counterState } from "../../../store/slices/RestaurantForm/reducers";
+import { createRestaurant, createSchedule, updateState } from "../../../store/slices/RestaurantForm";
+import { counterState, Information, Week } from "../../../store/slices/RestaurantForm/reducers";
+import { useAppDispatch } from "../../../store";
+import { useEffect, useState } from "react";
 
 type Props = {
   title?: string;
@@ -13,6 +15,8 @@ type Props = {
 
 export function NewRestaurantForm({ title = "NewRestaurantForm" }: Props) {
   const dispatch = useDispatch();
+  const dispatchPromise = useAppDispatch();
+
   const pageStage = useSelector<StateI>(
     (state) => state.newRestaurantCount.FormStage
   ) as counterState;
@@ -24,6 +28,78 @@ export function NewRestaurantForm({ title = "NewRestaurantForm" }: Props) {
   const updateStates = (n: number) => {
     dispatch(updateState(n));
   };
+
+  const informationForm = useSelector<StateI>((state)=>state.newRestaurantCount.FormInformation) as Information;
+  const isDeletedForm = useSelector<StateI>((state)=>state.newRestaurantCount.FormDisable.enable) as boolean;
+  const week = useSelector<StateI>((state)=>state.newRestaurantCount.FormSchedule.week) as Week;
+  const restaurantId = useSelector<StateI>((state)=>state.newRestaurantCount.restaurant_id) as number;
+
+  const donecancelParent = (arg: boolean) =>{
+
+    if(arg){
+      dispatchPromise(createRestaurant({
+        information: informationForm ,
+        is_deleted: isDeletedForm,
+        owner_id: 1
+      }));
+    }
+  }
+
+  useEffect(()=>{
+          //Week...
+      if(restaurantId){  
+            //Monday
+          dispatchPromise(createSchedule({ 
+            day: 'Monday',
+            restaurant_id: restaurantId,
+            opening_hour: week.monday.oppeningTime,
+            closing_hour: week.monday.closeTime
+          }));
+          //Tuesday
+          dispatchPromise(createSchedule({ 
+            day: 'Tuesday',
+            restaurant_id: restaurantId,
+            opening_hour: week.Tuesday.oppeningTime,
+            closing_hour: week.Tuesday.closeTime
+          }));
+          //Wednesday
+          dispatchPromise(createSchedule({ 
+            day: 'Wednesday',
+            restaurant_id: restaurantId,
+            opening_hour: week.Wednesday.oppeningTime,
+            closing_hour: week.Wednesday.closeTime
+          }));
+          //Thursday
+          dispatchPromise(createSchedule({ 
+            day: 'Thrusday',
+            restaurant_id: restaurantId,
+            opening_hour: week.Thrusday.oppeningTime,
+            closing_hour: week.Thrusday.closeTime
+          }));
+          //Friday
+          dispatchPromise(createSchedule({ 
+            day: 'Friday',
+            restaurant_id: restaurantId,
+            opening_hour: week.Friday.oppeningTime,
+            closing_hour: week.Friday.closeTime
+          }));
+          //Saturday
+          dispatchPromise(createSchedule({ 
+            day: 'Saturday',
+            restaurant_id: restaurantId,
+            opening_hour: week.Saturday.oppeningTime,
+            closing_hour: week.Saturday.closeTime
+          }));
+          //Sunday
+          dispatchPromise(createSchedule({ 
+            day: 'Sunday',
+            restaurant_id: restaurantId,
+            opening_hour: week.Sunday.oppeningTime,
+            closing_hour: week.Sunday.closeTime
+          }));
+      }
+  }, [restaurantId])
+
   return (
     <div className="formRestaurant">
       <div className="menu">
@@ -58,7 +134,7 @@ export function NewRestaurantForm({ title = "NewRestaurantForm" }: Props) {
         </div>
         {pageStage === 1 && <InformationForm isChanged={pageStage} />}
         {pageStage === 2 && <ScheduleForm isChanged={pageStage} />}
-        {pageStage === 3 && <DisableForm />}
+        {pageStage === 3 && <DisableForm isChanged={pageStage} parentCallBack={donecancelParent}/>}
       </div>
     </div>
   );

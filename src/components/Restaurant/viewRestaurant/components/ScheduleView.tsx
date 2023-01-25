@@ -62,20 +62,6 @@ export const ViewSchedule = ({isChanged = 0 }:Props) =>{
         return 'btn '+((value===formstep) ?'active':'default');
     }
 
-    React.useEffect(() => {
-            // update Redux Slice
-            dispatch(viewSchedule(formData));
-            updateDb();
-      }, [formData, isChanged, dispatch])
-
-    const onClickHandler = (n:number)=>{
-        setFormData({
-            ...formData, 
-            ["stepDay"]: n
-        });
- 
-    }
-
     const updateDb = ()=>{
         let day = { day:0, oppeningTime: "00:00", closeTime: "10:00"};
         
@@ -92,7 +78,25 @@ export const ViewSchedule = ({isChanged = 0 }:Props) =>{
             opening: day.oppeningTime,
             closing: day.closeTime
         }));
+        console.log('updateSchedule', day)
     }
+    
+
+    React.useEffect(() => {
+            // update Redux Slice
+            dispatch(viewSchedule(formData));
+            updateDb();
+      }, [formData, isChanged, dispatch, updateDb])
+
+    const onClickHandler = (n:number)=>{
+        setFormData({
+            ...formData, 
+            ["stepDay"]: n
+        });
+ 
+    }
+
+    
     const updateClTime = (time: string) =>{
         setFormData({
             ...formData, 

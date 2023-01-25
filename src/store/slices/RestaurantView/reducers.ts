@@ -9,7 +9,6 @@
     delivery_fee: number
   }
 
-
   interface Day {
     day: number
     oppeningTime: string,

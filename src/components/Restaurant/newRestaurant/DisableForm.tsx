@@ -13,10 +13,11 @@ import { formDisable } from '../../../store/slices/RestaurantForm/index'
 
 type Props = {
     isChanged?: number
+    parentCallBack:(arg: boolean) => void
   }
 
 
-export const DisableForm = ({isChanged=0}:Props) =>{
+export const DisableForm = ({isChanged=0, parentCallBack}:Props) =>{
 
     
     //Redux
@@ -24,7 +25,7 @@ export const DisableForm = ({isChanged=0}:Props) =>{
 
     // get Redux store values
     const formEnable = useSelector<StateI>(state => state.newRestaurantCount.FormDisable.enable) as boolean;
-    const formOpen = useSelector<StateI>(state => state.newRestaurantCount.FormDisable.open) as boolean;
+    const formOpen = useSelector<StateI>(state => state.newRestaurantCount.FormDisable.enable) as boolean;
 
 
     const [formData, setFormData] = useState({
@@ -76,8 +77,8 @@ export const DisableForm = ({isChanged=0}:Props) =>{
             </div>
 
             <div className="buttons">
-                <button className="cancelButton buttonDis"> Cancel </button>
-                <button className="doneButton buttonDis"> Done </button>
+                <button className="cancelButton buttonDis" onClick={()=>{parentCallBack(false)}}> Cancel </button>
+                <button className="doneButton buttonDis" onClick={()=>{parentCallBack(true)}}> Done </button>
             </div>
         </div>
     );

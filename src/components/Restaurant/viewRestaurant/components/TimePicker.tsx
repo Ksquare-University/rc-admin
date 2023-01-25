@@ -24,9 +24,10 @@ export default function ResponsiveTimePickers({time = "00:00", parentCallback}:P
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
-            
           }}
+
           renderInput={(params) => <TextField {...params} />}
+          
           onAccept={()=>{
             let hour= value?.hour().toString();
             let minute= value?.minute().toString();

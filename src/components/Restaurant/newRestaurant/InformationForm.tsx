@@ -93,8 +93,8 @@ export function InformationForm({isChanged = 0 }:Props) {
             <input
               placeholder="Food Type:"
               type="text"
-              id="food_type"
-              name="food_type" 
+              id="category"
+              name="category" 
               value={formData.category}
               onChange={handleChange}
              />

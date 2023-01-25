@@ -37,7 +37,9 @@ export interface InitialState {
   FormStage: number, // default page stage to show on page load
   FormInformation: Information,
   FormSchedule: Schedule,
-  FormDisable: Disable
+  FormDisable: Disable,
+  loading: 'idle' | 'pending' | 'success' | 'failure',
+  restaurant_id: number
 }
 
 

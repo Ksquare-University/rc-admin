@@ -76,6 +76,31 @@ export const updateSchedule = createAsyncThunk('schedule/updateScheduleById', as
   });
 })
 
+type DisableUpdate = {
+  id: number;
+  status: boolean;
+}
+
+export const updateDisable = createAsyncThunk('schedule/updateDisableById', async (disable: DisableUpdate, thunkAPI) => {
+  if(disable.status){
+    axios.put(`http://localhost:3001/restaurant/activate/${disable.id}`)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    });
+    
+  }else{
+    axios.delete(`http://localhost:3001/restaurant/${disable.id}`)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    });
+
+  }
+})
+
+
+
 
 // Slice
 const rootSlice = createSlice({
@@ -143,35 +168,50 @@ const rootSlice = createSlice({
         state.loading = 'pending'
     })
     builder.addCase(fetchScheduleByRestaurantId.fulfilled, (state, action: PayloadAction<ScheduleOption[]>) => {
-        
-        //Monday
-        state.ViewSchedule.week.monday.day = action.payload[0].id;
-        state.ViewSchedule.week.monday.oppeningTime = action.payload[0].opening_hour;
-        state.ViewSchedule.week.monday.closeTime = action.payload[0].closing_hour;
-        //Tuesday
-        state.ViewSchedule.week.Tuesday.day = action.payload[1].id;
-        state.ViewSchedule.week.Tuesday.oppeningTime = action.payload[1].opening_hour;
-        state.ViewSchedule.week.Tuesday.closeTime = action.payload[1].closing_hour;
-        //Wednesday
-        state.ViewSchedule.week.Wednesday.day = action.payload[2].id;
-        state.ViewSchedule.week.Wednesday.oppeningTime = action.payload[2].opening_hour;
-        state.ViewSchedule.week.Wednesday.closeTime = action.payload[2].closing_hour;
-        //Thursday
-        state.ViewSchedule.week.Thrusday.day = action.payload[3].id;
-        state.ViewSchedule.week.Thrusday.oppeningTime = action.payload[3].opening_hour;
-        state.ViewSchedule.week.Thrusday.closeTime = action.payload[3].closing_hour;
-        //Friday
-        state.ViewSchedule.week.Friday.day = action.payload[4].id;
-        state.ViewSchedule.week.Friday.oppeningTime = action.payload[4].opening_hour;
-        state.ViewSchedule.week.Friday.closeTime = action.payload[4].closing_hour;
-        //Saturday
-        state.ViewSchedule.week.Saturday.day = action.payload[5].id;
-        state.ViewSchedule.week.Saturday.oppeningTime = action.payload[5].opening_hour;
-        state.ViewSchedule.week.Saturday.closeTime = action.payload[5].closing_hour;
-        //Sunday
-        state.ViewSchedule.week.Sunday.day = action.payload[6].id;
-        state.ViewSchedule.week.Sunday.oppeningTime = action.payload[6].opening_hour;
-        state.ViewSchedule.week.Sunday.closeTime = action.payload[6].closing_hour;
+        for(let i = 0; i < action.payload.length; i++){
+          if(action.payload[i].day === 'Monday'){
+            //Monday
+            state.ViewSchedule.week.monday.day = action.payload[i].id;
+            state.ViewSchedule.week.monday.oppeningTime = action.payload[i].opening_hour;
+            state.ViewSchedule.week.monday.closeTime = action.payload[i].closing_hour;
+          }
+          if(action.payload[i].day === 'Tuesday'){
+          //Tuesday
+          state.ViewSchedule.week.Tuesday.day = action.payload[i].id;
+          state.ViewSchedule.week.Tuesday.oppeningTime = action.payload[i].opening_hour;
+          state.ViewSchedule.week.Tuesday.closeTime = action.payload[i].closing_hour;
+          }
+          if(action.payload[i].day === 'Wednesday'){
+          //Wednesday
+          state.ViewSchedule.week.Wednesday.day = action.payload[i].id;
+          state.ViewSchedule.week.Wednesday.oppeningTime = action.payload[i].opening_hour;
+          state.ViewSchedule.week.Wednesday.closeTime = action.payload[i].closing_hour;
+          }
+          if(action.payload[i].day === 'Thrusday'){
+          //Thursday
+          state.ViewSchedule.week.Thrusday.day = action.payload[i].id;
+          state.ViewSchedule.week.Thrusday.oppeningTime = action.payload[i].opening_hour;
+          state.ViewSchedule.week.Thrusday.closeTime = action.payload[i].closing_hour;
+          }
+          if(action.payload[i].day === 'Friday'){
+          //Friday
+          state.ViewSchedule.week.Friday.day = action.payload[i].id;
+          state.ViewSchedule.week.Friday.oppeningTime = action.payload[i].opening_hour;
+          state.ViewSchedule.week.Friday.closeTime = action.payload[i].closing_hour;
+          }
+          if(action.payload[i].day === 'Saturday'){
+          //Saturday
+          state.ViewSchedule.week.Saturday.day = action.payload[i].id;
+          state.ViewSchedule.week.Saturday.oppeningTime = action.payload[i].opening_hour;
+          state.ViewSchedule.week.Saturday.closeTime = action.payload[i].closing_hour;
+          }
+          if(action.payload[i].day === 'Sunday'){
+          //Sunday
+          state.ViewSchedule.week.Sunday.day = action.payload[i].id;
+          state.ViewSchedule.week.Sunday.oppeningTime = action.payload[i].opening_hour;
+          state.ViewSchedule.week.Sunday.closeTime = action.payload[i].closing_hour;
+          }
+        }
 
         state.loading = 'success';
     })
@@ -185,6 +225,12 @@ const rootSlice = createSlice({
         state.loading = 'pending'
     })
     builder.addCase(updateSchedule.fulfilled, (state) => {
+        state.loading = 'success';
+    })
+    builder.addCase(updateDisable.pending, (state) => {
+        state.loading = 'pending'
+    })
+    builder.addCase(updateDisable.fulfilled, (state) => {
         state.loading = 'success';
     })
   }
