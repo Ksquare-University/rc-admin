@@ -14,6 +14,7 @@ import { UserInfo } from "../components/UserInfo/UserInfo";
 import { UserInfoSideBar } from "../components/UserInfoSideBar/UserInfoSideBar";
 import { NewRestaurantForm } from "../components/Restaurant/newRestaurant/NewRestaurant";
 import { ViewRestaurant } from "../components/Restaurant/viewRestaurant/viewRestaurant";
+import {DataTable} from "../components/Tables/Tables";
 
 
 function Router (){
@@ -29,6 +30,8 @@ function Router (){
       <Route path="/restaurants/new" element={<NewRestaurantForm/>}></Route>
       <Route path="/restaurants" element={<ViewRestaurant/>}></Route>
       <Route path="/order" element={<Order/>}></Route>
+      <Route path="/overview/revenue" element={<Revenue/>}></Route>
+      <Route path="/order" element={<DataTable/>}></Route>
       <Route path="/sales" element={<Sales/>}></Route>
       <Route path = "/informationForm" element = { <InformationForm/>}/>
       <Route path = "/scheduleForm" element = { <ScheduleForm/>}/>
