@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import rappilogoBN from "../../assets/rappilogoBN.png";
 import "./Login.css";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, User } from "firebase/auth";
 import { updateUserState } from "../../store/slices/User";
 import { useDispatch, useSelector } from "react-redux";
 import { StateI } from "../../store/slices";
@@ -15,6 +15,7 @@ type UserSubmitForm = {
   email: string;
   password: string;
 };
+
 
 type Props ={
   parentLogin?: Function,
@@ -43,7 +44,7 @@ export function Login (props: Props) {
     try {
       const user = await signInWithEmailAndPassword(auth, formData.email, formData.password);
       const token = await user.user.getIdToken();
-      console.log(token);
+
       if (user) {
         dispatch(
           updateUserState({
