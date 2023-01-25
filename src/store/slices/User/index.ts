@@ -10,7 +10,7 @@ const rootSlice = createSlice({
     displayName: '',
     email: '',
     phone: '',
-    accessToken:'',
+    // accessToken:'', //AccessToken is stored in axios client Header by the localStorage: Delete this
     },
   reducers: {
     updateUserState(state, action: PayloadAction<User>) {
