@@ -73,9 +73,12 @@ export function Login (props: Props) {
       })
 
     } catch (error) {
+      setStatusLogin("wrong");
+      return statusLogin;
       console.error(error);
-      if(parentLogin)
-      parentLogin(false);
+      /*       if(parentLogin){
+        parentLogin(false);
+      } */
     }
   };
 
@@ -104,8 +107,8 @@ export function Login (props: Props) {
 
   // form values initial state
   const [formData, setFormData] = useState({
-    email: "argenis@admin.com",
-    password: "test123",
+    email: "",
+    password: "",
   });
 
   // form values onchange
@@ -124,15 +127,16 @@ export function Login (props: Props) {
           <img src={rappilogoBN} alt="log" className="logo-login" />
         </div>
         <span className="span-login">Welcome!</span>
-        {currentEmail && 
-        <>
-                <span className="span-login2">{currentEmail}</span>
-                <Alert className="alert-succes" severity="success">Succes Login!</Alert>
-                <CircularProgress className="circular-progress" color="error" />
-        </>
-        }
-       
-        {!currentEmail && (
+        {statusLogin === "succes" && (
+          <>
+            <span className="span-login2">{currentEmail}</span>
+            <Alert className="alert-succes" severity="success">
+              Succes Login!
+            </Alert>
+            <CircularProgress className="circular-progress" color="error" />
+          </>
+        )}
+        {statusLogin !== "succes" && (
           <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
             <div className="inputLabel">
               <input
@@ -170,6 +174,15 @@ export function Login (props: Props) {
             </div>
           </form>
         )}
+        <>
+          {statusLogin == "wrong"   && (
+            <Alert variant="filled" severity="error" className="alert-wrong">
+              <AlertTitle className="alert-title-wrong">Error</AlertTitle>
+              Somenthing went wrong —{" "}
+              <strong>the email or password are not corrects</strong>
+            </Alert>
+          )}
+        </>
       </div>
     </>
   );

@@ -96,3 +96,10 @@
 .alert-succes{
   margin-bottom: 50px;
 }
+
+
+.alert-title-wrong{
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}

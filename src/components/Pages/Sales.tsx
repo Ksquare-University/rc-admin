@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { DataTable } from "../Tables/Tables";
 export const Sales: FC = () => {
-    return <div className="overview">Sales</div>;
+    return <DataTable/>
 };
