@@ -20,15 +20,25 @@ const App: FC = () => {
   const token = localStorage.getItem("token");
   // Set true if you want to see navBar and others routers componets
   // Set false if you want to go to login by default
-  const [isLogin, setLogin] = React.useState(true);
+  const [isLogin, setLogin] = React.useState(false);
 
-  // React.useEffect(() => {
+  React.useEffect(() => {
+    console.log("Hola");
+    
   // Check if the page store token otherwhise token is null
     if (token){
       // const data = admin.verifyIdToken(token)
       // console.log("hi; ", data);
       client.post("users/admin/signin", {token}).then((data: Partial<User> | any) =>{
         console.log("a user: ", data);
+                
+        if (data.role !== "admin") {
+          console.log("No Admin Credentials")
+          localStorage.removeItem("token");
+          window.location.reload();
+          (window as Window).location = "http://localhost:3000/";
+          return setLogin(false);
+        }
         dispatch(
           updateUserState({
             displayName: data.name|| "Yumil Flores",
@@ -37,17 +47,14 @@ const App: FC = () => {
           })
         );
         setAuthorizationHeader(token);
-        if (data.role !== "admin") {
-          console.log("No Admin Credentials");
-          return setLogin(false);
-        }
+        console.log(data.role);
         setLogin(true);
       }).catch((error) => {
         console.log(error);
         setLogin(false);
       })
     }
-  // }, [])
+  }, [])
 
   
   const parentLogin = (log:boolean) =>{
