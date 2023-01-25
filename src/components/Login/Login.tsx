@@ -8,7 +8,7 @@ import { signInWithEmailAndPassword, User } from "firebase/auth";
 import { updateUserState } from "../../store/slices/User";
 import { useDispatch, useSelector } from "react-redux";
 import { StateI } from "../../store/slices";
-import {setAuthorizationHeader, auth, } from "../../client"
+import {setAuthorizationHeader, auth, client, } from "../../client"
 import { Alert, CircularProgress } from "@mui/material";
 
 type UserSubmitForm = {
@@ -30,7 +30,7 @@ export function Login (props: Props) {
   ) as string;
 
   const { parentLogin } = props;
-
+  let logged = false;
   const dispatch = useDispatch();
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Email is invalid"),
@@ -44,22 +44,33 @@ export function Login (props: Props) {
     try {
       const user = await signInWithEmailAndPassword(auth, formData.email, formData.password);
       const token = await user.user.getIdToken();
-
-      if (user) {
+      // Verificar token en la primera bes //
+      client.post("users/admin/signin", {token}).then((data: Partial<User> | any) =>{
+        console.log("a user: ", data);
+                
+        if (data.role !== "admin") {
+          console.log("No Admin Credentials")
+          localStorage.removeItem("token");
+          // window.location.reload();
+          // (window as Window).location = "http://localhost:3000/";
+          if(parentLogin) return parentLogin(false)
+        }
         dispatch(
           updateUserState({
-            displayName: user.user.displayName || 'Error',
-            email: user.user.email || "Error",
-            phone: "809-751-5482",
-            // accessToken: (await user.user.getIdToken()).toString()|| '',
+            displayName: data.name|| "Yumil Flores",
+            email: data.email || "DONT",
+            phone: "809-751-5482"
           })
         );
-        setAuthorizationHeader(token);
-        localStorage.setItem('token', token)
-        if(parentLogin) {
-          parentLogin(true);
-        }
-      }
+        logged = true;
+        setTimeout(() => {
+          setAuthorizationHeader(token);
+          localStorage.setItem("token", token);
+          console.log(data.role);
+          if(parentLogin) parentLogin(true)
+        }, 3000);
+
+      })
 
     } catch (error) {
       console.error(error);
