@@ -15,6 +15,7 @@ import { UserInfoSideBar } from "../components/UserInfoSideBar/UserInfoSideBar";
 import { NewRestaurantForm } from "../components/Restaurant/newRestaurant/NewRestaurant";
 import { ViewRestaurant } from "../components/Restaurant/viewRestaurant/viewRestaurant";
 import {DataTable} from "../components/Tables/Tables";
+import { ViewUser } from "../components/users/viewUser/viewUser"
 
 
 function Router (){
@@ -30,7 +31,10 @@ function Router (){
       <Route path="/restaurants/new" element={<NewRestaurantForm/>}></Route>
       <Route path="/restaurants" element={<ViewRestaurant/>}></Route>
       <Route path="/order" element={<Order/>}></Route>
-      <Route path="/overview/revenue" element={<Revenue/>}></Route>
+      {/* <Route path="/overview/revenue" element={<Revenue/>}></Route> */}
+      <Route path="/user" element={ <ViewUser/>}></Route>
+      {/* <Route path="/user/new" element={ <newUser/>}></Route> */}
+
       <Route path="/order" element={<DataTable/>}></Route>
       <Route path="/sales" element={<Sales/>}></Route>
       <Route path = "/informationForm" element = { <InformationForm/>}/>

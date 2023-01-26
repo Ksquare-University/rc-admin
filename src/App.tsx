@@ -12,9 +12,8 @@ import { useDispatch } from "react-redux";
 import { updateUserState } from './store/slices/User';
 import { User } from 'firebase/auth';
 
-
-
 const App: FC = () => {
+
   const dispatch = useDispatch();
   //Read if a token props is stored
   const token = localStorage.getItem("token");
@@ -22,8 +21,8 @@ const App: FC = () => {
   // Set false if you want to go to login by default
   const [isLogin, setLogin] = React.useState(false);
 
+  console.log("Hola", process.env);
   React.useEffect(() => {
-    console.log("Hola");
     
   // Check if the page store token otherwhise token is null
     if (token){

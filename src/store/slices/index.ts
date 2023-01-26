@@ -6,8 +6,10 @@ import { InitialState as InitView } from './RestaurantView/reducers'
 import { currentUserState } from './User';
 import { CounterState } from './Restaurants'
 import { User } from './User/reducers'
+import { userForm } from './UserForm'
 import { currentUserSideBarState } from './UserInfoSideBar';
 import { sideBarState } from './UserInfoSideBar/reducer';
+import { UserForm } from './UserForm/reducers';
 
 export interface StateI {
     newRestaurantCount: InitialState,
@@ -15,6 +17,7 @@ export interface StateI {
     currentUserSideBarState:sideBarState,
     restaurantView: InitView,
     counter:CounterState,
+    user: UserForm,
 }
 
 export default {
@@ -23,4 +26,5 @@ export default {
     currentUserSideBarState,
     restaurantView,
     counter,
+    userForm,
 }

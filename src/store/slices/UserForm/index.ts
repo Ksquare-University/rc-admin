@@ -5,7 +5,7 @@ import {
 
 // Slice
 const rootSlice = createSlice({
-  name: "currentUserState",
+  name: "userForm",
   initialState: <UserForm>
     {
       user: {
@@ -48,4 +48,4 @@ const rootSlice = createSlice({
 // Actions
 export const { updateUserState} =
   rootSlice.actions;
-export const currentUserState = rootSlice.reducer;
+export const userForm = rootSlice.reducer;

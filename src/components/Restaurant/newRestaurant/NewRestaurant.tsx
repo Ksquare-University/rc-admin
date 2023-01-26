@@ -97,9 +97,12 @@ export function NewRestaurantForm({ title = "NewRestaurantForm" }: Props) {
             opening_hour: week.Sunday.oppeningTime,
             closing_hour: week.Sunday.closeTime
           }));
+
+          (window as Window).location = "http://localhost:3000/restaurants";
+
       }
   }, [restaurantId])
-
+  
   return (
     <div className="formRestaurant">
       <div className="menu">

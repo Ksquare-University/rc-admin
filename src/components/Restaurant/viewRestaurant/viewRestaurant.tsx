@@ -116,7 +116,7 @@ export function ViewRestaurant({title="viewRestaurant"}:Props){
                           }
                     )}
                 />
-                <button className='addNew' onClick={()=>{}}> + </button>
+                <button className='addNew' onClick={()=>{ (window as Window).location = "http://localhost:3000/restaurants/new"; }}> + </button>
             </div>
             <div className="container-view">
                 {pageStage===1 && <ViewInformation parentCallback={StatusUpdated}/>}

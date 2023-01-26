@@ -1,0 +1,73 @@
+.createUserForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.createUserForm input{
+    width: 60%;
+    margin-top: 10px;
+    border-radius: 5px;
+    height: 35px;
+    border: transparent;
+}
+
+.createUserForm input:focus{
+    outline: none;
+    background-color: rgb(237, 164, 68);
+}
+
+
+.managerForm{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    margin-top: 10px;
+    width: 60%;
+}
+
+.ownerForm{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+}
+
+.ownerForm input{
+    width: 100%;
+}
+
+.courierForm{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+}
+
+.courierForm input{
+    width: 100%;
+}
+
+.customerForm{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.basic-single{
+    margin-top: 10px;
+}
+
+.createUser-btn{
+    margin-top: 10px;
+    font-weight: 700;
+    border: none;
+    padding: 10px;
+    font-size: 15pt;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: green;
+    color: white;
+}

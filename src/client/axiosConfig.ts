@@ -9,7 +9,7 @@ const config = {
 
 export const client = axios.create ({
 
-    baseURL: "http://localhost:3010",
+    baseURL: "http://localhost:3001",
     
 })
 
