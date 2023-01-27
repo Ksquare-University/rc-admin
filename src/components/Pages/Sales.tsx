@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { DataTable } from "../Tables/Tables";
+import { SalesTable } from "../Tables/SalesTable/SalesTable";
 export const Sales: FC = () => {
-    return <DataTable/>
+    return <SalesTable/>
 };
