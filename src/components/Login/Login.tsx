@@ -22,9 +22,6 @@ type Props ={
 }
 
 export function Login (props: Props) {
-  const currentName = useSelector<StateI>(
-    (state) => state.currentUserState.displayName
-  ) as string;
   const currentEmail = useSelector<StateI>(
     (state) => state.currentUserState.email
   ) as string;
@@ -55,11 +52,14 @@ export function Login (props: Props) {
           // (window as Window).location = "http://localhost:3000/";
           if(parentLogin) return parentLogin(false)
         }
+
+
         dispatch(
           updateUserState({
-            displayName: data.name|| "Yumil Flores",
-            email: data.email || "DONT",
-            phone: "809-751-5482"
+            displayName: data.name || " ",
+            email: data.email || " ",
+            phone: "809-751-5482",
+            uid: data.role || " "
           })
         );
         logged = true;
