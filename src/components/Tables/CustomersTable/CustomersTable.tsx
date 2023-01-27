@@ -18,8 +18,8 @@ const columns: GridColDef[] = [
 
 
 export const CustomersTable = () => {
-  const [orders, SetOrders] = React.useState<any[]>([]);
-  const [finalOrder, setFinalOrder] = React.useState<any[]>([]);
+  const [clients, SetClients] = React.useState<any[]>([]);
+  const [finalClient, setFinalClient] = React.useState<any[]>([]);
 
   
   const currentName = useSelector<StateI>(
@@ -48,24 +48,24 @@ export const CustomersTable = () => {
   
 
   React.useEffect(() => {
-    const fetchOrders = async () => {
+    const fetchClients = async () => {
       const req = await fetch(
         //`https://gist.githubusercontent.com/ArgenisGonzalez-Ksquare/57949b90952c9fdf305965fb0b4effb5/raw/60716f29dc63ef21bd29079bd2c219c72693e7c1/gistfile1.json`
         `http://localhost:3001/orders/owner/${userData.uid}`
         );
-      const ordersData = await req.json();
-      SetOrders(ordersData);
-      console.log(ordersData);
+      const clientsData = await req.json();
+      SetClients(clientsData);
+      console.log(clientsData);
       
 
     };
-    fetchOrders();
-  }, [SetOrders, ]);
+    fetchClients();
+  }, [SetClients, ]);
 
   React.useEffect(() => {
 
-    if(orders){
-      setFinalOrder(orders.map(
+    if(clients){
+      setFinalClient(clients.map(
         function(item){
             return{
               "id": item.Customer.id,
@@ -76,7 +76,7 @@ export const CustomersTable = () => {
           ))
     }
 
-  }, [orders, setFinalOrder])
+  }, [clients, setFinalClient])
   
 
 
@@ -85,7 +85,7 @@ export const CustomersTable = () => {
     <div className="table-container" style={{ height: 650, width: "70%" }}>
       <h1 className="title-list"><i className="fa-regular fa-face-smile"></i>Clients</h1>
       <DataGrid
-        rows={finalOrder}
+        rows={finalClient}
         columns={columns}
         pageSize={8}
         rowsPerPageOptions={[5]}
@@ -97,14 +97,14 @@ export const CustomersTable = () => {
 
 /* [
   
-  { "id": 1, "order": "#254884", "client":"Fulanito deTal", "restaurant":"Tacos ITK", "status": "Complete" },
-  { "id": 2, "order": "#254471", "client":"Juana Maria", "restaurant":"Tortas ITK", "status": "Complete" },
-  { "id": 3, "order": "#145792", "client":"Francisca", "restaurant":"Tacos ITK", "status": "Complete" },
-  { "id": 4, "order": "#254823", "client":"Fulanito deTal", "restaurant":"Tacos ITK", "status": "Complete" },
-  { "id": 5, "order": "#254821", "client":"Perla Mendez", "restaurant":"Pizza ITK", "status": "Cancel" },
-  { "id": 6, "order": "#211284", "client":"Yumil Flores", "restaurant":"Tacos ITK", "status": "Cancel" },
-  { "id": 7, "order": "#25432s", "client":"Fulanito deTal", "restaurant":"Chilaquiles ITK", "status": "Rejected" },
-  { "id": 8, "order": "#254589", "client":"Pancacia", "restaurant":"Tacos ITK", "status": "Complete" },
-  { "id": 9, "order": "#254102", "client":"Fulanito deTal", "restaurant":"Tacos ITK", "status": "Complete" },
+  { "id": 1, "Client": "#254884", "client":"Fulanito deTal", "restaurant":"Tacos ITK", "status": "Complete" },
+  { "id": 2, "Client": "#254471", "client":"Juana Maria", "restaurant":"Tortas ITK", "status": "Complete" },
+  { "id": 3, "Client": "#145792", "client":"Francisca", "restaurant":"Tacos ITK", "status": "Complete" },
+  { "id": 4, "Client": "#254823", "client":"Fulanito deTal", "restaurant":"Tacos ITK", "status": "Complete" },
+  { "id": 5, "Client": "#254821", "client":"Perla Mendez", "restaurant":"Pizza ITK", "status": "Cancel" },
+  { "id": 6, "Client": "#211284", "client":"Yumil Flores", "restaurant":"Tacos ITK", "status": "Cancel" },
+  { "id": 7, "Client": "#25432s", "client":"Fulanito deTal", "restaurant":"Chilaquiles ITK", "status": "Rejected" },
+  { "id": 8, "Client": "#254589", "client":"Pancacia", "restaurant":"Tacos ITK", "status": "Complete" },
+  { "id": 9, "Client": "#254102", "client":"Fulanito deTal", "restaurant":"Tacos ITK", "status": "Complete" },
   
  ] */
