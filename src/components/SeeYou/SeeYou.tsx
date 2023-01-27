@@ -3,6 +3,7 @@ import italianFood from "../../assets/slide/italianFood.png";
 import ramen from "../../assets/slide/ramen.png";
 import burger from "../../assets/slide/burger.png";
 
+
 export const SeeYou = () => {
   
   
