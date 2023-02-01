@@ -13,7 +13,9 @@ function InformationTemplate({ children }: Props) {
     <div id="template">
       <UpNavBar />
       <div className="container-template">
-        <UserInfo />
+        <div>
+        <UserInfo/>
+        </div>
         <div className="container-interactive">{children}</div>
       </div>
     </div>

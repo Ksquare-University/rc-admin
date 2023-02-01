@@ -41,7 +41,8 @@ const App: FC = () => {
           updateUserState({
             displayName: data.name|| "Yumil Flores",
             email: data.email || "DONT",
-            phone: "809-751-5482"
+            phone: "809-751-5482",
+            uid: data.uid ||" "
           })
         );
         setAuthorizationHeader(token);

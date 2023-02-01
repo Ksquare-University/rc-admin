@@ -9,7 +9,7 @@ export const SidebarData: SidebarItem[] = [
     },
     {
         title: 'Clients',
-        path: '/overview/users',
+        path: '/clients',
         icon: <FaUserCircle />
     },
     {

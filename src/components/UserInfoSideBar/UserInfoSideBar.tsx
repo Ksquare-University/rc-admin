@@ -27,6 +27,9 @@ export const UserInfoSideBar = () => {
   const currentPhone = useSelector<StateI>(
     (state) => state.currentUserState.phone
   ) as string;
+  const currentUid = useSelector<StateI>(
+    (state) => state.currentUserState.uid
+  ) as string;
 
 
 
@@ -35,6 +38,7 @@ export const UserInfoSideBar = () => {
     displayName: currentName || "",
     email: currentEmail || "",
     phone: currentPhone || "",
+    uid: currentUid || "",
     accessToken: "",
   });
 
@@ -42,6 +46,7 @@ export const UserInfoSideBar = () => {
     displayName: "",
     email: "",
     phone: "",
+    uid:"",
     accessToken: "",
   });
 

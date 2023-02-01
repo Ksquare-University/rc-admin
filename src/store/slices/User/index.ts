@@ -10,6 +10,7 @@ const rootSlice = createSlice({
     displayName: '',
     email: '',
     phone: '',
+    uid:'',
     // accessToken:'', //AccessToken is stored in axios client Header by the localStorage: Delete this
     },
   reducers: {

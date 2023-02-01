@@ -11,12 +11,15 @@
 
 .container-template {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding-top: 2%;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
 }
 
 .container-interactive{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
