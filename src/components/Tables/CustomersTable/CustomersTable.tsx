@@ -8,9 +8,9 @@ import { StateI } from "../../../store/slices";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 150 },
-  { field: "customer", headerName: "Full Name", width: 300 },
-  { field: "phone_number", headerName: "Phone Number", width: 300 },
-  { field: "status", headerName: "Status", width: 230 },
+  { field: "customer", headerName: "Full Name", width: 400 },
+  { field: "phone_number", headerName: "Phone Number", width: 400 },
+  { field: "status", headerName: "Status", width: 330 },
 ];
  
 
@@ -50,7 +50,7 @@ export const CustomersTable = () => {
   React.useEffect(() => {
     const fetchClients = async () => {
       const req = await fetch(
-        //`https://gist.githubusercontent.com/ArgenisGonzalez-Ksquare/57949b90952c9fdf305965fb0b4effb5/raw/60716f29dc63ef21bd29079bd2c219c72693e7c1/gistfile1.json`
+        //`https://gist.githubusercontent.com/ArgenisGonzalez-Ksquare/53f964c7fb7f73b317e5eb9cba659301/raw/a114c12124dab94bd932878c6017c0c3a841ca1a/gistfile1.json`
         `http://localhost:3001/orders/owner/${userData.uid}`
         );
       const clientsData = await req.json();

@@ -8,9 +8,9 @@ import { StateI } from "../../../store/slices";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 150 },
-  { field: "order", headerName: "Order", width: 230 },
-  { field: "customer", headerName: "Client", width: 300 },
-  { field: "restaurant", headerName: "Restaurant", width: 300 },
+  { field: "order", headerName: "Order", width: 150 },
+  { field: "customer", headerName: "Client", width: 450 },
+  { field: "restaurant", headerName: "Restaurant", width: 400 },
   { field: "status", headerName: "Status", width: 230 },
 ];
  
