@@ -7,10 +7,10 @@ import { StateI } from "../../../store/slices";
 
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 150 },
-  { field: "order_id", headerName: "Order ID", width: 230 },
-  { field: "total_items", headerName: "Total Items", width: 300 },
-  { field: "date", headerName: "Date", width: 230 },
+  { field: "id", headerName: "ID", width: 200 },
+  { field: "order_id", headerName: "Order ID", width: 200 },
+  { field: "total_items", headerName: "Total Items", width: 200 },
+  { field: "date", headerName: "Date", width: 430 },
   { field: "total_price", headerName: "Price", width: 300 }
 ];
  
