@@ -1,0 +1,108 @@
+/* body {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 100%;
+    height: 100vh;
+    background-color: #f8554d;
+    text-align: center;
+    flex-direction: column;
+    background-image: url("../../../assets/BackgroundFood.png");
+  } */
+
+/* img {
+    width: 200px;
+    transition: all 1s;
+  }
+  
+  img:hover {
+    width: 300px;
+  } */
+
+.scheduleContainer {
+  border-radius: 15px;
+  margin: 40px;
+}
+
+.restaurantSchedule {
+  height: 200px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.openDays {
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  display: flex;
+  font-weight: bold;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeDays {
+  color: rgb(0, 0, 0);
+  display: flex;
+  padding: 10px;
+  font-weight: bold;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.openInfo {
+  background-color: #e88a62;
+  width: 500px;
+  margin-left: 90px;
+}
+
+.navbar {
+  background-color: #070707cb;
+  height: 60px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+.navbar a {
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  color: white;
+  align-content: center;
+  align-items: center;
+}
+
+.navbar a:hover {
+  background-color: rgb(229, 225, 225);
+  color: rgb(0, 0, 0);
+}
+
+.navbar a.active {
+  background: linear-gradient(#fc7820a1, #1b0d0300);
+  color: white;
+  box-shadow: #ff4d00 2px 0px 0px 2px;
+}
+
+.OpenInfo {
+  background-color: rgb(229, 225, 225);
+  width: 450px;
+  margin-left: 100px;
+}
+.CloseInfo {
+  background-color: rgb(229, 225, 225);
+  width: 454px;
+  margin-left: 120px;
+}
+
+option {
+  height: 100px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 15pt;
+}

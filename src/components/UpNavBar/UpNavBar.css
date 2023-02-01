@@ -1,0 +1,62 @@
+.NavBar-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  font-family: 'Rubik', sans-serif;
+}
+
+.Logo-container {
+  width: 90%;
+  height: 6vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1.0s;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 3px 3px 3px #00000014;
+}
+
+.logo {
+  width: 4%;
+}
+
+.Icons-Containers {
+  width: 6.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fe473c;
+  box-shadow: 3px 3px 3px #00000014;
+  height: 6vh;
+}
+
+.icon-button{
+  height: 6vh;
+  width: 100%;
+  background-color: #cb2f0b;
+  cursor: pointer;
+  border-style: none;
+  background-size: 600px; 
+}
+
+.icon {
+  font-size: 1vw;
+  color: white;
+}
+
+.NavBar-container button:hover {
+  background-color: #ff4219;
+}
+
+
+.sideBar{
+  height: 800px;
+  width: 120px;
+  background-color: blue;
+}
+
+.css-zyizc9-MuiButtonBase-root-MuiButton-root{
+  font-weight: bolder;
+}
+

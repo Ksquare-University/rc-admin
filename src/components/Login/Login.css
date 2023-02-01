@@ -1,0 +1,105 @@
+*{
+  font-family: 'Rubik', sans-serif;
+}
+
+
+.LoginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #fe473c;
+  text-align: center;
+  flex-direction: column;
+  background-image: url("../../assets/BackgroundFood.png");
+  background-position: center;
+  background-size: cover; 
+}
+
+.span-login {
+  font-size: 10rem;
+  color: aliceblue;
+  transition: all 0.5s;
+  font-weight: 800;
+  letter-spacing: 8px;
+}
+
+.span-login2 {
+  font-size: 2rem;
+  color: aliceblue;
+  transition: all 0.5s;
+  font-weight: 400;
+  letter-spacing: 8px;
+  margin-bottom: 60px;
+}
+
+.span-login:hover {
+  font-size: 150px;
+  color: #76110c;
+  letter-spacing: 20px;
+}
+
+.form-login {
+  width: 1000px;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form-control {
+  width: 500px;
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 5px 5px 10px #30040239;
+  transition: all 0.6s;
+}
+
+.form-control:focus {
+  background-color: #670702;
+  color: #fff;
+}
+
+.btn-btn-primary {
+  font-weight: 700;
+  border: none;
+  color: rgb(29, 29, 29);
+  padding: 20px;
+  width: 180px;
+  font-size: 15pt;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 30px;
+  box-shadow: 5px 5px 10px #30040239;
+  transition: all 0.6s;
+}
+
+.btn-btn-primary:hover{
+  background-color: #76110c;
+  color: #fff;
+}
+
+.logo-login {
+  width: 20%;
+  transition: all 1s;
+}
+
+.logo-login:hover {
+  width: 30%;
+}
+
+.alert-succes{
+  margin-bottom: 50px;
+}
+
+
+.alert-title-wrong{
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}

@@ -1,0 +1,132 @@
+.User-Info-Box{
+    display: flex;
+    width: 18%;
+    height: 100vh;
+    background-color: rgb(245, 245, 245);
+    background-image: url("../../assets/sideBackGround.png");
+    background-repeat: repeat;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 5px 5px 10px #4747471d;
+    font-family: 'Rubik', sans-serif;
+    position: absolute;
+    right: 0;
+    top: 0;
+    box-shadow: -4px -2px 2px #00000014;
+    position: absolute;
+    z-index: 1;
+}
+
+.close-bar-button{
+    font-size: 2rem;
+    font-weight: 800;
+    align-self: flex-start;
+    margin-left: 20px;
+    border-style: none;
+    color: rgb(128, 11, 0);
+    cursor: pointer;
+}
+
+.close-bar-button:hover{
+    color: white;
+}
+
+.User-info-box-child{
+    display: flex;
+    flex-direction: column;
+    border-color: antiquewhite;
+    padding-top: 20px;
+    align-items: center;
+    font-weight: 700;
+    font-size: 20pt;
+}
+
+.edit-information{
+    font-size: 1vw;
+    border-style: none;
+    background-color: rgba(245, 245, 245, 0);
+    cursor: pointer;
+    font-weight: 700;
+    color: rgb(133, 133, 133);
+    transition: all 0.5s;
+}
+
+.edit-information:hover{
+    color: rgb(58, 58, 58);
+}
+
+.Values-inputs-box{
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    width: 90%;
+    padding-top: 25%;
+    align-items: center;
+}
+
+.Input-element{
+    padding: 13px;
+    width: 80%;
+    margin: 20px;
+    border: solid;
+    border-color: rgba(89, 89, 89, 0.412);
+    background-color: rgb(246, 246, 246);
+    border-radius: 10px;
+    height: 20px;
+    font-size: 0.75vw;
+    font-weight: 400;
+}
+
+
+.user-img{
+    margin-top: 100px;
+    width: 45%;
+    border-radius: 50%;
+}
+
+.Buttons-Edit-Box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    display: none;
+}
+
+
+.Button-done{
+    font-weight: 700;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    font-size: 15pt;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: green;
+    color: white;
+}
+
+.Button-cancel{
+    font-weight: 700;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    font-size: 15pt;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: rgb(128, 11, 0);
+    color: white; 
+}
+
+.Rappi-Logo{
+    width: 100px;
+}
+
+
+.Button-cancel:hover{
+    filter: brightness(80%);
+}
+
+.Button-done:hover{
+    filter:contrast(80%);
+}
