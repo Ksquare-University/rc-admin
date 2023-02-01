@@ -56,7 +56,7 @@ export function ViewUser({title="viewUser"}:Props){
             <div className="menuView">
                 <a className={isActive(1)} onClick={()=>{ updateStates(1);}}>Create User</a>
                 <a className={isActive(2)} onClick={()=>{ updateStates(2);}}>Edit</a>
-                {pageStage===2 &&
+                {/* {pageStage===2 &&
                 <Select
                     className="basic-single"
                     classNamePrefix="select"
@@ -76,7 +76,7 @@ export function ViewUser({title="viewUser"}:Props){
                     //         }
                     //       }
                     // )}
-                />}
+                />} */}
             </div>
             <div className="container-view">
                 {pageStage===0 && <Welcome/>}

@@ -5,9 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { StateI } from '../../../../store/slices';
 import Select from 'react-select';
 import { State } from "@popperjs/core";
-import { fetchCities, fetchRestaurants, fetchUsers, updateAddress, updateAdmin, updateCourrier, updateCustomer, updateManager, updateUser } from "../../../../store/slices/UserEdit";
+import { fetchAddress, fetchAdmin, fetchCities, fetchCourier, fetchCustomer, fetchManager, fetchRestaurants, fetchUser, fetchUsers, updateAddress, updateAdmin, updateCourrier, updateCustomer, updateManager, updateUser } from "../../../../store/slices/UserEdit";
 import { City, CustomerAddress, RestaurantFetchOptions, User, UserAdmin, UserCourrier, UserCustomer, UserManager, Users } from "../../../../store/slices/UserEdit/reducers";
 import { option } from "yargs";
+import { Switch } from "@mui/material";
 
 
 
@@ -20,6 +21,7 @@ export function EditUser({title="EditUser"}:Props){
     const dispatchPromise = useAppDispatch();
     const [selected, setSelected] = useState<string>('customer');
     const [selectedUser, setSelectedUser] = useState<string>('');
+    
 
 
     //City
@@ -33,14 +35,20 @@ export function EditUser({title="EditUser"}:Props){
     //User
     const emailUser = useSelector<StateI>((state)=>state.userEdit.user.email) as string;
     const phoneUser = useSelector<StateI>((state)=>state.userEdit.user.phone) as string;
-    const roleUser= useSelector<StateI>((state)=>state.userEdit.user.role) as "customer" | "admin" | "manager" | "superadmin";
+    const usernameUser = useSelector<StateI>((state)=>state.userEdit.user.user_name) as string;
+    const isDeletedUser = useSelector<StateI>((state)=>state.userEdit.user.is_deleted) as boolean;
+
+
+    const roleUser= useSelector<StateI>((state)=>state.userEdit.user.role) as "customer" | "admin" | "manager" | "superadmin" | "courier" | "owner";
     const [password, setPassword] = useState<string>()
     const [send, setSend] = useState<boolean>(false);
 
     const [userData, setUserData] = useState<User>({
         email: emailUser || "",
         phone: phoneUser || "",
+        user_name: usernameUser || "",
         role: roleUser || "customer",
+        is_deleted: isDeletedUser || false,
     });
     //Manager
     const restaurantId = useSelector<StateI>((state)=>state.userEdit.manager.restaurant_id) as number;
@@ -54,12 +62,15 @@ export function EditUser({title="EditUser"}:Props){
     //Customer
     const fullnameCustomer = useSelector<StateI>((state)=>state.userEdit.customer.user.full_name) as string;
     const userIdCustomer = useSelector<StateI>((state)=>state.userEdit.customer.user.user_id) as string;
-    const phoneCustomer = useSelector<StateI>((state)=>state.userEdit.customer.user.phone) as string;
+    const phoneCustomer = useSelector<StateI>((state)=>state.userEdit.user.phone) as string;
+    const idCustomer = useSelector<StateI>((state)=>state.userEdit.customer.user.id) as number;
+
     
     const [customerData, setCustomerData] = useState<UserCustomer>({
         full_name: fullnameCustomer || "",
         user_id: userIdCustomer || "",
         phone: phoneCustomer || "",
+        id: idCustomer || 0,
     });
     
     //address
@@ -67,7 +78,7 @@ export function EditUser({title="EditUser"}:Props){
     const address = useSelector<StateI>((state)=>state.userEdit.customer.address.address) as string;
     const reference = useSelector<StateI>((state)=>state.userEdit.customer.address.reference) as string;
     const zip_code = useSelector<StateI>((state)=>state.userEdit.customer.address.customer_id) as number;
-    const city_id = useSelector<StateI>((state)=>state.userEdit.customer.address.customer_id) as number;
+    const city_id = useSelector<StateI>((state)=>state.userEdit.customer.address.city_id) as number;
 
     const [addressData, setAddressData] = useState<CustomerAddress>({
         customer_id: customer_id || 0,
@@ -89,9 +100,9 @@ export function EditUser({title="EditUser"}:Props){
     });
 
     //Owner/Admin
-    const fullnameAdmin = useSelector<StateI>((state)=>state.userEdit.courrier.fullname) as string;
+    const fullnameAdmin = useSelector<StateI>((state)=>state.userEdit.admin.fullname) as string;
     const userIdAdmin = useSelector<StateI>((state)=>state.userEdit.admin.user_id) as string;
-    const phoneAdmin = useSelector<StateI>((state)=>state.userEdit.admin.phone) as string;
+    const phoneAdmin = useSelector<StateI>((state)=>state.userEdit.user.phone) as string;
  
     const [adminData, setAdminData] = useState<UserAdmin>({
         fullname: fullnameAdmin || "",
@@ -111,6 +122,7 @@ export function EditUser({title="EditUser"}:Props){
     const options:accounts[] = [
         {value: "customer", label: "customer", isFixed: true},
         {value: "courier", label: "courier", isFixed: true},
+        {value: "admin", label: "admin" },
         {value: "owner", label: "owner" },
         {value: "manager", label: "manager" },
         {value: "superadmin", label: "superadmin", isDisabled: true},
@@ -134,11 +146,18 @@ export function EditUser({title="EditUser"}:Props){
         })
     };
     const handleChangeUser = (e:React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e);
         const { name, value } = e.target
 
         setUserData({
             ...userData, 
             [name]: value
+        })
+    };
+    const handleChangeDeleted = () => {
+        setUserData({
+            ...userData, 
+            ["is_deleted"]: !userData.is_deleted
         })
     };
     useEffect(()=>{
@@ -231,9 +250,46 @@ export function EditUser({title="EditUser"}:Props){
     },[dispatchPromise])
 
     useEffect(()=>{
-        console.log(selectedUser);
+        if(selectedUser){
+            dispatchPromise(fetchUser(selectedUser));
+        }
+    },[selectedUser, dispatchPromise]);
+
+    useEffect(()=>{
+        setUserData({
+            email: emailUser,
+            phone: phoneUser,
+            user_name: usernameUser,
+            role: roleUser,
+            is_deleted: isDeletedUser,
+        })
+
+        //Manager
+        if(roleUser==='manager'){
+            dispatchPromise(fetchManager(selectedUser));
+        }
+
+        //Courier
+        if(roleUser ==='courier'){
+            // dispatchPromise(fetchCourier(selectedUser));
+        }
+
+        //Admin
+        if(roleUser==='admin' || roleUser==="owner"){
+            dispatchPromise(fetchAdmin(selectedUser));
+        }
         
-    },[selectedUser]);
+        //Customer
+        if(roleUser==='customer' && emailUser){
+            dispatchPromise(fetchCustomer(selectedUser));
+        }
+    },[emailUser, dispatchPromise]);
+
+    useEffect(()=>{
+        if(roleUser==='customer' && idCustomer!==0){
+            dispatchPromise(fetchAddress(idCustomer));
+        }
+    },[idCustomer])
 
 
     return (
@@ -263,15 +319,16 @@ export function EditUser({title="EditUser"}:Props){
                 />
 
                 </>
-                {selectedUser !== '' && <>
+                {emailUser !== '' && <>
                 <>
                 <Select
                         className="basic-single"
                         classNamePrefix="select"
-                        //value={userData.role || "customer"}
+                        value={options.find(element => element.value == roleUser)}
                         isDisabled={false}
                         isRtl={true}
-                        onChange={(e)=>{handleChange(e)}}
+                        onChange={(e)=>{handleChange(e); console.log('sss');
+                        }}
                         options={options}
                 />
                 <input
@@ -279,7 +336,7 @@ export function EditUser({title="EditUser"}:Props){
                     type="text"
                     id="email"
                     name="email" 
-                    value={userData.email}
+                    value={emailUser}
                     onChange={handleChangeUser}
                 />
                 <input
@@ -287,7 +344,15 @@ export function EditUser({title="EditUser"}:Props){
                     type="text"
                     id="phone"
                     name="phone" 
-                    value={userData.phone}
+                    value={phoneUser}
+                    onChange={handleChangeUser}
+                />
+                <input
+                    placeholder="User name"
+                    type="text"
+                    id="user_name"
+                    name="user_name" 
+                    value={usernameUser}
                     onChange={handleChangeUser}
                 />
                 <input
@@ -298,12 +363,23 @@ export function EditUser({title="EditUser"}:Props){
                     value={password}
                     onChange={(e:any)=>{setPassword(e.value)}}
                 />
+                <span>Delete: </span> 
+                <Switch name= 'is_deleted'  checked={userData.is_deleted} onChange={handleChangeDeleted}></Switch>
+
                 </>
-                {selected==="manager" && <div className="managerForm">
+                {roleUser==="manager" && <div className="managerForm">
                     <Select
                         className="basic-single"
                         classNamePrefix="select"
                         isDisabled={false}
+                        value={restaurants.map(
+                            function(item){
+                                return{
+                                  "value": item.id,
+                                  "label": item.name
+                                }
+                              }
+                        ).find(element => element.value == restaurantId)}
                         isLoading={loading=='pending'?true:false}
                         isRtl={true}
                         onChange={(e)=>{handleChangeManager(e)}}
@@ -318,13 +394,13 @@ export function EditUser({title="EditUser"}:Props){
                     />
                 </div>}
 
-                {selected==="owner" && <div className="ownerForm">
+                {(roleUser==="admin"||roleUser==="owner") && <div className="ownerForm">
                     <input
                         placeholder="Fullname"
                         type="text"
                         id="fullname"
                         name="fullname" 
-                        value={adminData.fullname}
+                        value={fullnameAdmin}
                         onChange={handleChangeAdmin}
                     />
                     <input
@@ -332,19 +408,27 @@ export function EditUser({title="EditUser"}:Props){
                         type="text"
                         id="phone"
                         name="phone" 
-                        value={adminData.phone}
+                        value={phoneAdmin}
                         onChange={handleChangeAdmin}
                     />
 
                 </div>}
 
-                {selected==="customer" &&<div className="customerForm">
+                {roleUser==="customer" &&<div className="customerForm">
                     <Select
                         className="basic-single"
                         classNamePrefix="select"
                         isDisabled={false}
                         isLoading={loading=='pending'?true:false}
                         isRtl={true}
+                        value={city.map(
+                            function(item){
+                                return{
+                                  "value": item.id,
+                                  "label": item.name
+                                }
+                              }
+                        ).find(element=> element.value == city_id)}
                         onChange={(e)=>{handleChangeCity(e)}}
                         options={city.map(
                             function(item){
@@ -361,7 +445,7 @@ export function EditUser({title="EditUser"}:Props){
                         type="text"
                         id="full_name"
                         name="full_name" 
-                        value={customerData.full_name}
+                        value={fullnameCustomer}
                         onChange={handleChangeCustomer}
                     />
                     <input
@@ -369,7 +453,7 @@ export function EditUser({title="EditUser"}:Props){
                         type="text"
                         id="phone"
                         name="phone" 
-                        value={customerData.phone}
+                        value={phoneCustomer}
                         onChange={handleChangeCustomer}
                     />
                     <input
@@ -377,7 +461,7 @@ export function EditUser({title="EditUser"}:Props){
                         type="text"
                         id="address"
                         name="address" 
-                        value={addressData.address}
+                        value={address}
                         onChange={handleChangeAddress}
                     />
                     <input
@@ -385,7 +469,7 @@ export function EditUser({title="EditUser"}:Props){
                         type="text"
                         id="reference"
                         name="reference" 
-                        value={addressData.reference}
+                        value={reference}
                         onChange={handleChangeAddress}
                     />
                     <input
@@ -393,19 +477,19 @@ export function EditUser({title="EditUser"}:Props){
                         type="number"
                         id="zip_code"
                         name="zip_code" 
-                        value={addressData.zip_code}
+                        value={zip_code}
                         onChange={handleChangeAddress}
                     />
            
                 </div>}
 
-                {selected==="courier" &&<div className="courierForm">
+                {roleUser==="courier" &&<div className="courierForm">
                     <input
                         placeholder="Fullname"
                         type="text"
                         id="fullname"
                         name="fullname" 
-                        value={courrierData.fullname}
+                        value={fullnameCourrier}
                         onChange={handleChangeCourrier}
                     />
                     <input
@@ -413,7 +497,7 @@ export function EditUser({title="EditUser"}:Props){
                         type="text"
                         id="phone"
                         name="phone" 
-                        value={courrierData.phone}
+                        value={phoneCourrier}
                         onChange={handleChangeCourrier}
                     />
                 </div>}
@@ -421,7 +505,13 @@ export function EditUser({title="EditUser"}:Props){
                 <button className="createUser-btn"
                 onClick={()=>{setSend(true)}}
                 >
-                    Create
+                    Edit
+                </button>
+
+                <button className="createUser-btn"
+                onClick={()=>{setSend(true)}}
+                >
+                    Cancel
                 </button>
 
 

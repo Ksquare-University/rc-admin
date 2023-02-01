@@ -1,11 +1,12 @@
-.createUserForm{
+
+.createuserEdit{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
 
-.createUserForm input{
+.createuserEdit input{
     width: 60%;
     margin-top: 10px;
     border-radius: 5px;
@@ -13,11 +14,10 @@
     border: transparent;
 }
 
-.createUserForm input:focus{
+.createuserEdit input:focus{
     outline: none;
     background-color: rgb(237, 164, 68);
 }
-
 
 .managerForm{
     display: flex;
@@ -69,4 +69,8 @@
     cursor: pointer;
     background-color: green;
     color: white;
+}
+
+.users-select{
+    width: 100%;
 }

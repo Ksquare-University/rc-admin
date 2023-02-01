@@ -10,6 +10,10 @@ import { useContext, useEffect, useState } from 'react';
 import { fetchRestaurantsbyOwnerid } from '../../../store/slices/Restaurants/index';
 import { fetchRestaurantById } from '../../../store/slices/RestaurantView/index';
 import store, { useAppDispatch } from '../../../store';
+import { ItemGrid } from './components/Item/Items';
+import { item } from './components/Item/hook';
+import { AddItem } from './components/Item/AddItem';
+import { useCreateItems } from './components/Item/AddItem.hook';
 
 
 type Props={
@@ -89,6 +93,19 @@ export function ViewRestaurant({title="viewRestaurant"}:Props){
         updateStates(1);
       };
 
+  const [isChanged, setIsChanged] = useState<boolean>(false);
+    
+  const { createItem, isLoading}= useCreateItems();
+    const OnAddItem = (newItem:item) => {
+        
+        //Create  NewHook to put the new item
+        //When is loading success-> is Changed true
+        createItem(newItem, 1);
+        
+        setIsChanged(!isChanged);
+        
+    };
+
     return (
     <>
         <div className="viewRestaurant">
@@ -122,6 +139,17 @@ export function ViewRestaurant({title="viewRestaurant"}:Props){
                 {pageStage===1 && <ViewInformation parentCallback={StatusUpdated}/>}
                 {pageStage===2 && <ViewSchedule isChanged={pageStage}/>}
                 {pageStage===3 && <ViewDisable/>}
+            </div>
+            <div className='container-items'>
+                <h1>Items</h1>
+                <div id='items'>
+                    <AddItem
+                        parentCallBack={OnAddItem}
+                    />
+                    {/* TODO ADD CORRECT REFERENCES TO THE REQUEST: WHEN YOU CREATE AN ITEM IT'S JUST FOR THE RESTAURANT_ID: 1 */}
+                    <ItemGrid restaurant_id={1} isChange={isChanged}/>
+                </div>
+
             </div>
         </div>
     </>

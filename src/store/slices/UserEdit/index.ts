@@ -9,7 +9,8 @@ import {
   UserCustomer,
   UserForm,
   UserManager,
-  UserOwner
+  UserOwner,
+  Users
 } from "./reducers";
 import axios from 'axios'
 
@@ -27,6 +28,87 @@ export const fetchRestaurants = createAsyncThunk('restaurant/fetchAll', async (t
   return data["restaurants"];
 })
 
+
+export const fetchUsers = createAsyncThunk('user/fetchAll', async (thunkAPI) => {
+  const res = await fetch(`http://localhost:3001/users/`)
+  const data = await res.json();
+  // console.log(data);
+  
+  return data["listedUsers"];
+})
+
+// Fill information to EDIT
+// USER
+interface UserGet {
+  id: string;
+  role: "customer" | "admin" | "manager" | "superadmin" | "courier";
+  user_name: string;
+  email: string;
+  password: string;
+  is_deleted: boolean;
+}
+export const fetchUser = createAsyncThunk('user/fetchByUID', async (UID: string, thunkAPI) => {
+  const res = await fetch(`http://localhost:3001/users/FBandDB/${UID}`)
+  const data = await res.json();
+  // console.log('user:', data);
+  
+  return data["fetchedUser"]
+});
+//MANAGER
+interface ManagerGet{
+  user_id: string;
+  restaurant_id: number;
+}
+export const fetchManager = createAsyncThunk('user/fetchManagerByUID', async (UID: string, thunkAPI) => {
+  const res = await fetch(`http://localhost:3001/manager/uid/${UID}`)
+  const data = await res.json();
+  // console.log('user:', data);
+  
+  return data["manager"];
+});
+//CUSTOMER
+interface CustomerGet{
+  id: number;
+  user_id: string;
+  phone_number: string;
+  full_name: string;
+}
+export const fetchCustomer = createAsyncThunk('user/fetchCustomerByUID', async (UID: string, thunkAPI) => {
+  const res = await fetch(`http://localhost:3001/customer/uid/${UID}`)
+  const data = await res.json();
+  // console.log('user:', data);
+  
+  return data["customer"];
+});
+//Addres
+export const fetchAddress = createAsyncThunk('user/fetchAddressByCustomerId', async (customerid: number, thunkAPI) => {
+  const res = await fetch(`http://localhost:3001/address/${customerid}`)
+  const data = await res.json();
+  console.log('user:', data);
+  
+  return data["customeraddress"];
+});
+//ADMIN
+interface AdminGet{
+  user_id: string;
+  phone: string;
+  full_name: string;
+}
+export const fetchAdmin = createAsyncThunk('user/fetchAdminByUID', async (UID: string, thunkAPI) => {
+  const res = await fetch(`http://localhost:3001/admin/uid/${UID}`)
+  const data = await res.json();
+  // console.log('user:', data);
+  
+  return data["manager"];
+});
+//COURIER
+export const fetchCourier = createAsyncThunk('user/fetchCourierByUID', async (UID: string, thunkAPI) => {
+  const res = await fetch(`http://localhost:3001/users/FBandDB/${UID}`)
+  const data = await res.json();
+  console.log('user:', data);
+  
+  return data;
+});
 //Create user
 interface createUser{
   displayName: string;
@@ -124,7 +206,7 @@ export const updateRestaurant = createAsyncThunk('restaurant/updateByRestaurantI
 
 // Slice
 const rootSlice = createSlice({
-  name: "userForm",
+  name: "userEdit",
   initialState: <UserForm>
     {
       user: {
@@ -132,6 +214,7 @@ const rootSlice = createSlice({
         phone: "",
         user_name: "",
         role: "customer",
+        is_deleted: false,
       },
       manager: {
         restaurant_id: 0,
@@ -142,6 +225,7 @@ const rootSlice = createSlice({
           full_name: '',
           user_id: '',
           phone: '',
+          id:0,
         },
         address: {
           customer_id: 0,
@@ -164,6 +248,7 @@ const rootSlice = createSlice({
       loading: 'idle',
       city: [],
       restaurants: [],
+      users: [],
     },
   reducers: {
     updateUserState(state, action: PayloadAction<UserForm>) {
@@ -210,38 +295,75 @@ const rootSlice = createSlice({
         state.restaurants = action.payload;
         state.loading = 'success';
     })
+    builder.addCase(fetchUsers.pending, (state) => {
+        state.loading = 'pending'
+    })
+    builder.addCase(fetchUsers.fulfilled, (state, action: PayloadAction<Users[]>) => {
+        state.users = action.payload;
+        state.loading = 'success';
+    })
+    builder.addCase(fetchUser.pending, (state) => {
+        state.loading = 'pending'
+    })
+    builder.addCase(fetchUser.fulfilled, (state, action: PayloadAction<UserGet>) => {      
+      state.user.role =  action.payload.role;
+      state.user.email =  action.payload.email;
+      state.user.user_name = action.payload.user_name;
+      state.user.is_deleted = action.payload.is_deleted;
 
-    builder.addCase(createCustomer.pending, (state) => {
+      state.loading = 'success';
+      return state;
+    })
+    builder.addCase(fetchManager.pending, (state) => {
         state.loading = 'pending'
     })
-    builder.addCase(createCustomer.fulfilled, (state) => {
-        state.loading = 'success';
-    })
-    builder.addCase(createOwner.pending, (state) => {
-        state.loading = 'pending'
-    })
-    builder.addCase(createOwner.fulfilled, (state) => {
-        state.loading = 'success';
-    })
-    builder.addCase(createManager.pending, (state) => {
-        state.loading = 'pending'
-    })
-    builder.addCase(createManager.fulfilled, (state) => {
-        state.loading = 'success';
-    })
-    builder.addCase(createCourrier.pending, (state) => {
-        state.loading = 'pending'
-    })
-    builder.addCase(createCourrier.fulfilled, (state) => {
-        state.loading = 'success';
-    })
+    builder.addCase(fetchManager.fulfilled, (state, action: PayloadAction<ManagerGet>) => {  
+      state.manager.restaurant_id = action.payload.restaurant_id;
+      state.manager.user_id = action.payload.user_id;
+      state.loading = 'success';
 
+    })
+    builder.addCase(fetchAdmin.pending, (state) => {
+        state.loading = 'pending'
+    })
+    builder.addCase(fetchAdmin.fulfilled, (state, action: PayloadAction<AdminGet>) => {  
+      
+      state.admin.fullname = action.payload.full_name;
+      state.user.phone = action.payload.phone;
+
+      state.loading = 'success';
+
+    })
+    builder.addCase(fetchCustomer.pending, (state) => {
+        state.loading = 'pending'
+    })
+    builder.addCase(fetchCustomer.fulfilled, (state, action: PayloadAction<CustomerGet>) => {  
+      
+      state.customer.user.full_name = action.payload.full_name;
+      state.customer.user.id = action.payload.id;
+      state.user.phone = action.payload.phone_number;
+
+      state.loading = 'success';
+
+    })
+    builder.addCase(fetchAddress.pending, (state) => {
+        state.loading = 'pending'
+    })
+    builder.addCase(fetchAddress.fulfilled, (state, action: PayloadAction<CustomerAddress>) => {  
+      
+      state.customer.address.address = action.payload.address;
+      state.customer.address.reference = action.payload.reference;
+      state.customer.address.zip_code = action.payload.zip_code;
+      state.customer.address.city_id = action.payload.city_id;
+
+      state.loading = 'success';
+
+    })
   }
 });
 
 
 // Actions
 export const { updateUserState, updateCourrier,  updateUser, updateAdmin, updateManager, updateCustomer, updateAddress
-} =
-  rootSlice.actions;
-export const userForm = rootSlice.reducer;
+} = rootSlice.actions;
+export const userEdit = rootSlice.reducer;

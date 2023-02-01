@@ -21,7 +21,6 @@ const App: FC = () => {
   // Set false if you want to go to login by default
   const [isLogin, setLogin] = React.useState(false);
 
-  console.log("Hola", process.env);
   React.useEffect(() => {
     
   // Check if the page store token otherwhise token is null

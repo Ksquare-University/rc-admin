@@ -10,14 +10,18 @@ import { userForm } from './UserForm'
 import { currentUserSideBarState } from './UserInfoSideBar';
 import { sideBarState } from './UserInfoSideBar/reducer';
 import { UserForm } from './UserForm/reducers';
+import { UserForm as UserEdit } from './UserEdit/reducers';
+import { userEdit } from './UserEdit';
 
 export interface StateI {
+    user: any;
     newRestaurantCount: InitialState,
     currentUserState: User,
     currentUserSideBarState:sideBarState,
     restaurantView: InitView,
     counter:CounterState,
-    user: UserForm,
+    userForm: UserForm,
+    userEdit: UserEdit, 
 }
 
 export default {
@@ -27,4 +31,5 @@ export default {
     restaurantView,
     counter,
     userForm,
+    userEdit,
 }

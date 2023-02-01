@@ -1,8 +1,9 @@
 export interface User {
   email: string;
   phone: string;
-  user_name: string;
-  role: "customer" | "admin" | "manager" | "superadmin" | "courier";
+  user_name:string;
+  role: "customer" | "admin" | "manager" | "superadmin" | "courier" | "owner";
+  is_deleted: boolean;
 }
 
 export interface UserManager {
@@ -20,6 +21,7 @@ export interface UserCustomer {
   full_name: string;
   user_id: string;
   phone: string;
+  id:number;
 }
 
 export interface CustomerAddress {
@@ -49,13 +51,20 @@ export interface UserAdmin{
 
 export interface City{
   id: number;
-  name: string;
+  name: string; 
 }
 
 export interface RestaurantFetchOptions { 
   id:number; 
   name:string;
  }
+
+export interface Users {
+  uid: string;
+  email: string;
+  role: "customer" | "admin" | "manager" | "superadmin" | "courier";
+  isDisabled: boolean;
+}
 
 
 export interface UserForm {
@@ -67,4 +76,5 @@ export interface UserForm {
   loading: 'idle' | 'pending' | 'success' | 'failure';
   city: City[];
   restaurants: RestaurantFetchOptions[];
+  users: Users[];
 }
